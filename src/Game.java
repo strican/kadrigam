@@ -1,4 +1,5 @@
 
-public interface Game {
-
+public interface Game
+{
+	
 }
