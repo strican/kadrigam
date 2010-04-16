@@ -6,4 +6,5 @@ public interface PointList
   public void add(PointList p);
   public void add(PointVal p);
   public int get(Color c);
+  public int total();
 }

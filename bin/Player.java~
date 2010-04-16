@@ -1,7 +1,7 @@
 public interface Player
 {
   /* Player assigns attackers and returns the total damage to be dealt */
-  public int assignAttack();
+  public int attack();
   
   /* Player deducts dmg points from his life total.  They may spread this
    * damage among any of its color pools */
@@ -28,7 +28,7 @@ public interface Player
   /* Moves a card from play to the graveyard */
   public void moveToGraveyard(Card c);
   
-  /* Player remove a card from their hand and places it in the graveyard */
+  /* Player removea card from their hand and places it in the graveyard */
   public void discardCard();
   
   

@@ -1,42 +1,73 @@
+import java.util.*;
+
 public class ColorPoints implements PointList
 {
-  private PointVal p[];
+  private HashMap<Color, PointVal> p;
   
-  public ColorPoints(int vals[])
+  public ColorPoints(ColorPoints pts)
   {
-    p = new PointVal[Color.NUM_COLORS];
-    for (int i = 0; i<Color.NUM_COLORS; i++)
-      p[i] = new PointVal(Color.getColor(i),vals[i]);
+	  for (Color c : Color.values())
+		  p.put(c, new PointVal(c, pts.get(c)));
+  }
+  
+  public ColorPoints(Map<Color, PointVal> p)
+  {
+	  this.p = new HashMap<Color, PointVal>(p);
+  }
+  
+  public ColorPoints()
+  {
+	  p = new HashMap<Color, PointVal>();
+	  for (Color c : Color.values())
+		  p.put(c, new PointVal(c, 0));
+  }
+  
+  public boolean canPay(PointVal pval)
+  {
+	  if (get(pval.c) < pval.getVal())
+	  {
+		  if (pval.c != Color.NEUTRAL)
+			  return false;
+	  	  if (total() < pval.getVal())
+	  		  return false;
+	  }
+	  return true;
   }
   
   public int get(Color c)
   {
-    return p[c.getIndex()].getVal();
+	  return p.get(c).getVal();
   }
   
-  public void add(PointVal p)
+  public void add(PointVal pval)
   {
-    (this.p[(p.c).getIndex()]).addVal(p.getVal());
+	  p.get(pval.c).addVal(pval.getVal());
   }
   
   public void add(PointList p)
   {
-    for (int i=0; i<Color.NUM_COLORS; i++)
-    {
-      (this.p[i]).addVal(p.get(Color.getColor(i)));
-    }
+	  for (Color c : Color.values())
+		  add(new PointVal(c, p.get(c)));
   }
  
   public void pay(PointVal p)
   {
-    (this.p[(p.c).getIndex()]).addVal(-p.getVal());
+	  p.neg();
+	  add(p);
   }
   
   public void pay(PointList p)
   {
-    for (int i=0; i<Color.NUM_COLORS; i++)
-    {
-      (this.p[i]).addVal(-p.get(Color.getColor(i)));
-    }
+	  for (Color c : Color.values())
+		  pay(new PointVal(c, p.get(c)));
+  }
+  
+  public int total()
+  {
+	  int acc = 0;
+	  for (Color c : Color.values())
+		  acc += get(c);
+	  
+	  return acc;
   }
 }
