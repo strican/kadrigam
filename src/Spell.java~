@@ -1,0 +1,6 @@
+public abstract class Spell implements Card
+{
+  private final String name;
+  private final PointList cost;
+  private final Affect affect;
+}
