@@ -1,14 +1,14 @@
 public class Ability
 {
   private final Trigger t;
-  private final Effect e;
+  private final int mag;
   
-  public Ability(Trigger t, Effect e)
+  public Ability(Trigger t, int mag)
   {
     this.t = t;
-    this.e = e;
+    this.mag = mag;
   }
   
   public Trigger getTrigger() { return t; }
-  public Effect getEffect() { return e; }
+  public int getMag() { return mag; }
 }
