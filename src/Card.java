@@ -6,4 +6,7 @@ public interface Card
   /* For now, each card will only have one ability */
   public void activateAbility();
   
+  public Boolean isActive();
+  public 
+  
 }
