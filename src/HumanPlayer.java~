@@ -10,6 +10,6 @@ public class HumanPlayer implements Player
   public HumanPlayer(CardList deck)
   {
     this.deck = deck;
-    life = new PointList
+    life = null;
   }
 }

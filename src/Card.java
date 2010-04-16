@@ -4,4 +4,5 @@ public interface Card
 {
   public String getName();
   public PointList getCost();
+  public Effect getEffect();
 }

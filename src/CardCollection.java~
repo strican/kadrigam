@@ -1,0 +1,14 @@
+import java.util.ArrayList
+
+public class CardCollection implements CardList
+{
+  private ArrayList<Card> cards;
+  private int size;
+  
+  public CardCollection()
+  {
+    card = new ArrayList<Card>();
+    size = 0;
+  }
+  
+}

@@ -1,0 +1,28 @@
+public class CardPile implements CardList
+{
+  private Stack<Card> s;
+  private int size;
+  
+  public CardPile()
+  {
+    s = new Stack<Card>;
+    size = 0;
+  }
+  
+  public Card addCard(Card c)
+  {
+    return (Card)s.push(c);
+  }
+  public Card removeCard()
+  {
+    return (Card)s.pop();
+  }
+  public boolean isEmpty()
+  {
+    return s.empty();
+  }
+  public Card next()
+  {
+    return (Card)s.peek();
+  }
+}
