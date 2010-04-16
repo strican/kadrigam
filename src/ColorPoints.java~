@@ -1,0 +1,11 @@
+public class ColorPoints implements PointList
+{
+  private PointVal p[];
+  
+  public ColorPoints(int vals[NUM_COLORS])
+  {
+    p = new PointVal[NUM_COLS];
+    for (int i = 0; i<NUM_COLS; i++)
+      p[i] = new PointVal((Color)i,vals[i]
+  }
+}
