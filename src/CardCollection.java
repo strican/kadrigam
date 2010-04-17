@@ -25,4 +25,12 @@ public class CardCollection implements CardList
   { 
     return (Card)cards.remove(cards.indexOf(c)); 
   }
+  
+  public String toString()
+  {
+    String s = new String();
+    for (Card c : cards)
+      s += c.toString();
+    return s;
+  }
 }
