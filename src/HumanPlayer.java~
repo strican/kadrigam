@@ -31,6 +31,7 @@ public class HumanPlayer implements Player
   {
     hand.addCard(deck.takeCard());
   }
+  
   public void discardCard(Card c)
   {
     if (hand.hasCard(c))
@@ -39,24 +40,46 @@ public class HumanPlayer implements Player
       //throw some exception?
       return;
   }
+  
+  public void takeDamage(PointList dmg)
+  {
+    life.pay(dmg);
+  }
+  
   public void destroyCreature(Creature c)
   {
     graveyard.addCard(allies.takeCard(c));
   }
+  
   public void sacrifice(Creature c)
   {
     life.add(c.getPayoff());
     destroyCreature(c);
   }
+  
+  public void dealDamage(int dmg, Creature c)
+  {
+    c.changeHP(-dmg);
+  }
+  
   public void playCard(Card c)
   {
     if (life.canPay(c.getCost()))
     {
-      if (c.instanceOf(Creature))
-        return;
+      life.pay(c.getCost());
     }
     else
       //raise some exception?
       return;
+  }
+  
+  public void activateEffect(Card c)
+  {
+    /*Implementation here*/
+  }
+  public int assignAttack()
+  {
+    /*Implementation here - how will the player know which are attacking?*/
+    return 0;
   }
 }
