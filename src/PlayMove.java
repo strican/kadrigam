@@ -12,15 +12,12 @@ public class PlayMove implements Move
 	
 	public boolean isLegal(Rules r)
 	{
-		//Test Legality
-		
-		//Temporary solution
-		return true;
+		return r.check(Type.PLAY, this);
 	}
 	
 	public void execute()
 	{
-		
+		p.playCard(c);
 	}
 
 }
