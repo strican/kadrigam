@@ -106,4 +106,13 @@ public class ColorPoints implements PointList
 	  
 		return acc;
 	}
+	
+	public String toString()
+	{
+		String s = "";
+		for (Color c : Color.values())
+			s += p.get(c) + "\n";
+		
+		return s;
+	}
 }
