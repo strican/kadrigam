@@ -1,5 +1,6 @@
 
-public class Test {
+public class Test
+{
 
  public static void main(String[] args)
  {
@@ -36,5 +37,17 @@ public class Test {
   
   p.pay(p2);
  }
+ 
+ public static void cardTest()
+ {
+  PointList p = new ColorPoints();
+  
+  p.add(new PointVal(Color.RED, 100));
+  
+  Card c = new Creature("Chuck Norris", 1000, 1000, null, p, p);
+  System.out.println(c);
+  
+ }
+
 
 }
