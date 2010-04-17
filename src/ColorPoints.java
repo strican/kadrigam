@@ -97,6 +97,7 @@ public class ColorPoints implements PointList
    pay(new PointVal(c, p.get(c)));
  }
   
+
  // Returns the total number of points a player has, summed over all colors
  public int total()
  {
@@ -105,5 +106,14 @@ public class ColorPoints implements PointList
    acc += get(c);
    
   return acc;
+ }
+ 
+ public String toString()
+ {
+  String s = "";
+  for (Color c : Color.values())
+   s += p.get(c) + "\n";
+  
+  return s;
  }
 }

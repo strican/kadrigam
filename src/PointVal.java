@@ -20,4 +20,9 @@ public class PointVal
   	{
   		val = -val;
   	}
+  	
+  	public String toString()
+  	{
+  		return c + ": " + val;
+  	}
 }

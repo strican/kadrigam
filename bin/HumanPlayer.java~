@@ -1,15 +1,62 @@
 public class HumanPlayer implements Player
 {
-  private PointList life;
-  private CardList allies;
-  private CardList spellStack;
-  private CardList deck;
-  private CardList graveyard;
-  private CardList hand;
+  public static final int MAXHANDSIZE = 7;
+  public static final int INITIAL_POINTS = 100000;
   
-  public HumanPlayer(CardList deck)
+  private PointList life;
+  private CardCollection allies;
+  private CardPile spellStack;
+  //Should these be CardLists or CardPiles?
+  private CardPile deck;
+  private CardPile graveyard;
+  private CardCollection hand;
+  
+  public HumanPlayer(CardPile deck)
   {
     this.deck = deck;
-    life = new PointList
+    
+    //Initializes the players life total
+    life = new ColorPoints();
+    life.add(new PointVal(Color.NEUTRAL,INITIAL_POINTS));
+    
+    //Initializes the players hand
+    for (int i=0; i<MAXHANDSIZE; i++)
+      drawCard();
+    
+    graveyard = new CardPile();
+    spellStack = new CardPile();
+  }
+  
+  public void drawCard()
+  {
+    hand.addCard(deck.takeCard());
+  }
+  public void discardCard(Card c)
+  {
+    if (hand.hasCard(c))
+      graveyard.addCard(hand.takeCard(c));
+    else
+      //throw some exception?
+      return;
+  }
+  public void destroyCreature(Creature c)
+  {
+    graveyard.addCard(allies.takeCard(c));
+  }
+  public void sacrifice(Creature c)
+  {
+    life.add(c.getPayoff());
+    destroyCreature(c);
+  }
+  public void playCard(Card c)
+  {
+    if (life.canPay(c.getCost()))
+    {
+      if (c.instanceOf(Creature))
+        return;
+    }
+    else
+      //raise some exception?
+      return;
   }
 }
