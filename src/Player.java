@@ -5,7 +5,7 @@ public interface Player
   
   /* Player deducts dmg points from his life total.  They may spread this
    * damage among any of its color pools */
-  public void takeDamage(ColorPoints dmg);
+  public void takeDamage(PointList dmg);
   
   /* Player deals dmg damage to target creature */
   public void dealDamage(int dmg, Creature c);

@@ -25,6 +25,7 @@ public class Creature implements Card
   public int getPow() { return attackPow; }
   public String getName() { return name; }
   public Ability getAbility() { return abil; }
+  public Effect getEffect() { return abil.getEffect(); }
   public boolean isActive() { return active; }
   public PointList getCost() { return cost; }
   public PointList getPayoff() { return payoff; }

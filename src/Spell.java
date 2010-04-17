@@ -1,17 +1,12 @@
-public class Spell implements Card
-{
-  private final String name;
-  private final PointList cost;
-  private final Effect effect;
+public class Spell extends Card
+{ 
+  private Effect e;
   
   public Spell(String name, Effect e, PointList cost)
   {
-    this.name = name;
-    this.cost = cost;
-    effect = e;
+    super(name,cost);
+    this.e = e;
   }
   
-  public String getName() { return name; }
-  public PointList getCost() { return cost; }
-  public Effect getEffect() { return effect; }
+  public Effect getEffect() { return e; }
 }
