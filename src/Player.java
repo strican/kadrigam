@@ -31,5 +31,11 @@ public interface Player
   /* Player remove a card from their hand and places it in the graveyard */
   public void discardCard(Card c);
   
+  public PointList getLife();
+  public CardList getHand();
+  public CardList getGraveyard();
+  public CardList getAllies();
+  public CardList getSpellStack();
+  
   
 }

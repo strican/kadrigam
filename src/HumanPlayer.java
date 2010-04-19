@@ -20,18 +20,35 @@ public class HumanPlayer implements Player
     life = new ColorPoints();
     life.add(new PointVal(Color.NEUTRAL,INITIAL_POINTS));
     
-    //Initializes the players hand
-    for (int i=0; i<MAXHANDSIZE; i++)
-      drawCard();
-    
     graveyard = new CardPile();
     spellStack = new CardPile();
     allies = new CardCollection();
+    hand = new CardCollection();
+    
+    //Initializes the players hand
+    for (int i=0; i<MAXHANDSIZE; i++)
+      drawCard();
   }
+  
+  public PointList getLife() {return life;}
+  public CardList getHand() {return hand;}
+  public CardList getGraveyard() {return graveyard;}
+  public CardList getAllies() {return allies;}
+  public CardList getSpellStack() {return spellStack;}
   
   public void drawCard()
   {
-    hand.addCard(deck.takeCard());
+    if (!deck.isEmpty())
+    {
+      Card c = deck.takeCard();
+      hand.addCard(c);
+      //hand.addCard(deck.takeCard());
+    }
+    else
+    {
+      //Raise some exception
+      System.out.println("Can't draw - deck is empty!");
+    }
   }
   
   public void discardCard(Card c)

@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 public class CardPile implements CardList
 {
   private Stack<Card> s;
@@ -5,18 +7,23 @@ public class CardPile implements CardList
   
   public CardPile()
   {
-    s = new Stack<Card>;
+    s = new Stack<Card>();
     size = 0;
   }
   
-  public Card addCard(Card c)
+  public int size() { return size; }
+  
+  public boolean addCard(Card c)
   {
-    return (Card)s.push(c);
+    size++;
+    return (s.push(c) != null);
   }
-  public Card removeCard()
+  public Card takeCard()
   {
+    size--;
     return (Card)s.pop();
   }
+
   public boolean isEmpty()
   {
     return s.empty();
@@ -25,4 +32,10 @@ public class CardPile implements CardList
   {
     return (Card)s.peek();
   }
+  public boolean hasCard(Card c)
+  {
+    return (s.search(c) != -1);
+  }
+  
+  /* TODO: ADD A SHUFFLE METHOD */
 }

@@ -1,6 +1,7 @@
 public class HumanPlayer implements Player
 {
   public static final int MAXHANDSIZE = 7;
+  public static final int MAXALLIES = 5;
   public static final int INITIAL_POINTS = 100000;
   
   private PointList life;
@@ -25,6 +26,7 @@ public class HumanPlayer implements Player
     
     graveyard = new CardPile();
     spellStack = new CardPile();
+    allies = new CardCollection();
   }
   
   public void drawCard()
@@ -67,9 +69,19 @@ public class HumanPlayer implements Player
     if (life.canPay(c.getCost()))
     {
       life.pay(c.getCost());
+      if (c instanceof Creature)
+      {
+        if (allies.size() < MAXALLIES)
+          allies.addCard(hand.takeCard(c));
+        else
+          System.out.println("Too many creatures in play");
+      }
+      else if (c instanceof Spell)
+        spellStack.addCard(hand.takeCard(c));
     }
     else
       //raise some exception?
+      System.out.println("Not enough points");
       return;
   }
   

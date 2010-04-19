@@ -1,23 +1,25 @@
 
 public class PlayMove implements Move
 {
-	private Card c;
-	private Player p;
-	
-	PlayMove(Player p, Card c)
-	{
-		this.c = c;
-		this.p = p;
-	}
-	
-	public boolean isLegal(Rules r)
-	{
-		return r.check(Type.PLAY, this);
-	}
-	
-	public void execute()
-	{
-		p.playCard(c);
-	}
+  /* This allows Rules to see the informaiton for each type of move 
+   * but still protects the from modification */
+ public final Card c;
+ public final Player p;
+ 
+ PlayMove(Player p, Card c)
+ {
+  this.c = c;
+  this.p = p;
+ }
+ 
+ public boolean isLegal(Rules r)
+ {
+  return r.check(Type.PLAY, this);
+ }
+ 
+ public void execute()
+ {
+  p.playCard(c);
+ }
 
 }

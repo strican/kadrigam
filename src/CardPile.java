@@ -30,10 +30,25 @@ public class CardPile implements CardList
   }
   public Card next()
   {
-    return (Card)s.peek();
+    if (!isEmpty())
+      return (Card)s.peek();
+    else
+      return null;
   }
   public boolean hasCard(Card c)
   {
     return (s.search(c) != -1);
   }
+  
+  public String toString()
+  {
+    String s = "";
+    Card top = next();
+    
+    if (top != null)
+      s += "TOP: " + top.toString() + "\n";
+    return s;
+  }
+  
+  /* TODO: ADD A SHUFFLE METHOD */
 }

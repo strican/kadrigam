@@ -28,9 +28,12 @@ public class CardCollection implements CardList
   
   public String toString()
   {
+    int i=0;
     String s = new String();
-    for (Card c : cards)
-      s += c.toString();
+    for (Card c : cards) {
+      i++;
+      s += "["+i+"] "+ c.toString() + "\n";
+    }
     return s;
   }
 }
