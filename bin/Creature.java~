@@ -38,4 +38,11 @@ public class Creature extends Card
     setActive(false);
     return attackPow;
   }
+  
+  public String toString()
+  {
+    String s = super.toString();
+    s += "/" + payoff.toString() + "| POW: " + attackPow + "| HP: " + hitPoints;
+    return s;
+  }
 }

@@ -1,6 +1,7 @@
 public class HumanPlayer implements Player
 {
   public static final int MAXHANDSIZE = 7;
+  public static final int MAXALLIES = 5;
   public static final int INITIAL_POINTS = 100000;
   
   private PointList life;
@@ -25,12 +26,14 @@ public class HumanPlayer implements Player
     
     graveyard = new CardPile();
     spellStack = new CardPile();
+    allies = new CardCollection();
   }
   
   public void drawCard()
   {
     hand.addCard(deck.takeCard());
   }
+  
   public void discardCard(Card c)
   {
     if (hand.hasCard(c))
@@ -39,24 +42,56 @@ public class HumanPlayer implements Player
       //throw some exception?
       return;
   }
+  
+  public void takeDamage(PointList dmg)
+  {
+    life.pay(dmg);
+  }
+  
   public void destroyCreature(Creature c)
   {
     graveyard.addCard(allies.takeCard(c));
   }
+  
   public void sacrifice(Creature c)
   {
     life.add(c.getPayoff());
     destroyCreature(c);
   }
+  
+  public void dealDamage(int dmg, Creature c)
+  {
+    c.changeHP(-dmg);
+  }
+  
   public void playCard(Card c)
   {
     if (life.canPay(c.getCost()))
     {
-      if (c.instanceOf(Creature))
-        return;
+      life.pay(c.getCost());
+      if (c instanceof Creature)
+      {
+        if (allies.size() < MAXALLIES)
+          allies.addCard(hand.takeCard(c));
+        else
+          System.out.println("Too many creatures in play");
+      }
+      else if (c instanceof Spell)
+        spellStack.addCard(hand.takeCard(c));
     }
     else
       //raise some exception?
+      System.out.println("Not enough points");
       return;
+  }
+  
+  public void activateEffect(Card c)
+  {
+    /*Implementation here*/
+  }
+  public int assignAttack()
+  {
+    /*Implementation here - how will the player know which are attacking?*/
+    return 0;
   }
 }
