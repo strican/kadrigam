@@ -1,4 +1,4 @@
-public class StandardGame implements Game
+public class StandardGame
 {
   private Player p1;
   private Player p2;

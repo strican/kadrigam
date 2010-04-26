@@ -8,4 +8,9 @@ public class StandardGame
     this.p1 = p1;
     this.p2 = p2;
   }
+  
+  public void turn(Player p, Player opponent)
+  {
+    
+  }
 }
