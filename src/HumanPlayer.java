@@ -1,9 +1,5 @@
 public class HumanPlayer implements Player
 {
-  public static final int MAXHANDSIZE = 7;
-  public static final int MAXALLIES = 5;
-  public static final int INITIAL_POINTS = 100000;
-  
   private PointList life;
   private CardCollection allies;
   private CardPile spellStack;
@@ -11,6 +7,7 @@ public class HumanPlayer implements Player
   private CardPile deck;
   private CardPile graveyard;
   private CardCollection hand;
+  private Rules rules;
   
   public HumanPlayer(CardPile deck)
   {
@@ -53,11 +50,12 @@ public class HumanPlayer implements Player
   
   public void discardCard(Card c)
   {
-    if (hand.hasCard(c))
-      graveyard.addCard(hand.takeCard(c));
-    else
-      //throw some exception?
-      return;
+	  Move m = new DiscardMove(this, c);
+	  if (m.isLegal(rules))
+		  graveyard.addCard(hand.takeCard(c));
+	  else
+		  //throw some exception?
+		  return;
   }
   
   public void takeDamage(PointList dmg)
@@ -83,23 +81,13 @@ public class HumanPlayer implements Player
   
   public void playCard(Card c)
   {
-    if (life.canPay(c.getCost()))
-    {
-      life.pay(c.getCost());
-      if (c instanceof Creature)
-      {
-        if (allies.size() < MAXALLIES)
-          allies.addCard(hand.takeCard(c));
-        else
-          System.out.println("Too many creatures in play");
-      }
-      else if (c instanceof Spell)
-        spellStack.addCard(hand.takeCard(c));
-    }
-    else
-      //raise some exception?
-      System.out.println("Not enough points");
-      return;
+	  life.pay(c.getCost());
+	  if (c instanceof Creature)
+		  allies.addCard(hand.takeCard(c));
+	  else if (c instanceof Spell)
+		  spellStack.addCard(hand.takeCard(c));
+	  
+
   }
   
   public void activateEffect(Card c)

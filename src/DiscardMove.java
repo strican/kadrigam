@@ -1,12 +1,12 @@
 
-public class PlayMove implements Move
+public class DiscardMove implements Move
 {
 	 /* This allows Rules to see the information for each type of move 
 	  * but still protects the from modification */
 	public final Card c;
 	public final Player p;
 	
-	PlayMove(Player p, Card c)
+	DiscardMove(Player p, Card c)
 	{
 		this.c = c;
 		this.p = p;
@@ -14,11 +14,12 @@ public class PlayMove implements Move
 	
 	public boolean isLegal(Rules r)
 	{
-		return r.check(Type.PLAY, this);
+		return r.check(Type.DISCARD, this);
 	}
 	 
 	public void execute()
 	{
+		((CardCollection) p.getHand()).takeCard(c);
 		p.playCard(c);
 	}
 

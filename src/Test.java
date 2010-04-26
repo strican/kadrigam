@@ -108,6 +108,7 @@ public class Test
  public static void playerTest()
  {
    CardPile deck = new CardPile();
+   Rules r = new StandardRules();
    for (int i=0; i<60; i++)
      deck.addCard(randomCard());
    
@@ -134,9 +135,14 @@ public class Test
        playerSelection = readInt(0,p.getHand().size());
        if (playerSelection == 0)
            break;
+       
        //If move is legal...
        Card c = ((CardCollection)(p.getHand())).getCard(playerSelection-1);
-       p.playCard(c);
+       Move play = new PlayMove(p, c);
+       
+       if (play.isLegal(r))
+    	   play.execute();
+       
        printPlayerInfo(p);
      }
      
@@ -150,14 +156,20 @@ public class Test
          break;
        //If move is legal...
        Creature c = (Creature)((CardCollection)(p.getAllies())).getCard(playerSelection-1);
-       printPlayerInfo(p);
-       if (c.isActive())
-       {
-         c.setActive(false);
-         damageDealt+=c.getPow();
-         }
+       Move attack = new AttackMove(p, c);
+       
+       if (attack.isLegal(r))
+    	   attack.execute();
+       
        else
-         System.out.printf("That creature cannot attack again yet!");
+           System.out.printf("That creature cannot attack again yet!");
+       
+       damageDealt += ((AttackMove) attack).damage;
+       
+       
+       printPlayerInfo(p);
+       
+
        System.out.println("Current damage to be dealt " + damageDealt);
      }
      

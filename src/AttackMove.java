@@ -1,25 +1,28 @@
 
-public class PlayMove implements Move
+public class AttackMove implements Move
 {
 	 /* This allows Rules to see the information for each type of move 
 	  * but still protects the from modification */
 	public final Card c;
 	public final Player p;
+	public int damage;
 	
-	PlayMove(Player p, Card c)
+	AttackMove(Player p, Card c)
 	{
 		this.c = c;
 		this.p = p;
+		damage = 0;
 	}
 	
 	public boolean isLegal(Rules r)
 	{
-		return r.check(Type.PLAY, this);
+		return r.check(Type.ATTACK, this);
 	}
 	 
 	public void execute()
 	{
-		p.playCard(c);
+		((Creature) c).setActive(false);
+        damage = ((Creature) c).getPow();
 	}
 
 }
