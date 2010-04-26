@@ -120,6 +120,7 @@ public class Test
    while(gameNotOver)
    {  
      System.out.printf(">>>>>>>>BEGINNING OF TURN<<<<<<<<<<\n");
+     //Draw & Activate
      p.drawCard();
      for (int i=0; i<p.getAllies().size(); i++)
          ((Creature)((CardCollection)(p.getAllies())).getCard(i)).setActive(true);
@@ -149,7 +150,6 @@ public class Test
          break;
        //If move is legal...
        Creature c = (Creature)((CardCollection)(p.getAllies())).getCard(playerSelection-1);
-       
        printPlayerInfo(p);
        if (c.isActive())
        {
@@ -161,6 +161,7 @@ public class Test
        System.out.println("Current damage to be dealt " + damageDealt);
      }
      
+     //Discard phase
      while(p.getHand().size() > HumanPlayer.MAXHANDSIZE)
      {
        System.out.println("Too many cards in hand -- please select a card to discard");
