@@ -115,30 +115,59 @@ public class Test
    
    printPlayerInfo(p);
    boolean turnOngoing = true;
+   boolean gameNotOver = true;
    
-   while (turnOngoing)
-   {
+   while(gameNotOver)
+   {  
      System.out.printf(">>>>>>>>BEGINNING OF TURN<<<<<<<<<<\n");
      p.drawCard();
+     for (int i=0; i<p.getAllies().size(); i++)
+         ((Creature)((CardCollection)(p.getAllies())).getCard(i)).setActive(true);
      printPlayerInfo(p);
      
      //Play Phase I
      int playerSelection;
-     while(true)
+     while(!p.getHand().isEmpty())
      {
        System.out.println("Please select a card to play (0 to cancel)");
        playerSelection = readInt(0,p.getHand().size());
        if (playerSelection == 0)
-         break;
+           break;
        //If move is legal...
        Card c = ((CardCollection)(p.getHand())).getCard(playerSelection-1);
        p.playCard(c);
        printPlayerInfo(p);
      }
-     System.out.printf("End turn? -- 0 to end\n");
-     if (readInt(0,1) == 0)
-       turnOngoing = false;
      
+     //Attack Phase
+     int damageDealt = 0;
+     while(!p.getAllies().isEmpty())
+     {
+       System.out.println("Please assign creatures to attack (0 to end)");
+       playerSelection = readInt(0,(p.getAllies()).size());
+       if (playerSelection == 0)
+         break;
+       //If move is legal...
+       Creature c = (Creature)((CardCollection)(p.getAllies())).getCard(playerSelection-1);
+       
+       printPlayerInfo(p);
+       if (c.isActive())
+       {
+         c.setActive(false);
+         damageDealt+=c.getPow();
+         }
+       else
+         System.out.printf("That creature cannot attack again yet!");
+       System.out.println("Current damage to be dealt " + damageDealt);
+     }
+     
+     while(p.getHand().size() > HumanPlayer.MAXHANDSIZE)
+     {
+       System.out.println("Too many cards in hand -- please select a card to discard");
+       playerSelection = readInt(0,(p.getHand()).size());
+       Card c = ((CardCollection)(p.getHand())).getCard(playerSelection-1);
+       p.discardCard(c);
+     }
    }
    
  }
