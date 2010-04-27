@@ -12,7 +12,8 @@ public class Test
  {
    //pointsTest();
    //cardTest();
-   playerTest();
+   //playerTest();
+   gameTest();
  }
  
  public static void pointsTest()
@@ -105,6 +106,24 @@ public class Test
    System.out.println("--Spell Stack--\n"+p.getSpellStack());
  }
  
+ public static void gameTest()
+ {
+   CardPile deck1 = new CardPile();
+   CardPile deck2 = new CardPile();
+   
+   for (int i=0; i<60; i++)
+   {
+     deck1.addCard(randomCard());
+     deck2.addCard(randomCard());
+   }
+   
+   Player p1 = new HumanPlayer(deck1);
+   Player p2 = new HumanPlayer(deck2);
+   
+   Game g = new StandardGame(p1,p2);
+   g.play();
+ }
+ 
  public static void playerTest()
  {
    CardPile deck = new CardPile();
@@ -127,8 +146,24 @@ public class Test
          ((Creature)((CardCollection)(p.getAllies())).getCard(i)).setActive(true);
      printPlayerInfo(p);
      
-     //Play Phase I
      int playerSelection;
+     //Sacrifice Phase
+     while(!p.getAllies().isEmpty())
+     {
+       System.out.println("Enter creature to sacrifice (0 to cancel)");
+       playerSelection = readInt(0,p.getAllies().size());
+       if (playerSelection == 0)
+         break;
+       
+       //Creature must be active
+       Creature c = (Creature)((CardCollection)(p.getAllies())).getCard(playerSelection-1);
+       if (c.isActive())
+         p.sacrifice(c);
+       
+       printPlayerInfo(p);
+     }
+     
+     //Play Phase I
      while(!p.getHand().isEmpty())
      {
        System.out.println("Please select a card to play (0 to cancel)");
@@ -141,7 +176,7 @@ public class Test
        Move play = new PlayMove(p, c);
        
        if (play.isLegal(r))
-    	   play.execute();
+        play.execute();
        
        printPlayerInfo(p);
      }
@@ -159,7 +194,7 @@ public class Test
        Move attack = new AttackMove(p, c);
        
        if (attack.isLegal(r))
-    	   attack.execute();
+        attack.execute();
        
        else
            System.out.printf("That creature cannot attack again yet!");
@@ -179,13 +214,16 @@ public class Test
        System.out.println("Too many cards in hand -- please select a card to discard");
        playerSelection = readInt(0,(p.getHand()).size());
        Card c = ((CardCollection)(p.getHand())).getCard(playerSelection-1);
-       p.discardCard(c);
+       Move discard = new DiscardMove(p,c);
+       
+       if (discard.isLegal(r))
+         discard.execute();
      }
    }
    
  }
  
- private static int readInt(int low, int high) {
+ public static int readInt(int low, int high) {
   int n=0;
   try {
    n = Integer.parseInt(reader.readLine());

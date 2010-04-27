@@ -42,7 +42,7 @@ public class Creature extends Card
   public String toString()
   {
     String s = super.toString();
-    s += "/" + payoff.toString() + "| POW: " + attackPow + "| HP: " + hitPoints;
+    s += "\t" + payoff.toStringConcise() + "\n\t POW: " + attackPow + " | HP: " + hitPoints;
     return s;
   }
 }

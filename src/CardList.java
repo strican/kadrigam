@@ -1,4 +1,5 @@
 
+
 public interface CardList
 {
  public Card next();

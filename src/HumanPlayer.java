@@ -32,6 +32,7 @@ public class HumanPlayer implements Player
   public CardList getGraveyard() {return graveyard;}
   public CardList getAllies() {return allies;}
   public CardList getSpellStack() {return spellStack;}
+  public CardList getDeck() {return deck;}
   
   public void drawCard()
   {
@@ -50,12 +51,7 @@ public class HumanPlayer implements Player
   
   public void discardCard(Card c)
   {
-	  Move m = new DiscardMove(this, c);
-	  if (m.isLegal(rules))
-		  graveyard.addCard(hand.takeCard(c));
-	  else
-		  //throw some exception?
-		  return;
+    graveyard.addCard(hand.takeCard(c));
   }
   
   public void takeDamage(PointList dmg)
@@ -81,12 +77,12 @@ public class HumanPlayer implements Player
   
   public void playCard(Card c)
   {
-	  life.pay(c.getCost());
-	  if (c instanceof Creature)
-		  allies.addCard(hand.takeCard(c));
-	  else if (c instanceof Spell)
-		  spellStack.addCard(hand.takeCard(c));
-	  
+   life.pay(c.getCost());
+   if (c instanceof Creature)
+    allies.addCard(hand.takeCard(c));
+   else if (c instanceof Spell)
+    spellStack.addCard(hand.takeCard(c));
+   
 
   }
   

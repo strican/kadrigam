@@ -19,7 +19,7 @@ public abstract class Card implements Comparable, Playable
   public String toString()
   {
     String s = "";
-    s = name + ": " + cost.toString();
+    s = name + "\n\t" + cost.toStringConcise() + "\n";
     return s;
   }
 }

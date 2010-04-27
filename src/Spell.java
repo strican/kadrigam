@@ -1,3 +1,4 @@
+
 public class Spell extends Card
 { 
   private Effect e;

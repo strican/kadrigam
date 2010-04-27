@@ -1,3 +1,4 @@
+
 public abstract class Card implements Comparable, Playable
 {
   private String name;

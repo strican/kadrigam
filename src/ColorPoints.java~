@@ -116,4 +116,12 @@ public class ColorPoints implements PointList
   
   return s;
  }
+ 
+ public String toStringConcise()
+ {
+   String s = "";
+   for (Color c : Color.values())
+     s += p.get(c) + " ";
+   return s;
+ }
 }

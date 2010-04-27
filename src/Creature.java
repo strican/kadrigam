@@ -1,3 +1,4 @@
+
 public class Creature extends Card
 {
   private final Ability abil;

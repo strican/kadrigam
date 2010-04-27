@@ -1,3 +1,4 @@
+
 public class Effect
 {
   private final int mag;
