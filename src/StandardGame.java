@@ -90,6 +90,7 @@ public class StandardGame implements Game
     int playerSelection;
     while(!p.getHand().isEmpty())
      {
+       Test.printPlayerInfo(p);
        System.out.println("Please select a card to play (0 to cancel)");
        playerSelection = Test.readInt(0,p.getHand().size());
        if (playerSelection == 0)
@@ -146,7 +147,7 @@ public class StandardGame implements Game
     int playerSelection;
     int damageRemaining = damage;
     
-    while (damageRemaining > 0)
+    while (damageRemaining > 0 && p.getAllies().size() > 0)
     {
       Test.printPlayerInfo(p);
       System.out.println("Please select a creature you would like to block (0 to let damage through)");

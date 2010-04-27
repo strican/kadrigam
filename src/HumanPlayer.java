@@ -73,6 +73,8 @@ public class HumanPlayer implements Player
   public void dealDamage(int dmg, Creature c)
   {
     c.changeHP(-dmg);
+    if (c.getHP() <= 0)
+      destroyCreature(c);
   }
   
   public void playCard(Card c)
