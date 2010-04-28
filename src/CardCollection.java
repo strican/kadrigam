@@ -12,6 +12,7 @@ public class CardCollection implements CardList
   public int size() { return cards.size(); }
   public boolean isEmpty() { return cards.isEmpty(); }
   public boolean hasCard(Card c) { return cards.contains(c); }
+
   //Not really sure about this one
   public Card next() { return (Card)cards.get(0); }
   public Card getCard(int index) { return cards.get(index); }
