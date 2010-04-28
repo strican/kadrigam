@@ -78,7 +78,9 @@ public class StandardGame implements Game
        
        //Creature must be active
        Creature c = (Creature)((CardCollection)(p.getAllies())).getCard(playerSelection-1);
-       if (c.isActive())
+       Move sacrifice = new SacrificeMove(p, c);
+       
+       if (sacrifice.isLegal(r))
          p.sacrifice(c);
        
        Test.printPlayerInfo(p);

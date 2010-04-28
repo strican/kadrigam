@@ -4,5 +4,6 @@ public enum Type
 	PLAY,
 	DISCARD,
 	ATTACK,
-	DAMAGE;
+	DAMAGE,
+	SACRIFICE;
 }

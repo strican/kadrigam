@@ -57,14 +57,20 @@ public class StandardRules implements Rules
   return false;
  }
  
+ private boolean checkSacrifice(SacrificeMove m)
+ {
+	 return ((Creature) m.c).isActive();
+ }
+ 
  public boolean check(Type t, Move m)
  {
   switch(t)
   {
-  case PLAY:  return checkPlay((PlayMove) m);
-  case DISCARD: return checkDiscard((DiscardMove) m);
-  case ATTACK: return checkAttack((AttackMove) m);
-  //case DAMAGE: return checkDamage((DamageMove)m);
+  case PLAY:  		return checkPlay((PlayMove) m);
+  case DISCARD: 	return checkDiscard((DiscardMove) m);
+  case ATTACK: 		return checkAttack((AttackMove) m);
+  //case DAMAGE: 	return checkDamage((DamageMove)m);
+  case SACRIFICE: 	return checkSacrifice((SacrificeMove) m); 
   default:  return false;
   }
  }

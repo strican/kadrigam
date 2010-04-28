@@ -11,6 +11,5 @@ public interface Move
 	/**
 	 * Executes the move and changes the game state
 	 */
-	// @Group: This should have a parameter, right?
 	public void execute();
 }
