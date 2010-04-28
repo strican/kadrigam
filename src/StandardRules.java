@@ -49,12 +49,12 @@ public class StandardRules implements Rules
  
  private boolean checkAttack(AttackMove m)
  {
-  return ((Creature) m.c).isActive();
+	 return ((Creature) m.c).isActive();
  }
  
- private boolean checkDamage(Move m)
+ private boolean checkDamage(DamageMove m)
  {
-  return false;
+	 return m.p.getAllies().hasCard(m.c) && ((Creature) m.c).getHP() >= m.damage;
  }
  
  private boolean checkSacrifice(SacrificeMove m)
@@ -69,9 +69,9 @@ public class StandardRules implements Rules
   case PLAY:  		return checkPlay((PlayMove) m);
   case DISCARD: 	return checkDiscard((DiscardMove) m);
   case ATTACK: 		return checkAttack((AttackMove) m);
-  //case DAMAGE: 	return checkDamage((DamageMove)m);
+  case DAMAGE: 		return checkDamage((DamageMove)m);
   case SACRIFICE: 	return checkSacrifice((SacrificeMove) m); 
-  default:  return false;
+  default:  		return false;
   }
  }
 }

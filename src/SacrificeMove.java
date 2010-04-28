@@ -4,13 +4,11 @@ public class SacrificeMove implements Move
 	  * but still protects the from modification */
 	public final Card c;
 	public final Player p;
-	public int damage;
 	
 	SacrificeMove(Player p, Card c)
 	{
 		this.c = c;
 		this.p = p;
-		damage = 0;
 	}
 	
 	public boolean isLegal(Rules r)
@@ -20,8 +18,7 @@ public class SacrificeMove implements Move
 	 
 	public void execute()
 	{
-		((Creature) c).setActive(false);
-       damage = ((Creature) c).getPow();
+		p.sacrifice((Creature) c);
 	}
 
 }
