@@ -178,7 +178,7 @@ public class StandardGame implements Game
     while(p.getHand().size() > HumanPlayer.MAXHANDSIZE)
      {
        System.out.println("Too many cards in hand -- please select a card to discard");
-       playerSelection = Test.readInt(0,(p.getHand()).size());
+       playerSelection = Test.readInt(1,(p.getHand()).size());
        Card c = ((CardCollection)(p.getHand())).getCard(playerSelection-1);
        Move discard = new DiscardMove(p,c);
        

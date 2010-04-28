@@ -8,6 +8,7 @@ public class HumanPlayer implements Player
   private CardPile graveyard;
   private CardCollection hand;
   private Rules rules;
+  private GameBoard board;
   
   public HumanPlayer(CardPile deck)
   {
@@ -96,5 +97,48 @@ public class HumanPlayer implements Player
   {
     /*Implementation here - how will the player know which are attacking?*/
     return 0;
+  }
+  
+  public Card getCard(Type t)
+  {
+    Card c = null;
+
+    if (t == Type.SACRIFICE || t == Type.ATTACK || t == Type.DAMAGE)
+    {
+      //board.readCardFromAllies
+      int playerSelection = Test.readInt(0,allies.size());
+      if (playerSelection != 0)
+        c = allies.getCard(playerSelection-1);
+    }
+    else if (t == Type.PLAY)
+    {
+      int playerSelection = Test.readInt(0,hand.size());
+      if (playerSelection != 0)
+        c = hand.getCard(playerSelection-1);
+    }
+    else if (t == Type.DISCARD)
+    {
+      int playerSelection = Test.readInt(1,hand.size());
+      c = hand.getCard(playerSelection-1);
+    }
+    return c;
+  }
+  
+  public int getInt(Type t, int min, int max)
+  {
+    //Won't this only be invoked in a damage phase?
+    int input = 0;
+    /*
+     * displayMessage(t);
+     * input = readInt();
+     */
+    input = Test.readInt(min,max);
+    return input;
+  }
+  
+  public void displayMessage(String m)
+  {
+    /* Should display in the GUI */
+    System.out.println(m);
   }
 }
