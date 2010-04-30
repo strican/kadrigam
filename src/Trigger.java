@@ -1,5 +1,5 @@
 
 public enum Trigger 
 {
-  PAY,NOATTACK,SACRIFICE
+  PAY,NOATTACK,SACRIFICE,DISCARD
 }
