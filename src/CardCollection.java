@@ -26,14 +26,27 @@ public class CardCollection implements CardList
   { 
     return (Card)cards.remove(cards.indexOf(c)); 
   }
-  
+
+  //TODO: check this code. is there a better way?
+  public Object display(int i)
+  {
+      try
+      {
+          return cards.get(i).toString();
+      }
+      catch(Exception e)
+      {
+          return null;
+      }
+  }
+
   public String toString()
   {
     int i=0;
     String s = new String();
     for (Card c : cards) {
       i++;
-      s += "["+i+"] "+ c.toString() + "\n";
+      s += "["+i+"] "+ c.display() + "\n";
     }
     return s;
   }

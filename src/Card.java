@@ -17,6 +17,12 @@ public abstract class Card implements Comparable, Playable
   {
     return name.compareTo(((Card)o).getName());
   }
+
+  public Object display()
+  {
+      return toString();
+  }
+
   public String toString()
   {
     String s = "";

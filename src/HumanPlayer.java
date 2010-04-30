@@ -26,8 +26,9 @@ public class HumanPlayer implements Player
     //Initializes the players hand
     for (int i=0; i<MAXHANDSIZE; i++)
       drawCard();
+    
   }
-  
+
   public PointList getLife() {return life;}
   public CardList getHand() {return hand;}
   public CardList getGraveyard() {return graveyard;}

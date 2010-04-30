@@ -2,10 +2,28 @@ public class StandardGame implements Game
 {
   private Player p1;
   private Player p2;
+  private GameBoard g1;
+  private GameBoard g2;
+
   Rules r;
   
   public StandardGame(Player p1, Player p2)
   {
+        this.g1 = new GameBoard(p1);
+        this.g2 = new GameBoard(p2);
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                g1.setVisible(true);
+            }
+        });
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                g2.setVisible(true);
+            }
+        });
+
     this.p1 = p1;
     this.p2 = p2;
     r = new StandardRules();
