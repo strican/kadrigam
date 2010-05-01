@@ -1,7 +1,7 @@
-
+import java.io.Serializable;
 import java.util.*;
 
-public class ColorPoints implements PointList
+public class ColorPoints implements PointList, Serializable
 {
  // Implements color list as a HashMap
  private HashMap<Color, PointVal> p;

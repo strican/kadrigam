@@ -1,9 +1,9 @@
 
-public abstract class Card implements Comparable, Playable
+public abstract class Card extends SuperCard implements Comparable, Playable
 {
   private String name;
   private PointList cost;
-  
+
   public Card(String name, PointList cost)
   {
     this.name = name;
