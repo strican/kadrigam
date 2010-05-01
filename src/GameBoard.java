@@ -53,6 +53,14 @@ public class GameBoard extends javax.swing.JFrame {
         greenLife = new javax.swing.JLabel();
         blueLife = new javax.swing.JLabel();
         card1 = new javax.swing.JTextArea();
+        card2 = new javax.swing.JTextArea();
+        card3 = new javax.swing.JTextArea();
+        card4 = new javax.swing.JTextArea();
+        card5 = new javax.swing.JTextArea();
+        card6 = new javax.swing.JTextArea();
+        card7 = new javax.swing.JTextArea();
+        card8 = new javax.swing.JTextArea();
+        spellStack = new javax.swing.JTextArea();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -118,77 +126,134 @@ public class GameBoard extends javax.swing.JFrame {
         card1.setColumns(20);
         card1.setRows(5);
 
+        card2.setColumns(20);
+        card2.setRows(5);
+
+        card3.setColumns(20);
+        card3.setRows(5);
+
+        card4.setColumns(20);
+        card4.setRows(5);
+
+        card5.setColumns(20);
+        card5.setRows(5);
+
+        card6.setColumns(20);
+        card6.setRows(5);
+
+        card7.setColumns(20);
+        card7.setRows(5);
+
+        card8.setColumns(20);
+        card8.setRows(5);
+
+        spellStack.setColumns(20);
+        spellStack.setRows(5);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addComponent(life, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(neutLife)
-                    .addComponent(neutLabel))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(card8, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(card7, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(card6, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(card5, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(card4, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(card3, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(card2, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(redLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(redLife)))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addComponent(greenLife)
-                        .addGap(18, 18, 18)
-                        .addComponent(blueLife)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(whiteLife)
-                        .addGap(18, 18, 18)
-                        .addComponent(blackLife))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(greenLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(blueLabel)
+                        .addComponent(life, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(neutLife)
+                            .addComponent(neutLabel))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(whiteLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(blackLabel))
-                            .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(181, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(17, 17, 17)
+                                        .addComponent(redLabel))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(redLife)))
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(132, 132, 132)
+                                        .addComponent(greenLife)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(blueLife)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(whiteLife)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(blackLife))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(greenLabel)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(blueLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(whiteLabel)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(blackLabel))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 377, Short.MAX_VALUE)
+                                .addComponent(spellStack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(9, 9, 9)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(life, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(life, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(neutLabel)
-                                .addGap(12, 12, 12))
-                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(neutLabel)
+                                        .addGap(12, 12, 12))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(redLabel)
+                                            .addComponent(greenLabel)
+                                            .addComponent(blueLabel)
+                                            .addComponent(blackLabel)
+                                            .addComponent(whiteLabel))
+                                        .addGap(12, 12, 12)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(redLabel)
-                                    .addComponent(greenLabel)
-                                    .addComponent(blueLabel)
-                                    .addComponent(blackLabel)
-                                    .addComponent(whiteLabel))
-                                .addGap(12, 12, 12)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(blackLife)
-                            .addComponent(redLife)
-                            .addComponent(greenLife)
-                            .addComponent(blueLife)
-                            .addComponent(whiteLife)))
-                    .addComponent(neutLife))
-                .addGap(58, 58, 58)
-                .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(247, Short.MAX_VALUE))
+                                    .addComponent(blackLife)
+                                    .addComponent(redLife)
+                                    .addComponent(greenLife)
+                                    .addComponent(blueLife)
+                                    .addComponent(whiteLife)))
+                            .addComponent(neutLife))
+                        .addGap(90, 90, 90))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(spellStack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)))
+                .addComponent(card2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(card3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(card4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(card5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(card7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(card6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(card8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         bindingGroup.bind();
@@ -213,6 +278,14 @@ public class GameBoard extends javax.swing.JFrame {
         whiteLife.setText("" + health.get(Color.WHITE));
         blackLife.setText("" + health.get(Color.BLACK));
         card1.setText(""+ ((CardCollection) p.getHand()).display(0));
+        card2.setText(""+ ((CardCollection) p.getHand()).display(1));
+        card3.setText(""+ ((CardCollection) p.getHand()).display(2));
+        card4.setText(""+ ((CardCollection) p.getHand()).display(3));
+        card5.setText(""+ ((CardCollection) p.getHand()).display(4));
+        card6.setText(""+ ((CardCollection) p.getHand()).display(5));
+        card7.setText(""+ ((CardCollection) p.getHand()).display(6));
+        card8.setText(""+ ((CardCollection) p.getHand()).display(7));
+        spellStack.setText(p.getSpellStack().toString());
     }//GEN-LAST:event_formMouseClicked
 
     /**
@@ -232,6 +305,13 @@ public class GameBoard extends javax.swing.JFrame {
     private javax.swing.JLabel blueLabel;
     private javax.swing.JLabel blueLife;
     private javax.swing.JTextArea card1;
+    private javax.swing.JTextArea card2;
+    private javax.swing.JTextArea card3;
+    private javax.swing.JTextArea card4;
+    private javax.swing.JTextArea card5;
+    private javax.swing.JTextArea card6;
+    private javax.swing.JTextArea card7;
+    private javax.swing.JTextArea card8;
     private javax.swing.JLabel greenLabel;
     private javax.swing.JLabel greenLife;
     private javax.swing.JEditorPane jEditorPane1;
@@ -244,6 +324,7 @@ public class GameBoard extends javax.swing.JFrame {
     private javax.swing.JLabel neutLife;
     private javax.swing.JLabel redLabel;
     private javax.swing.JLabel redLife;
+    private javax.swing.JTextArea spellStack;
     private javax.swing.JLabel whiteLabel;
     private javax.swing.JLabel whiteLife;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
