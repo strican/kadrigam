@@ -32,6 +32,7 @@ public class HumanPlayer implements Player
   public CardList getGraveyard() {return graveyard;}
   public CardList getAllies() {return allies;}
   public CardList getSpellStack() {return spellStack;}
+  public CardList getDeck() {return deck;}
   
   public void drawCard()
   {
@@ -72,6 +73,8 @@ public class HumanPlayer implements Player
   public void dealDamage(int dmg, Creature c)
   {
     c.changeHP(-dmg);
+    if (c.getHP() <= 0)
+      destroyCreature(c);
   }
   
   public void playCard(Card c)

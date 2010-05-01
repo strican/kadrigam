@@ -37,6 +37,10 @@ public interface Player
   /* Player remove a card from their hand and places it in the graveyard */
   public void discardCard(Card c);
   
+  public int getInt(Type t, int min, int max);
+  
+  public Card getCard(Type t);
+  
   public PointList getLife();
   public CardList getHand();
   public CardList getDeck();

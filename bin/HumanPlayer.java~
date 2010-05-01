@@ -1,9 +1,5 @@
 public class HumanPlayer implements Player
 {
-  public static final int MAXHANDSIZE = 7;
-  public static final int MAXALLIES = 5;
-  public static final int INITIAL_POINTS = 100000;
-  
   private PointList life;
   private CardCollection allies;
   private CardPile spellStack;
@@ -11,6 +7,7 @@ public class HumanPlayer implements Player
   private CardPile deck;
   private CardPile graveyard;
   private CardCollection hand;
+  private Rules rules;
   
   public HumanPlayer(CardPile deck)
   {
@@ -20,27 +17,40 @@ public class HumanPlayer implements Player
     life = new ColorPoints();
     life.add(new PointVal(Color.NEUTRAL,INITIAL_POINTS));
     
-    //Initializes the players hand
-    for (int i=0; i<MAXHANDSIZE; i++)
-      drawCard();
-    
     graveyard = new CardPile();
     spellStack = new CardPile();
     allies = new CardCollection();
+    hand = new CardCollection();
+    
+    //Initializes the players hand
+    for (int i=0; i<MAXHANDSIZE; i++)
+      drawCard();
   }
+  
+  public PointList getLife() {return life;}
+  public CardList getHand() {return hand;}
+  public CardList getGraveyard() {return graveyard;}
+  public CardList getAllies() {return allies;}
+  public CardList getSpellStack() {return spellStack;}
   
   public void drawCard()
   {
-    hand.addCard(deck.takeCard());
+    if (!deck.isEmpty())
+    {
+      Card c = deck.takeCard();
+      hand.addCard(c);
+      //hand.addCard(deck.takeCard());
+    }
+    else
+    {
+      //Raise some exception
+      System.out.println("Can't draw - deck is empty!");
+    }
   }
   
   public void discardCard(Card c)
   {
-    if (hand.hasCard(c))
-      graveyard.addCard(hand.takeCard(c));
-    else
-      //throw some exception?
-      return;
+    graveyard.addCard(hand.takeCard(c));
   }
   
   public void takeDamage(PointList dmg)
@@ -66,23 +76,13 @@ public class HumanPlayer implements Player
   
   public void playCard(Card c)
   {
-    if (life.canPay(c.getCost()))
-    {
-      life.pay(c.getCost());
-      if (c instanceof Creature)
-      {
-        if (allies.size() < MAXALLIES)
-          allies.addCard(hand.takeCard(c));
-        else
-          System.out.println("Too many creatures in play");
-      }
-      else if (c instanceof Spell)
-        spellStack.addCard(hand.takeCard(c));
-    }
-    else
-      //raise some exception?
-      System.out.println("Not enough points");
-      return;
+   life.pay(c.getCost());
+   if (c instanceof Creature)
+    allies.addCard(hand.takeCard(c));
+   else if (c instanceof Spell)
+    spellStack.addCard(hand.takeCard(c));
+   
+
   }
   
   public void activateEffect(Card c)

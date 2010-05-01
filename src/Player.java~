@@ -39,6 +39,7 @@ public interface Player
   
   public PointList getLife();
   public CardList getHand();
+  public CardList getDeck();
   public CardList getGraveyard();
   public CardList getAllies();
   public CardList getSpellStack();

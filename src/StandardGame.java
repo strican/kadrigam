@@ -78,8 +78,10 @@ public class StandardGame implements Game
        
        //Creature must be active
        Creature c = (Creature)((CardCollection)(p.getAllies())).getCard(playerSelection-1);
-       if (c.isActive())
-         p.sacrifice(c);
+       Move sacrifice = new SacrificeMove(p, c);
+       
+       if (sacrifice.isLegal(r))
+    	   sacrifice.execute();
        
        Test.printPlayerInfo(p);
      }
@@ -123,12 +125,13 @@ public class StandardGame implements Game
        playerSelection = Test.readInt(0,(p.getAllies()).size());
        if (playerSelection == 0)
          break;
+       
        //If move is legal...
        Creature c = (Creature)((CardCollection)(p.getAllies())).getCard(playerSelection-1);
        Move attack = new AttackMove(p, c);
        
        if (attack.isLegal(r))
-        attack.execute();
+    	   attack.execute();
        
        else
            System.out.printf("That creature cannot attack again yet!");
@@ -152,6 +155,7 @@ public class StandardGame implements Game
       Test.printPlayerInfo(p);
       System.out.println("Please select a creature you would like to block (0 to let damage through)");
     
+      //TODO: Make ALL damage the move object with a list of cards and damages
       //TODO: MAKE A "getAlly()" METHOD
       playerSelection = Test.readInt(0,(p.getAllies()).size());
       if (playerSelection == 0)
@@ -161,7 +165,11 @@ public class StandardGame implements Game
       System.out.println("Please enter damage to deal");
       int limit = Math.min(damageRemaining, c.getHP());
       playerSelection = Test.readInt(0,limit);
-      p.dealDamage(playerSelection,c);
+      
+      Move dmgMove = new DamageMove(p, c, playerSelection);
+      
+      if (dmgMove.isLegal(r))
+    	  dmgMove.execute();
       
       damageRemaining -= playerSelection;
     }
@@ -178,7 +186,7 @@ public class StandardGame implements Game
     while(p.getHand().size() > HumanPlayer.MAXHANDSIZE)
      {
        System.out.println("Too many cards in hand -- please select a card to discard");
-       playerSelection = Test.readInt(0,(p.getHand()).size());
+       playerSelection = Test.readInt(1,(p.getHand()).size());
        Card c = ((CardCollection)(p.getHand())).getCard(playerSelection-1);
        Move discard = new DiscardMove(p,c);
        
