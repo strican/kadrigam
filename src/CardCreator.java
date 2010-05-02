@@ -108,6 +108,27 @@ public class CardCreator {
     public void setImage(File f) { image = f; }
     public String getImageName() { return image.getName(); }
 
+    public Card makeCard()
+    {
+        Card c;
+        ColorPoints cost = new ColorPoints(neutralCost,redCost,greenCost,
+                blueCost,whiteCost,blackCost);
+        ColorPoints po = new ColorPoints(0,redPO,greenPO,bluePO,
+                whitePO,blackPO);
+        Effect e = new Effect(mag,eff);
+        if (isCreature)
+        {
+            Ability a = null;
+            if (trig != null)
+                a = new Ability(trig,e);
+            c = new Creature(cardName,power,hp,a,cost,po);
+        }
+        else
+        {
+            c = new Spell(cardName,e,cost);
+        }
+        return c;
+    }
 
     public int cardValue() {
         int ei;

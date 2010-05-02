@@ -3,8 +3,8 @@ public class DiscardMove implements Move
 {
   /* This allows Rules to see the information for each type of move 
    * but still protects the from modification */
- public final Card c;
- public final Player p;
+ private final Card c;
+ private final Player p;
  
  DiscardMove(Player p, Card c)
  {
@@ -21,6 +21,17 @@ public class DiscardMove implements Move
  {
   //((CardCollection) p.getHand()).takeCard(c);
   p.discardCard(c);
+ }
+
+
+ public Card getCard()
+ {
+     return c;
+ }
+
+ public Player getPlayer()
+ {
+     return p;
  }
 
 }

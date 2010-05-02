@@ -2,13 +2,33 @@ public class StandardGame implements Game
 {
   private Player p1;
   private Player p2;
+  private GameBoard g1;
+  private GameBoard g2;
+
   Rules r;
   
   public StandardGame(Player p1, Player p2)
   {
+        r = new StandardRules();
+
+        this.g1 = new GameBoard(p1, p2, r);
+        this.g2 = new GameBoard(p2, p1, r);
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                g1.setVisible(true);
+            }
+        });
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                g2.setVisible(true);
+            }
+        });
+
     this.p1 = p1;
     this.p2 = p2;
-    r = new StandardRules();
+
   }
   
   public void turn(Player p, Player opponent)
@@ -42,15 +62,19 @@ public class StandardGame implements Game
   
   public void play()
   {
+      Player curr = p1;
+      Player opp = p2;
     while (!isOver())
     {
-      System.out.println("=========== PLAYER 1 ============");
-      turn(p1,p2);
-      if (isOver())
-        break;
-      System.out.println("=========== PLAYER 2 ============");
-      turn(p2,p1);
+      System.out.println(curr.getName());
+      turn(curr, opp);
+
+      // Swap current player
+      Player temp = curr;
+      curr = opp;
+      opp = temp;
     }
+
     if (winner() == p1)
       System.out.println("Player 1 Wins!");
     else
@@ -62,6 +86,13 @@ public class StandardGame implements Game
     p.drawCard();
     for (int i=0; i<p.getAllies().size(); i++)
       ((Creature)((CardCollection)(p.getAllies())).getCard(i)).setActive(true);
+
+    //g1.update();
+    //g2.update();
+
+    p.setPhase(Type.SACRIFICE);
+
+    //Remove when moved to gui
     Test.printPlayerInfo(p);
   }
   
@@ -99,11 +130,11 @@ public class StandardGame implements Game
            break;
        
        //If move is legal...
-       Card c = ((CardCollection)(p.getHand())).getCard(playerSelection-1);
+       Card c = p.getHand().getCard(playerSelection-1);
        if ((canPlaySpells && c instanceof Spell) || 
            (canPlayCreatures && c instanceof Creature))
        {
-         Move play = new PlayMove(p, c);
+         Move play = new Play1Move(p, c);
        
          if (play.isLegal(r))
            play.execute();
@@ -136,7 +167,7 @@ public class StandardGame implements Game
        else
            System.out.printf("That creature cannot attack again yet!");
        
-       damageDealt += ((AttackMove) attack).damage;      
+       damageDealt += ((AttackMove) attack).getDamage();
        
        Test.printPlayerInfo(p);      
 

@@ -12,4 +12,8 @@ public interface Move
 	 * Executes the move and changes the game state
 	 */
 	public void execute();
+
+        // Accessor Methods
+        public Card getCard();
+        public Player getPlayer();
 }

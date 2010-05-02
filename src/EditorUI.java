@@ -15,9 +15,17 @@
 public class EditorUI extends javax.swing.JFrame {
 
     /** Creates new form EditorUI */
-    public EditorUI() {
+    /*public EditorUI() {
         initComponents();
         createDeckButton.setEnabled(false);
+        user = null;
+    }*/
+
+    public EditorUI(User u) {
+        initComponents();
+        createDeckButton.setEnabled(false);
+        user = u;
+        System.out.println("EOFIH"+user.getAccountName());
     }
 
     /** This method is called from within the constructor to
@@ -28,7 +36,6 @@ public class EditorUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         createCardButton = new javax.swing.JButton();
         eidtDeckButton = new javax.swing.JButton();
@@ -36,12 +43,9 @@ public class EditorUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         createDeckButton = new javax.swing.JButton();
         successfulDeckLabel = new javax.swing.JLabel();
+        username = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, new javax.swing.JLabel(), org.jdesktop.beansbinding.ELProperty.create("${text}"), this, org.jdesktop.beansbinding.BeanProperty.create("title"));
-        bindingGroup.addBinding(binding);
-
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -80,6 +84,8 @@ public class EditorUI extends javax.swing.JFrame {
         successfulDeckLabel.setBackground(new java.awt.Color(204, 204, 204));
         successfulDeckLabel.setText("checks if deck is created");
 
+        username.setText("Player");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,24 +93,31 @@ public class EditorUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel1)
-                        .addGap(30, 30, 30)
-                        .addComponent(createDeckText, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(jLabel1)
+                                .addGap(30, 30, 30)
+                                .addComponent(createDeckText, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(successfulDeckLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(createCardButton)
+                            .addComponent(eidtDeckButton)
+                            .addComponent(createDeckButton)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(successfulDeckLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(createCardButton)
-                    .addComponent(eidtDeckButton)
-                    .addComponent(createDeckButton))
+                        .addGap(171, 171, 171)
+                        .addComponent(username)))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(79, Short.MAX_VALUE)
+                .addContainerGap(37, Short.MAX_VALUE)
+                .addComponent(username)
+                .addGap(26, 26, 26)
                 .addComponent(createCardButton)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -117,8 +130,6 @@ public class EditorUI extends javax.swing.JFrame {
                     .addComponent(successfulDeckLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50))
         );
-
-        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -147,30 +158,27 @@ public class EditorUI extends javax.swing.JFrame {
     private void createDeckButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createDeckButtonActionPerformed
         String newDeckName = createDeckText.getText();
         System.out.println(newDeckName);
-        System.out.prtinln(user.getAccountName());
+        System.out.println("test" + user.getAccountName());
             //Login.serialize(user, user.getAccountName());
         
     }//GEN-LAST:event_createDeckButtonActionPerformed
-
-    public String getUserName() { return user.getAccountName(); }
     /**
      * @param args the command line arguments
      */
     public void run(User u) {
-        user=u;
-        System.out.println(user.getAccountName());
-        java.awt.EventQueue.invokeLater(new Runnable() {
+           /*java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
 
 
-                new EditorUI().setVisible(true);
-                
+                new EditorUI(u).setVisible(true);
             }
-        });
+        });*/
+        setVisible(true);
     }
+    //private final User user;
 
-    private User user;
+    private final User user;
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createCardButton;
@@ -179,6 +187,6 @@ public class EditorUI extends javax.swing.JFrame {
     private javax.swing.JButton eidtDeckButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel successfulDeckLabel;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
+    private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 }
