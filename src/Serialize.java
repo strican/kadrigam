@@ -6,7 +6,7 @@ import java.io.IOException;
 public class Serialize {
 
     public static void main(String[] args) {
-        String filename = "gordon.ser";
+        String filename = "douchbag.ser";
 
         if (args.length > 0) {
             filename = args[0];

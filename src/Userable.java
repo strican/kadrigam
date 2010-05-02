@@ -13,5 +13,4 @@ public interface Userable
     public boolean createDeck(String s);
     public void deleteDeck(String d);
     public DeckCollection getDeckList();
-    public void makeDefaultDeck();
 }

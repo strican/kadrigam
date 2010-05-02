@@ -1,4 +1,3 @@
-
 import java.io.Serializable;
 import java.util.Set;
 
@@ -12,6 +11,7 @@ public class User implements Userable, Serializable {
         this.account = account;
         this.collection = new CardCollection();
         this.decks = new DeckCollection();
+        makeDefaultLibrary();
         makeDefaultDeck();
     }
 
@@ -84,7 +84,7 @@ public class User implements Userable, Serializable {
         return cp;
     }
 
-    public void makeDefaultDeck() {
+    private void makeDefaultLibrary() {
         createDeck("default");
 
         Creature libCreature;
@@ -315,6 +315,15 @@ public class User implements Userable, Serializable {
         libSpell = new Spell("Italian", effect, cost);
         collection.addCard(libSpell);
 
+    }
+
+    private void makeDefaultDeck() {
+        createDeck("default");
+        for (int i = 0; i < collection.size(); i++) {
+            for (int j = 0; j < 4; j++) {
+                addCardToDeck(collection.getCard(i), "default");
+            }
+        }
     }
 
     public static void main() {
