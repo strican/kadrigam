@@ -1,0 +1,18 @@
+
+public enum Type 
+<<<<<<< HEAD
+{ 
+ PLAY,
+ DISCARD,
+ ATTACK,
+ DAMAGE,
+ SACRIFICE;
+=======
+{	
+	PLAY,
+	DISCARD,
+	ATTACK,
+	DAMAGE,
+	SACRIFICE;
+>>>>>>> d144f6d6ad50c08d063e8db2867beedaaa414993
+}
