@@ -9,11 +9,15 @@ public class HumanPlayer implements Player
   private CardCollection hand;
   private Rules rules;
   private GameBoard board;
+  private String name;
+  private Type phase;
+  private int turn_damage;
   
   public HumanPlayer(CardPile deck)
   {
     this.deck = deck;
-    
+    name = "Human Player";
+
     //Initializes the players life total
     life = new ColorPoints();
     life.add(new PointVal(Color.NEUTRAL,INITIAL_POINTS));
@@ -26,14 +30,56 @@ public class HumanPlayer implements Player
     //Initializes the players hand
     for (int i=0; i<MAXHANDSIZE; i++)
       drawCard();
+
+    turn_damage = 0;
+    //phase = Type.WAIT;
+    
   }
-  
+
+    public HumanPlayer(CardPile deck, String name)
+  {
+    this.deck = deck;
+    this.name = name;
+
+    //Initializes the players life total
+    life = new ColorPoints();
+    life.add(new PointVal(Color.NEUTRAL,INITIAL_POINTS));
+    
+    graveyard = new CardPile();
+    spellStack = new CardPile();
+    allies = new CardCollection();
+    hand = new CardCollection();
+
+    //Initializes the players hand
+    for (int i=0; i<MAXHANDSIZE; i++)
+      drawCard();
+
+  }
+
   public PointList getLife() {return life;}
-  public CardList getHand() {return hand;}
+  public CardCollection getHand() {return hand;}
   public CardList getGraveyard() {return graveyard;}
-  public CardList getAllies() {return allies;}
+  public CardCollection getAllies() {return allies;}
   public CardList getSpellStack() {return spellStack;}
   public CardList getDeck() {return deck;}
+  public String getName() {return name;};
+  public Type getPhase() {return phase;};
+  public int getDamage() {return turn_damage;};
+
+  public void setPhase(Type phase)
+  {
+      this.phase = phase;
+  }
+
+  public void addDamage(int i)
+  {
+      turn_damage += i;
+  }
+
+  public void subDamage(int i)
+  {
+      turn_damage -= i;
+  }
   
   public void drawCard()
   {
@@ -110,7 +156,7 @@ public class HumanPlayer implements Player
       if (playerSelection != 0)
         c = allies.getCard(playerSelection-1);
     }
-    else if (t == Type.PLAY)
+    else if (t == Type.PLAY1 || t == Type.PLAY2)
     {
       int playerSelection = Test.readInt(0,hand.size());
       if (playerSelection != 0)
@@ -121,6 +167,7 @@ public class HumanPlayer implements Player
       int playerSelection = Test.readInt(1,hand.size());
       c = hand.getCard(playerSelection-1);
     }
+    
     return c;
   }
   

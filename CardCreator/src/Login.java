@@ -29,7 +29,8 @@ public class Login implements Loginable {
             user = (User) in.readObject();
             in.close();
         } catch (IOException readEx) {
-            serialize (new User(username), username);
+            user = new User(username);
+            serialize (user, username);
 
             //readEx.printStackTrace();
         } catch (ClassNotFoundException ex) {
@@ -41,7 +42,7 @@ public class Login implements Loginable {
     }
 
     // serialize the user
-    public boolean serialize(User u, String s) {
+    public static boolean serialize(User u, String s) {
 
         String filename = s + ".ser";
 

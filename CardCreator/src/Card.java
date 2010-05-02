@@ -22,6 +22,15 @@ public abstract class Card extends SuperCard implements Comparable, Playable
   {
     return name.compareTo(((Card)o).getName());
   }
+
+  public Object display()
+  {
+      String s = toString();
+      if (this == null)
+          return "";
+      else return s;
+  }
+
   public String toString()
   {
     String s = "";

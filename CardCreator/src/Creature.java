@@ -40,7 +40,15 @@ public class Creature extends Card implements Serializable
     setActive(false);
     return attackPow;
   }
-  
+
+  public Object display()
+  {
+      if (this == null)
+          return "";
+      else
+          return toString();
+  }
+
   public String toString()
   {
     String s = super.toString();

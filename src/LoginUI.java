@@ -177,8 +177,10 @@ public class LoginUI extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }
+        System.out.println(user1.getAccountName());
 
-        EditorUI e = new EditorUI();
+
+        EditorUI e = new EditorUI(user1);
         e.run(user1);
 
     }//GEN-LAST:event_playerOneEditButtonActionPerformed
@@ -205,8 +207,9 @@ public class LoginUI extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }
+        System.out.println(user2.getAccountName());
 
-        EditorUI e = new EditorUI();
+        EditorUI e = new EditorUI(user2);
         e.run(user2);
     }//GEN-LAST:event_playerTwoEditButtonActionPerformed
 

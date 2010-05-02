@@ -32,6 +32,10 @@ public class CreatorUI extends javax.swing.JFrame {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         creator = new CardCreator();
+        targetLibrary = new CardCollection();
+        cardError = new javax.swing.JDialog();
+        jLabel17 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         confirm = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
         cardValField = new javax.swing.JTextField();
@@ -81,11 +85,48 @@ public class CreatorUI extends javax.swing.JFrame {
         imagePathField = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
 
+        cardError.setTitle("Card Already Exists");
+
+        jLabel17.setFont(new java.awt.Font("Charlemagne Std", 0, 13)); // NOI18N
+        jLabel17.setText("A card of that name already exists!");
+
+        jButton1.setFont(new java.awt.Font("Charlemagne Std", 0, 13)); // NOI18N
+        jButton1.setText("OK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        org.jdesktop.layout.GroupLayout cardErrorLayout = new org.jdesktop.layout.GroupLayout(cardError.getContentPane());
+        cardError.getContentPane().setLayout(cardErrorLayout);
+        cardErrorLayout.setHorizontalGroup(
+            cardErrorLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(cardErrorLayout.createSequentialGroup()
+                .add(cardErrorLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(cardErrorLayout.createSequentialGroup()
+                        .add(147, 147, 147)
+                        .add(jButton1))
+                    .add(cardErrorLayout.createSequentialGroup()
+                        .add(47, 47, 47)
+                        .add(jLabel17)))
+                .addContainerGap(62, Short.MAX_VALUE))
+        );
+        cardErrorLayout.setVerticalGroup(
+            cardErrorLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(cardErrorLayout.createSequentialGroup()
+                .add(62, 62, 62)
+                .add(jLabel17)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jButton1)
+                .addContainerGap(64, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Card Creation Portal");
         setBackground(new java.awt.Color(153, 51, 0));
 
-        confirm.setFont(new java.awt.Font("Charlemagne Std", 0, 13)); // NOI18N
+        confirm.setFont(new java.awt.Font("Charlemagne Std", 0, 13));
         confirm.setText("OK");
         confirm.setEnabled(false);
         confirm.addActionListener(new java.awt.event.ActionListener() {
@@ -210,6 +251,11 @@ public class CreatorUI extends javax.swing.JFrame {
         nameField.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 nameFieldPropertyChange(evt);
+            }
+        });
+        nameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nameFieldKeyTyped(evt);
             }
         });
 
@@ -629,9 +675,12 @@ public class CreatorUI extends javax.swing.JFrame {
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
         // TODO add your handling code here:
-        String s = nameField.getText();
-        creator.setCardName(s);
-        cardValField.setText("Got "+s);
+        Card c = creator.makeCard();
+        //if (targetLibrary.hasCard(c.getName()))
+        //{
+            nameField.setText("");
+            cardError.setVisible(true);
+        //}
     }//GEN-LAST:event_confirmActionPerformed
 
     private void cardValFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardValFieldActionPerformed
@@ -800,17 +849,37 @@ public class CreatorUI extends javax.swing.JFrame {
 
     private void nameFieldPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_nameFieldPropertyChange
         // TODO add your handling code here:
+        
+
+    }//GEN-LAST:event_nameFieldPropertyChange
+
+    private void nameFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameFieldKeyTyped
+        // TODO add your handling code here:
         if ((nameField.getText()).length()<5)
             confirm.setEnabled(false);
         else
             confirm.setEnabled(true);
+    }//GEN-LAST:event_nameFieldKeyTyped
 
-    }//GEN-LAST:event_nameFieldPropertyChange
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        cardError.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
     * @param args the command line arguments
     */
     public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new CreatorUI().setVisible(true);
+            }
+        });
+    }
+
+    public void run(CardCollection c)
+    {
+        targetLibrary = c;
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CreatorUI().setVisible(true);
@@ -1019,6 +1088,7 @@ public class CreatorUI extends javax.swing.JFrame {
     private javax.swing.JSpinner blueCost;
     private javax.swing.JSpinner bluePO;
     private javax.swing.JButton cancel;
+    private javax.swing.JDialog cardError;
     private javax.swing.JComboBox cardType;
     private javax.swing.JTextField cardValField;
     private javax.swing.JButton chooseFile;
@@ -1033,6 +1103,7 @@ public class CreatorUI extends javax.swing.JFrame {
     private javax.swing.JSpinner greenPO;
     private javax.swing.JSlider hpSlide;
     private javax.swing.JTextField imagePathField;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1042,6 +1113,7 @@ public class CreatorUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1058,6 +1130,7 @@ public class CreatorUI extends javax.swing.JFrame {
     private javax.swing.JSlider powerSlide;
     private javax.swing.JSpinner redCost;
     private javax.swing.JSpinner redPO;
+    private CardCollection targetLibrary;
     private javax.swing.JComboBox triggerSelection;
     private javax.swing.JSpinner whiteCost;
     private javax.swing.JSpinner whitePO;

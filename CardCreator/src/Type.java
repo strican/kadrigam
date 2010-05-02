@@ -1,9 +1,12 @@
 
 public enum Type 
-{ 
- PLAY,
- DISCARD,
- ATTACK,
- DAMAGE,
- SACRIFICE;
+{
+    DRAW,
+    PLAY1,
+    PLAY2,
+    DISCARD,
+    ATTACK,
+    DAMAGE,
+    SACRIFICE,
+    WAIT;
 }

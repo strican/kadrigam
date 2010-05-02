@@ -42,11 +42,19 @@ public interface Player
   public Card getCard(Type t);
   
   public PointList getLife();
-  public CardList getHand();
+  public CardCollection getHand();
   public CardList getDeck();
   public CardList getGraveyard();
-  public CardList getAllies();
+  public CardCollection getAllies();
   public CardList getSpellStack();
+  public String getName();
+
+  public Type getPhase();
+  public void setPhase(Type phase);
+
+  public int getDamage();
+  public void addDamage(int i);
+  public void subDamage(int i);
   
   
 }
