@@ -9,6 +9,7 @@ public class ColorPoints implements PointList, Serializable
  // Copy Constructor
  public ColorPoints(ColorPoints pts)
  {
+   p = new HashMap<Color, PointVal>();
    for (Color c : Color.values())
     p.put(c, new PointVal(c, pts.get(c)));
  }
@@ -20,6 +21,17 @@ public class ColorPoints implements PointList, Serializable
   for (Color c : Color.values())
    p.put(c, new PointVal(c, 0));
  }
+
+ public ColorPoints (int neutral, int red, int green, int blue,
+         int white, int black) {
+       p = new HashMap<Color, PointVal>();
+        p.put(Color.NEUTRAL,(new PointVal(Color.NEUTRAL, neutral)));
+        p.put(Color.RED,(new PointVal(Color.RED, red)));
+        p.put(Color.GREEN,(new PointVal(Color.GREEN, green)));
+        p.put(Color.BLUE,(new PointVal(Color.BLUE, blue)));
+        p.put(Color.WHITE,(new PointVal(Color.WHITE, white)));
+        p.put(Color.BLACK,(new PointVal(Color.BLACK, black)));
+    }
   
  // Ensures a player can pay a certain point value
  public boolean canPay(PointVal pval)
