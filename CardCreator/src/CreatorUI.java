@@ -85,7 +85,7 @@ public class CreatorUI extends javax.swing.JFrame {
         setTitle("Card Creation Portal");
         setBackground(new java.awt.Color(153, 51, 0));
 
-        confirm.setFont(new java.awt.Font("Charlemagne Std", 0, 13)); // NOI18N
+        confirm.setFont(new java.awt.Font("Charlemagne Std", 0, 13));
         confirm.setText("OK");
         confirm.setEnabled(false);
         confirm.addActionListener(new java.awt.event.ActionListener() {
@@ -210,6 +210,11 @@ public class CreatorUI extends javax.swing.JFrame {
         nameField.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 nameFieldPropertyChange(evt);
+            }
+        });
+        nameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nameFieldKeyTyped(evt);
             }
         });
 
@@ -800,12 +805,17 @@ public class CreatorUI extends javax.swing.JFrame {
 
     private void nameFieldPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_nameFieldPropertyChange
         // TODO add your handling code here:
+        
+
+    }//GEN-LAST:event_nameFieldPropertyChange
+
+    private void nameFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameFieldKeyTyped
+        // TODO add your handling code here:
         if ((nameField.getText()).length()<5)
             confirm.setEnabled(false);
         else
             confirm.setEnabled(true);
-
-    }//GEN-LAST:event_nameFieldPropertyChange
+    }//GEN-LAST:event_nameFieldKeyTyped
 
     /**
     * @param args the command line arguments

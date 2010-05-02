@@ -32,7 +32,7 @@ public class ImageChooser extends javax.swing.JFrame {
         c = new CardCreator();
         jFileChooser1 = new javax.swing.JFileChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Choose Card Image");
         setBackground(new java.awt.Color(153, 51, 0));
 
