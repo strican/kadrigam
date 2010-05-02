@@ -36,7 +36,7 @@ public class CardCollection implements CardList
       }
       catch(Exception e)
       {
-          return null;
+          return "";
       }
   }
 

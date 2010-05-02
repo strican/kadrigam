@@ -39,7 +39,15 @@ public class Creature extends Card
     setActive(false);
     return attackPow;
   }
-  
+
+  public Object display()
+  {
+      if (this == null)
+          return "";
+      else
+          return toString();
+  }
+
   public String toString()
   {
     String s = super.toString();

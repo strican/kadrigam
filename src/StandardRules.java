@@ -1,33 +1,43 @@
 
 public class StandardRules implements Rules
 {
- private boolean checkPlay(PlayMove m)
+
+    private boolean checkDraw(Move m)
+    {
+        if (m instanceof DrawMove)
+            return !m.getPlayer().getDeck().isEmpty();
+
+        else
+            return false;
+    }
+
+ private boolean checkPlay1(Move m)
  {
-  Player p = m.p;
-  Card c = m.c;
+  Player p = m.getPlayer();
+  Card c = m.getCard();
   PointList life = p.getLife();
-  CardList allies = p.getAllies();
-  CardList spellStack = p.getSpellStack();
-  CardCollection hand = (CardCollection) p.getHand();
+  CardCollection allies = p.getAllies();
+  //CardList spellStack = p.getSpellStack();
+  CardCollection hand = p.getHand();
   
      if (life.canPay(c.getCost()))
      {
-      if (c instanceof Creature)
-      {
-       if (allies.size() < Player.MAXALLIES)
-        return true;
-       else
-       {
-        System.out.println("Too many creatures in play");
-        return false;
-       }
-      }
+        if (c instanceof Creature)
+        {
+            if (allies.size() < Player.MAXALLIES && hand.hasCard(c))
+                return true;
+            else
+            {
+                System.out.println("Too many creatures in play");
+                return false;
+            }
+        }
     
-      else if (c instanceof Spell)
-       return true;
+        else if (c instanceof Spell && hand.hasCard(c))
+            return true;
       
-      else
-       return false;
+        else
+            return false;
      }
      
      else
@@ -37,41 +47,97 @@ public class StandardRules implements Rules
      }
  }
  
- private boolean checkDiscard(DiscardMove m)
+  private boolean checkPlay2(Move m)
  {
-  Player p = m.p;
-  CardList h = p.getHand();
-  if (h.hasCard(m.c))
-   return true;
-  else
-   return false;
+  Player p = m.getPlayer();
+  Card c = m.getCard();
+  PointList life = p.getLife();
+  CardCollection allies = p.getAllies();
+  //CardList spellStack = p.getSpellStack();
+  CardCollection hand = p.getHand();
+  
+     if (life.canPay(c.getCost()))
+     {
+        if (c instanceof Creature)
+            return false;
+    
+        else if (c instanceof Spell  && hand.hasCard(c))
+            return true;
+      
+        else
+            return false;
+     }
+     
+     else
+     {
+       System.out.println("Not enough points");
+       return false;
+     }
+ }
+
+ private boolean checkDiscard(Move m)
+ {
+     if (m instanceof DiscardMove)
+     {
+        Player p = m.getPlayer();
+        CardList h = p.getHand();
+        if (h.hasCard(m.getCard()))
+            return true;
+        else
+            return false;
+     }
+
+     else
+         return false;
  }
  
- private boolean checkAttack(AttackMove m)
+ private boolean checkAttack(Move m)
  {
-	 return ((Creature) m.c).isActive();
+     if (m instanceof AttackMove)
+     {
+         Card c = m.getCard();
+         if (c instanceof Creature)
+            return ((Creature) c).isActive();
+         else
+             return false;
+     }
+     
+     else
+         return false;
+
+
  }
  
- private boolean checkDamage(DamageMove m)
+ private boolean checkDamage(Move m)
  {
-	 return m.p.getAllies().hasCard(m.c) && ((Creature) m.c).getHP() >= m.damage;
+     if (m instanceof DamageMove)
+	 return m.getPlayer().getAllies().hasCard(m.getCard()) && ((Creature) m.getCard()).getHP() >= ((DamageMove) m).getDamage();
+
+     else
+         return false;
  }
  
- private boolean checkSacrifice(SacrificeMove m)
+ private boolean checkSacrifice(Move m)
  {
-	 return ((Creature) m.c).isActive();
+     if (m instanceof SacrificeMove)
+	 return ((Creature) m.getCard()).isActive();
+
+     else
+         return false;
  }
  
  public boolean check(Type t, Move m)
  {
   switch(t)
   {
-  case PLAY:  		return checkPlay((PlayMove) m);
-  case DISCARD: 	return checkDiscard((DiscardMove) m);
-  case ATTACK: 		return checkAttack((AttackMove) m);
-  case DAMAGE: 		return checkDamage((DamageMove)m);
-  case SACRIFICE: 	return checkSacrifice((SacrificeMove) m); 
-  default:  		return false;
+    case DRAW:          return checkDraw(m);
+    case PLAY1:  	return checkPlay1(m);
+    case PLAY2:         return checkPlay2(m);
+    case DISCARD: 	return checkDiscard(m);
+    case ATTACK:        return checkAttack(m);
+    case DAMAGE: 	return checkDamage(m);
+    case SACRIFICE: 	return checkSacrifice(m);
+    default:  		return false;
   }
  }
 }

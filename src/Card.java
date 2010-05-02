@@ -20,7 +20,10 @@ public abstract class Card implements Comparable, Playable
 
   public Object display()
   {
-      return toString();
+      String s = toString();
+      if (this == null)
+          return "";
+      else return s;
   }
 
   public String toString()

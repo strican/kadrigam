@@ -117,8 +117,8 @@ public class Test
      deck2.addCard(randomCard());
    }
    
-   Player p1 = new HumanPlayer(deck1);
-   Player p2 = new HumanPlayer(deck2);
+   Player p1 = new HumanPlayer(deck1, "Player 1");
+   Player p2 = new HumanPlayer(deck2, "Player 2");
    
    Game g = new StandardGame(p1,p2);
    g.play();
@@ -173,7 +173,7 @@ public class Test
        
        //If move is legal...
        Card c = ((CardCollection)(p.getHand())).getCard(playerSelection-1);
-       Move play = new PlayMove(p, c);
+       Move play = new Play1Move(p, c);
        
        if (play.isLegal(r))
         play.execute();
@@ -199,7 +199,7 @@ public class Test
        else
            System.out.printf("That creature cannot attack again yet!");
        
-       damageDealt += ((AttackMove) attack).damage;
+       damageDealt += ((AttackMove) attack).getDamage();
        
        
        printPlayerInfo(p);
