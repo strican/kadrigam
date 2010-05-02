@@ -7,6 +7,10 @@ public class User implements Userable, Serializable {
     private CardCollection collection;
     private DeckCollection decks;
 
+    public User(){
+        account = null;
+    }
+
     public User(String account) {
         this.account = account;
         this.collection = new CardCollection();
