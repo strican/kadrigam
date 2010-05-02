@@ -1,4 +1,6 @@
-public class PointVal 
+import java.io.Serializable;
+
+public class PointVal implements Serializable
 {
 	public final Color c;
 	private int val;

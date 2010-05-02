@@ -1,4 +1,6 @@
-public class Ability
+import java.io.Serializable;
+
+public class Ability implements Serializable
 {
   private final Trigger t;
   private final Effect e;

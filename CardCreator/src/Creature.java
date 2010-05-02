@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Creature extends Card
+public class Creature extends Card implements Serializable
 {
   private final Ability abil;
   //NOTE: Will attackPow be final?

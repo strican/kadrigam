@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Spell extends Card
+public class Spell extends Card implements Serializable
 { 
   private Effect e;
   
