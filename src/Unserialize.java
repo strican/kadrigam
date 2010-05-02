@@ -1,3 +1,4 @@
+
 import java.io.ObjectInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,24 +14,32 @@ public class Unserialize {
         User test = null;
         FileInputStream fis = null;
         ObjectInputStream in = null;
-        
+
         try {
             fis = new FileInputStream(filename);
             in = new ObjectInputStream(fis);
-            test = (User)in.readObject();
+            test = (User) in.readObject();
             in.close();
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
-            
-        }
 
-        catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }
 
-        for (int i = 0; i < 50; i++){
-            System.out.println(test.getDeck("default").getCard(i).getName());
+
+        for (int i = 0; i < 25; i++) {
+
+            Card card = test.getLibrary().getCard(i);
+            if (card instanceof Creature) {
+                System.out.println(((Creature) card).getName());
+                System.out.println(((Creature) card).getPow());
+                System.out.println(((Creature) card).getHP());
+            }
+            else
+            {
+                System.out.println(((Spell) card).getName());
+            }
         }
     }
 }

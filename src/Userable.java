@@ -6,6 +6,7 @@ public interface Userable
     public Card createCard();
     public void deleteCard(String c);
     public CardCollection getLibrary();
+    public boolean libraryHasCard(String s);
     
     public void addCardToDeck(Card c, String d);
     public CardCollection getDeck(String s);
