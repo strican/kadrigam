@@ -97,7 +97,7 @@ public class CardCreator {
     public void setNumCostColors(int x) {numCostColors = x;}
     public void setNumPOColors(int x) {numPOColors = x;}
 
-    public void setCreatureStatus(boolean b) { isCreature = false; }
+    public void setCreatureStatus(boolean b) { isCreature = b; }
     public void setPower(int x) { power = x; }
     public void setHP(int x) { hp = x; }
 
@@ -127,6 +127,7 @@ public class CardCreator {
         {
             c = new Spell(cardName,e,cost);
         }
+        c.setCV(cardValue());
         return c;
     }
 
@@ -136,12 +137,12 @@ public class CardCreator {
         cardVal = 0;
         if (isCreature)
         {
-            System.out.println("Is a creature");
+            //System.out.println("Is a creature");
             cardVal += (power + hp) / 1000;
 
             if (trig != null)
             {
-                System.out.println("Has a trigger");
+                //System.out.println("Has a trigger");
                 ei = effectIndex();
                 if (trig == Trigger.PAY)
                     cardVal += (convertedCost/500) / ei;
@@ -153,7 +154,7 @@ public class CardCreator {
                     cardVal += 2/ei;
                 cardVal += ei;
             }
-            cardVal += (convertedPO/(numPOColors*200));
+            cardVal += (convertedPO/((numPOColors+1)*200));
             cardVal += (convertedCost/((numCostColors+1)*200));
 
         }
