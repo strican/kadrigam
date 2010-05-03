@@ -14,6 +14,7 @@ public class StandardGame implements Game
         this.g1 = new GameBoard(p1, p2, r);
         this.g2 = new GameBoard(p2, p1, r);
 
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 g1.setVisible(true);

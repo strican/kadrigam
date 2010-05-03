@@ -68,9 +68,7 @@ public class GameBoard extends javax.swing.JFrame {
     }
 
     public void getDamageInput(Card c) {
-        damageSlider.setVisible(true);
-        damageButton.setVisible(true);
-        damageLabel.setVisible(true);
+        damagePanel.setVisible(true);
 
         System.out.println(opp.getDamage());
         System.out.println(((Creature) c).getHP());
@@ -85,8 +83,126 @@ public class GameBoard extends javax.swing.JFrame {
         p.takeDamage(dmg);
     }
 
-    public void update() {
-/*        PointList health = p.getLife();
+    public void updateAllies()
+    {
+        ally1.changeCard(p.getAllies().getCard(0));
+        ally2.changeCard(p.getAllies().getCard(1));
+        ally3.changeCard(p.getAllies().getCard(2));
+        ally4.changeCard(p.getAllies().getCard(3));
+        ally5.changeCard(p.getAllies().getCard(4));
+
+
+        if (ally1.getCard() == null)
+            ally1.setVisible(false);
+        else
+            ally1.setVisible(true);
+
+        if (ally2.getCard() == null)
+            ally2.setVisible(false);
+        else
+            ally2.setVisible(true);
+
+        if (ally3.getCard() == null)
+            ally3.setVisible(false);
+        else
+            ally3.setVisible(true);
+
+        if (ally4.getCard() == null)
+            ally4.setVisible(false);
+        else
+            ally4.setVisible(true);
+
+        if (ally5.getCard() == null)
+            ally5.setVisible(false);
+        else
+            ally5.setVisible(true);
+    }
+
+    public void updateHand()
+    {
+        card1.changeCard(p.getHand().getCard(0));
+        card2.changeCard(p.getHand().getCard(1));
+        card3.changeCard(p.getHand().getCard(2));
+        card4.changeCard(p.getHand().getCard(3));
+        card5.changeCard(p.getHand().getCard(4));
+        card6.changeCard(p.getHand().getCard(5));
+        card7.changeCard(p.getHand().getCard(6));
+
+        if (card1.getCard() == null)
+            card1.setVisible(false);
+        else
+            card1.setVisible(true);
+
+        if (card2.getCard() == null)
+            card2.setVisible(false);
+        else
+            card2.setVisible(true);
+
+        if (card3.getCard() == null)
+            card3.setVisible(false);
+        else
+            card3.setVisible(true);
+
+        if (card4.getCard() == null)
+            card4.setVisible(false);
+        else
+            card4.setVisible(true);
+
+        if (card5.getCard() == null)
+            card5.setVisible(false);
+        else
+            card5.setVisible(true);
+
+        if (card6.getCard() == null)
+            card6.setVisible(false);
+        else
+            card6.setVisible(true);
+
+        if (card7.getCard() == null)
+            card7.setVisible(false);
+        else
+            card7.setVisible(true);
+    }
+
+    public void updateOppAllies()
+    {
+        oppAlly1.changeCard(opp.getAllies().getCard(0));
+        oppAlly2.changeCard(opp.getAllies().getCard(1));
+        oppAlly3.changeCard(opp.getAllies().getCard(2));
+        oppAlly4.changeCard(opp.getAllies().getCard(3));
+        oppAlly5.changeCard(opp.getAllies().getCard(4));
+
+
+        if (oppAlly1.getCard() == null)
+            oppAlly1.setVisible(false);
+        else
+            oppAlly1.setVisible(true);
+
+        if (oppAlly2.getCard() == null)
+            oppAlly2.setVisible(false);
+        else
+            oppAlly2.setVisible(true);
+
+        if (oppAlly3.getCard() == null)
+            oppAlly3.setVisible(false);
+        else
+            oppAlly3.setVisible(true);
+
+        if (oppAlly4.getCard() == null)
+            oppAlly4.setVisible(false);
+        else
+            oppAlly4.setVisible(true);
+
+        if (oppAlly5.getCard() == null)
+            oppAlly5.setVisible(false);
+        else
+            oppAlly5.setVisible(true);
+
+    }
+
+    public void updateHealth()
+    {
+        PointList health = p.getLife();
         neutLife.setText("" + health.get(Color.NEUTRAL));
         redLife.setText("" + health.get(Color.RED));
         greenLife.setText("" + health.get(Color.GREEN));
@@ -94,46 +210,45 @@ public class GameBoard extends javax.swing.JFrame {
         whiteLife.setText("" + health.get(Color.WHITE));
         blackLife.setText("" + health.get(Color.BLACK));
 
-        neutLife.setForeground(java.awt.Color.GRAY);
-        redLife.setForeground(java.awt.Color.RED);
-        greenLife.setForeground(java.awt.Color.GREEN);
-        blueLife.setForeground(java.awt.Color.BLUE);
-        whiteLife.setForeground(java.awt.Color.WHITE);
-        blackLife.setForeground(java.awt.Color.BLACK);
-*/
-        ally1.changeCard(p.getAllies().getCard(0));
+        health = opp.getLife();
+        neutLife1.setText("" + health.get(Color.NEUTRAL));
+        redLife1.setText("" + health.get(Color.RED));
+        greenLife1.setText("" + health.get(Color.GREEN));
+        blueLife1.setText("" + health.get(Color.BLUE));
+        whiteLife1.setText("" + health.get(Color.WHITE));
+        blackLife1.setText("" + health.get(Color.BLACK));
 
-        if (ally1.getCard() == null)
-            ally1.setVisible(false);
-        else
-            ally1.updateDisplay();
+
+    }
+
+    public void update() {
+
+        updateHealth();
+        updateAllies();
+        updateHand();
+        updateOppAllies();
         
-        card1.setText("" + p.getHand().display(0));
-        card2.setText("" + p.getHand().display(1));
-        card3.setText("" + p.getHand().display(2));
-        card4.setText("" + p.getHand().display(3));
-        card5.setText("" + p.getHand().display(4));
-        card6.setText("" + p.getHand().display(5));
-        card7.setText("" + p.getHand().display(6));
-        card8.setText("" + p.getHand().display(7));
+        if (p.getPhase() != Type.DAMAGE)
+            damagePanel.setVisible(false);
+        
 
-        //spellStack.setText(p.getSpellStack().toString());
+        
 
-//        ally1.setText("" + p.getAllies().display(0));
-        ally2.setText("" + p.getAllies().display(1));
-        ally3.setText("" + p.getAllies().display(2));
-        ally4.setText("" + p.getAllies().display(3));
-        ally5.setText("" + p.getAllies().display(4));
+        spellStack.setText(p.getSpellStack().toString());
+
 
         updateButton();
         updatePhase();
 
-        damageLabel.setText("" + damageSlider.getValue());
+        
     }
 
     private void updatePhase() {
         Type t = p.getPhase();
-        System.out.println(t);
+
+        if (t == null)
+            t = Type.WAIT;
+        
         switch (t) {
             case DRAW:
                 phaseLabel.setText("Upkeep");
@@ -167,6 +282,10 @@ public class GameBoard extends javax.swing.JFrame {
 
     public void updateButton() {
         Type t = p.getPhase();
+
+        if (t == null)
+            t = Type.WAIT;
+        
         switch (t) {
             case DRAW:
                 phaseButton.setText("Draw a Card");
@@ -252,7 +371,6 @@ public class GameBoard extends javax.swing.JFrame {
 
         //spellStack.setText(p.getHand().toString());
         Card c = p.getHand().getCard(i);
-        spellStack.setText(c.toString());
 
 
         // Do nothing if there is no card there
@@ -317,17 +435,13 @@ public class GameBoard extends javax.swing.JFrame {
         jEditorPane1 = new javax.swing.JEditorPane();
         jPanel2 = new javax.swing.JPanel();
         handPanel = new javax.swing.JPanel();
-        card6 = new javax.swing.JTextArea();
-        card7 = new javax.swing.JTextArea();
-        card2 = new javax.swing.JTextArea();
-        card5 = new javax.swing.JTextArea();
-        card8 = new javax.swing.JTextArea();
-        card4 = new javax.swing.JTextArea();
-        card1 = new javax.swing.JTextArea();
-        card3 = new javax.swing.JTextArea();
-        phasePanel = new javax.swing.JPanel();
-        phaseLabel = new javax.swing.JLabel();
-        phaseButton = new javax.swing.JButton();
+        card1 = new MiniPanel();
+        card2 = new MiniPanel();
+        card3 = new MiniPanel();
+        card4 = new MiniPanel();
+        card5 = new MiniPanel();
+        card6 = new MiniPanel();
+        card7 = new MiniPanel();
         pDetails = new javax.swing.JPanel();
         pHealth = new javax.swing.JPanel();
         neutLife = new javax.swing.JLabel();
@@ -338,6 +452,9 @@ public class GameBoard extends javax.swing.JFrame {
         blackLife = new javax.swing.JLabel();
         whiteLife = new javax.swing.JLabel();
         pNameLabel = new javax.swing.JLabel();
+        phasePanel = new javax.swing.JPanel();
+        phaseLabel = new javax.swing.JLabel();
+        phaseButton = new javax.swing.JButton();
         spellStack = new javax.swing.JTextArea();
         damagePanel = new javax.swing.JPanel();
         damageLabel = new javax.swing.JLabel();
@@ -353,12 +470,19 @@ public class GameBoard extends javax.swing.JFrame {
         blackLife1 = new javax.swing.JLabel();
         whiteLife1 = new javax.swing.JLabel();
         oppNameLabel = new javax.swing.JLabel();
+        allAllyPanel = new javax.swing.JPanel();
+        oppAllyPanel = new javax.swing.JPanel();
+        oppAlly1 = new MiniPanel();
+        oppAlly2 = new MiniPanel();
+        oppAlly3 = new MiniPanel();
+        oppAlly4 = new MiniPanel();
+        oppAlly5 = new MiniPanel();
         allyPanel = new javax.swing.JPanel();
-        ally2 = new javax.swing.JTextArea();
-        ally5 = new javax.swing.JTextArea();
-        ally3 = new javax.swing.JTextArea();
-        ally4 = new javax.swing.JTextArea();
         ally1 = new MiniPanel();
+        ally2 = new MiniPanel();
+        ally3 = new MiniPanel();
+        ally4 = new MiniPanel();
+        ally5 = new MiniPanel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -382,99 +506,49 @@ public class GameBoard extends javax.swing.JFrame {
             }
         });
 
-        card6.setColumns(20);
-        card6.setRows(5);
-        card6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                card6MouseClicked(evt);
-            }
-        });
+        handPanel.setMaximumSize(new java.awt.Dimension(1022, 207));
 
-        card7.setColumns(20);
-        card7.setRows(5);
-        card7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                card7MouseClicked(evt);
-            }
-        });
-
-        card2.setColumns(20);
-        card2.setRows(5);
-        card2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                card2MouseClicked(evt);
-            }
-        });
-
-        card5.setColumns(20);
-        card5.setRows(5);
-        card5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                card5MouseClicked(evt);
-            }
-        });
-
-        card8.setColumns(20);
-        card8.setRows(5);
-        card8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                card8MouseClicked(evt);
-            }
-        });
-
-        card4.setColumns(20);
-        card4.setRows(5);
-        card4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                card4MouseClicked(evt);
-            }
-        });
-
-        card1.setColumns(20);
-        card1.setRows(5);
         card1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 card1MouseClicked(evt);
             }
         });
 
-        card3.setColumns(20);
-        card3.setRows(5);
+        card2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                card2MouseClicked(evt);
+            }
+        });
+
         card3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 card3MouseClicked(evt);
             }
         });
 
-        phaseLabel.setText("Phase");
-
-        phaseButton.setText("Play 1");
-        phaseButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phaseButtonActionPerformed(evt);
+        card4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                card4MouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout phasePanelLayout = new javax.swing.GroupLayout(phasePanel);
-        phasePanel.setLayout(phasePanelLayout);
-        phasePanelLayout.setHorizontalGroup(
-            phasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(phasePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(phaseLabel)
-                .addGap(27, 27, 27)
-                .addComponent(phaseButton)
-                .addContainerGap())
-        );
-        phasePanelLayout.setVerticalGroup(
-            phasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(phasePanelLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(phasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(phaseLabel)
-                    .addComponent(phaseButton))
-                .addContainerGap())
-        );
+        card5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                card5MouseClicked(evt);
+            }
+        });
+
+        card6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                card6MouseClicked(evt);
+            }
+        });
+
+        card7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                card7MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout handPanelLayout = new javax.swing.GroupLayout(handPanel);
         handPanel.setLayout(handPanelLayout);
@@ -482,44 +556,34 @@ public class GameBoard extends javax.swing.JFrame {
             handPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(handPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(handPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(handPanelLayout.createSequentialGroup()
-                        .addGroup(handPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(card8, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(card7, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(phasePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(card6, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(card5, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(card2, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(card4, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(card3, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(card2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(card3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(card4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(card5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(card6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(card7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         handPanelLayout.setVerticalGroup(
             handPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(handPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(handPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(phasePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(handPanelLayout.createSequentialGroup()
-                        .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(card2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(card3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(card4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(card5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(card6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(card7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(card8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGroup(handPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(card2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(card3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(card4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(card5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(card6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(card7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         neutLife.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -623,6 +687,36 @@ public class GameBoard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        phaseLabel.setText("Phase");
+
+        phaseButton.setText("Play 1");
+        phaseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phaseButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout phasePanelLayout = new javax.swing.GroupLayout(phasePanel);
+        phasePanel.setLayout(phasePanelLayout);
+        phasePanelLayout.setHorizontalGroup(
+            phasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(phasePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(phaseLabel)
+                .addGap(27, 27, 27)
+                .addComponent(phaseButton)
+                .addContainerGap())
+        );
+        phasePanelLayout.setVerticalGroup(
+            phasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(phasePanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(phasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(phaseLabel)
+                    .addComponent(phaseButton))
+                .addContainerGap())
+        );
+
         spellStack.setColumns(20);
         spellStack.setRows(5);
 
@@ -650,30 +744,30 @@ public class GameBoard extends javax.swing.JFrame {
         damagePanel.setLayout(damagePanelLayout);
         damagePanelLayout.setHorizontalGroup(
             damagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, damagePanelLayout.createSequentialGroup()
+            .addGroup(damagePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(damagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(damagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, damagePanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, Short.MAX_VALUE)
-                        .addComponent(damageSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, damagePanelLayout.createSequentialGroup()
+                        .addComponent(damageSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(damagePanelLayout.createSequentialGroup()
                         .addComponent(damageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                        .addComponent(damageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(97, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(damageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(97, 97, 97))))
         );
         damagePanelLayout.setVerticalGroup(
             damagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(damagePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(damageSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(damagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(damagePanelLayout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(damageLabel))
                     .addComponent(damageButton))
-                .addGap(26, 26, 26))
+                .addContainerGap())
         );
 
         neutLife1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -774,35 +868,100 @@ public class GameBoard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        ally2.setColumns(20);
-        ally2.setRows(5);
+        allAllyPanel.setMaximumSize(new java.awt.Dimension(860, 403));
+
+        oppAllyPanel.setMaximumSize(new java.awt.Dimension(840, 187));
+        oppAllyPanel.setPreferredSize(new java.awt.Dimension(840, 187));
+
+        oppAlly1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                oppAlly1MouseClicked(evt);
+            }
+        });
+
+        oppAlly2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                oppAlly2MouseClicked(evt);
+            }
+        });
+
+        oppAlly3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                oppAlly3MouseClicked(evt);
+            }
+        });
+
+        oppAlly4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                oppAlly4MouseClicked(evt);
+            }
+        });
+
+        oppAlly5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                oppAlly5MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout oppAllyPanelLayout = new javax.swing.GroupLayout(oppAllyPanel);
+        oppAllyPanel.setLayout(oppAllyPanelLayout);
+        oppAllyPanelLayout.setHorizontalGroup(
+            oppAllyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(oppAllyPanelLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(oppAlly1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(oppAlly2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(oppAlly3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(oppAlly4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(oppAlly5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        oppAllyPanelLayout.setVerticalGroup(
+            oppAllyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(oppAllyPanelLayout.createSequentialGroup()
+                .addGroup(oppAllyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(oppAlly1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(oppAlly2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(oppAlly3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(oppAlly4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(oppAlly5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        allyPanel.setMaximumSize(new java.awt.Dimension(840, 187));
+        allyPanel.setPreferredSize(new java.awt.Dimension(840, 187));
+
+        ally1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ally1MouseClicked(evt);
+            }
+        });
+
         ally2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ally2MouseClicked(evt);
             }
         });
 
-        ally5.setColumns(20);
-        ally5.setRows(5);
-        ally5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ally5MouseClicked(evt);
-            }
-        });
-
-        ally3.setColumns(20);
-        ally3.setRows(5);
         ally3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ally3MouseClicked(evt);
             }
         });
 
-        ally4.setColumns(20);
-        ally4.setRows(5);
         ally4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ally4MouseClicked(evt);
+            }
+        });
+
+        ally5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ally5MouseClicked(evt);
             }
         });
 
@@ -813,30 +972,46 @@ public class GameBoard extends javax.swing.JFrame {
             .addGroup(allyPanelLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(ally1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addComponent(ally2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
                 .addComponent(ally3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
                 .addComponent(ally4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
                 .addComponent(ally5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         allyPanelLayout.setVerticalGroup(
             allyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(allyPanelLayout.createSequentialGroup()
                 .addGroup(allyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(allyPanelLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(allyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ally2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(allyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(ally4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ally3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(ally5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(ally1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ally1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ally2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ally3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ally4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ally5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout allAllyPanelLayout = new javax.swing.GroupLayout(allAllyPanel);
+        allAllyPanel.setLayout(allAllyPanelLayout);
+        allAllyPanelLayout.setHorizontalGroup(
+            allAllyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(allAllyPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(allAllyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(allyPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(oppAllyPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        allAllyPanelLayout.setVerticalGroup(
+            allAllyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(allAllyPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(oppAllyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(allyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -844,38 +1019,51 @@ public class GameBoard extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(pDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(pDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(oppDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(damagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
-                        .addComponent(spellStack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addComponent(allyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(handPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(237, 237, 237))
+                        .addContainerGap()
+                        .addComponent(allAllyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(damagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(spellStack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(phasePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(handPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(oppDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(allyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(oppDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(damagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spellStack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(spellStack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(94, 94, 94)
+                        .addComponent(damagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(phasePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(allAllyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(handPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -885,13 +1073,13 @@ public class GameBoard extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(46, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 773, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -910,12 +1098,12 @@ public class GameBoard extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formMouseClicked
 
-    private void card2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card2MouseClicked
-        handleHand(1);
-    }//GEN-LAST:event_card2MouseClicked
-
     private void phaseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phaseButtonActionPerformed
         Type t = p.getPhase();
+
+        if (t == null)
+            t = Type.WAIT;
+
         switch (t) {
             case DRAW:
                 Move draw = new DrawMove(p);
@@ -965,9 +1153,72 @@ public class GameBoard extends javax.swing.JFrame {
         update();
     }//GEN-LAST:event_phaseButtonActionPerformed
 
+    private void damageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_damageButtonActionPerformed
+        damagePanel.setVisible(false);
+        
+
+        if (selected == null)
+        {
+            damageSlider.setValue(0);
+            return;
+        }
+
+        int dmg = damageSlider.getValue();
+        Move m = new DamageMove(p, selected, dmg);
+
+        if (m.isLegal(r)) {
+            m.execute();
+            opp.subDamage(dmg);
+        }
+
+        damageSlider.setValue(0);
+        update();
+
+    }//GEN-LAST:event_damageButtonActionPerformed
+
+    private void damageSliderPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_damageSliderPropertyChange
+        
+    }//GEN-LAST:event_damageSliderPropertyChange
+
+    private void damageSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_damageSliderStateChanged
+        damageLabel.setText("" + damageSlider.getValue());
+    }//GEN-LAST:event_damageSliderStateChanged
+
+    private void life1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_life1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_life1MouseClicked
+
+    private void life1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_life1PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_life1PropertyChange
+
+    private void ally1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ally1MouseClicked
+        handleAlly(0);
+    }//GEN-LAST:event_ally1MouseClicked
+
+    private void ally2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ally2MouseClicked
+        handleAlly(1);
+    }//GEN-LAST:event_ally2MouseClicked
+
+    private void ally3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ally3MouseClicked
+        handleAlly(2);
+    }//GEN-LAST:event_ally3MouseClicked
+
+    private void ally4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ally4MouseClicked
+        handleAlly(3);
+    }//GEN-LAST:event_ally4MouseClicked
+
+    private void ally5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ally5MouseClicked
+        handleAlly(4);
+    }//GEN-LAST:event_ally5MouseClicked
+
     private void card1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card1MouseClicked
         handleHand(0);
     }//GEN-LAST:event_card1MouseClicked
+
+    private void card2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card2MouseClicked
+        handleHand(1);
+    }//GEN-LAST:event_card2MouseClicked
 
     private void card3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card3MouseClicked
         handleHand(2);
@@ -989,66 +1240,25 @@ public class GameBoard extends javax.swing.JFrame {
         handleHand(6);
     }//GEN-LAST:event_card7MouseClicked
 
-    private void card8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card8MouseClicked
-        handleHand(7);
-    }//GEN-LAST:event_card8MouseClicked
-
-    private void ally2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ally2MouseClicked
-        handleAlly(1);
-    }//GEN-LAST:event_ally2MouseClicked
-
-    private void ally3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ally3MouseClicked
-        handleAlly(2);
-    }//GEN-LAST:event_ally3MouseClicked
-
-    private void ally4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ally4MouseClicked
-        handleAlly(3);
-    }//GEN-LAST:event_ally4MouseClicked
-
-    private void ally5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ally5MouseClicked
-        handleAlly(4);
-    }//GEN-LAST:event_ally5MouseClicked
-
-    private void damageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_damageButtonActionPerformed
-        damageButton.setVisible(false);
-        damageSlider.setVisible(false);
-        damageLabel.setVisible(false);
-        
-
-        if (selected == null)
-        {
-            damageSlider.setValue(0);
-            return;
-        }
-
-        int dmg = damageSlider.getValue();
-        Move m = new DamageMove(p, selected, dmg);
-
-        if (m.isLegal(r)) {
-            System.out.println("FUCKED UP!!! " + dmg);
-            m.execute();
-            opp.subDamage(dmg);
-        }
-
-        damageSlider.setValue(0);
-
-    }//GEN-LAST:event_damageButtonActionPerformed
-
-    private void damageSliderPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_damageSliderPropertyChange
-        
-    }//GEN-LAST:event_damageSliderPropertyChange
-
-    private void damageSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_damageSliderStateChanged
-        damageLabel.setText("" + damageSlider.getValue());
-    }//GEN-LAST:event_damageSliderStateChanged
-
-    private void life1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_life1MouseClicked
+    private void oppAlly1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oppAlly1MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_life1MouseClicked
+    }//GEN-LAST:event_oppAlly1MouseClicked
 
-    private void life1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_life1PropertyChange
+    private void oppAlly2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oppAlly2MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_life1PropertyChange
+    }//GEN-LAST:event_oppAlly2MouseClicked
+
+    private void oppAlly3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oppAlly3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_oppAlly3MouseClicked
+
+    private void oppAlly4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oppAlly4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_oppAlly4MouseClicked
+
+    private void oppAlly5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oppAlly5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_oppAlly5MouseClicked
     /**
      * @param args the command line arguments
      */
@@ -1061,24 +1271,24 @@ public class GameBoard extends javax.swing.JFrame {
     }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel allAllyPanel;
     private MiniPanel ally1;
-    private javax.swing.JTextArea ally2;
-    private javax.swing.JTextArea ally3;
-    private javax.swing.JTextArea ally4;
-    private javax.swing.JTextArea ally5;
+    private MiniPanel ally2;
+    private MiniPanel ally3;
+    private MiniPanel ally4;
+    private MiniPanel ally5;
     private javax.swing.JPanel allyPanel;
     private javax.swing.JLabel blackLife;
     private javax.swing.JLabel blackLife1;
     private javax.swing.JLabel blueLife;
     private javax.swing.JLabel blueLife1;
-    private javax.swing.JTextArea card1;
-    private javax.swing.JTextArea card2;
-    private javax.swing.JTextArea card3;
-    private javax.swing.JTextArea card4;
-    private javax.swing.JTextArea card5;
-    private javax.swing.JTextArea card6;
-    private javax.swing.JTextArea card7;
-    private javax.swing.JTextArea card8;
+    private MiniPanel card1;
+    private MiniPanel card2;
+    private MiniPanel card3;
+    private MiniPanel card4;
+    private MiniPanel card5;
+    private MiniPanel card6;
+    private MiniPanel card7;
     private javax.swing.JButton damageButton;
     private javax.swing.JLabel damageLabel;
     private javax.swing.JPanel damagePanel;
@@ -1096,6 +1306,12 @@ public class GameBoard extends javax.swing.JFrame {
     private javax.swing.JLabel life1;
     private javax.swing.JLabel neutLife;
     private javax.swing.JLabel neutLife1;
+    private MiniPanel oppAlly1;
+    private MiniPanel oppAlly2;
+    private MiniPanel oppAlly3;
+    private MiniPanel oppAlly4;
+    private MiniPanel oppAlly5;
+    private javax.swing.JPanel oppAllyPanel;
     private javax.swing.JPanel oppDetails;
     private javax.swing.JPanel oppHealth;
     private javax.swing.JLabel oppNameLabel;

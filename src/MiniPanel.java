@@ -81,6 +81,7 @@ public class MiniPanel extends javax.swing.JPanel {
 
     private void displayInfo()
     {
+        cardInfo.setText("");
         if (c instanceof Creature)
         {
             Ability a = ((Creature)c).getAbility();
@@ -115,43 +116,6 @@ public class MiniPanel extends javax.swing.JPanel {
 
     }
 
-    @Override
-    public void paintComponent(Graphics g){
-        super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D)g;
-        //String dir = System.getProperty("user.dir");
-        String imagePath = getImagePath();
-        img = MiniPanel.getBufferedImage(imagePath, this);
-        Rectangle imageRect = new Rectangle(135, 80, 225, 200);
-        TexturePaint imagePaint1 = new TexturePaint(img, imageRect);
-        g2d.setPaint(imagePaint1);
-        g2d.fill(imageRect);
-        g2d.draw(imageRect);
-    }
-
-    public static BufferedImage getBufferedImage(String imageFile, Component c)
-    {
-        Image image = c.getToolkit().getImage(imageFile);
-        waitForImage(image, c);
-        /*BufferedImage bufferedImage = new BufferedImage(image.getWidth(c),
-                image.getHeight(c), BufferedImage.TYPE_INT_RGB);*/
-        BufferedImage bufferedImage = new BufferedImage(100,
-                100, BufferedImage.TYPE_INT_RGB);
-        Graphics2D g2d = bufferedImage.createGraphics();
-        return(bufferedImage);
-    }
-/** Take an Image associated with a file, and wait until it is * done loading (just a simple application of MediaTracker). * If you are loading multiple images, don't use this * consecutive times; instead, use the version that takes
-* an array of images. */
-    public static boolean waitForImage(Image image, Component c)
-    {
-        MediaTracker tracker = new MediaTracker(c);
-        tracker.addImage(image, 0);
-        try { tracker.waitForAll(); }
-        catch(InterruptedException ie) {}
-        return(!tracker.isErrorAny());
-    }
-
-
     public static void main(String args[]) {
         JFrame j = new JFrame();
         MiniPanel p = new MiniPanel(Test.randomCard());
@@ -177,7 +141,6 @@ public class MiniPanel extends javax.swing.JPanel {
         blue = new javax.swing.JTextField();
         white = new javax.swing.JTextField();
         black = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
         cardInfo = new javax.swing.JTextPane();
         namePanel = new javax.swing.JPanel();
         cardName = new javax.swing.JLabel();
@@ -194,7 +157,8 @@ public class MiniPanel extends javax.swing.JPanel {
         );
 
         setBackground(new java.awt.Color(153, 51, 0));
-        setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new javax.swing.ImageIcon(getClass().getResource("/swirl.jpg")))); // NOI18N
+        setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 0)));
+        setMaximumSize(new java.awt.Dimension(138, 176));
 
         neutral.setBackground(new java.awt.Color(204, 204, 204));
         neutral.setColumns(5);
@@ -239,8 +203,7 @@ public class MiniPanel extends javax.swing.JPanel {
         black.setText("jTextField6");
 
         cardInfo.setBackground(namePanel.getBackground());
-        jScrollPane2.setViewportView(cardInfo);
-        cardInfo.setBackground(new java.awt.Color(241, 192, 117));
+        cardInfo.setEditable(false);
 
         namePanel.setBackground(new java.awt.Color(255, 226, 139));
 
@@ -268,20 +231,19 @@ public class MiniPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(namePanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                .add(neutral, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(red, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                .add(white, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(blue, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane2)
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                            .add(green, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                            .add(black, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(neutral, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(red, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(white, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(blue, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(layout.createSequentialGroup()
+                        .add(green, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(black, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(cardInfo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 106, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -301,9 +263,11 @@ public class MiniPanel extends javax.swing.JPanel {
                     .add(green, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(black, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 47, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .add(cardInfo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 45, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(13, 13, 13))
         );
+
+        cardInfo.setBackground(new java.awt.Color(241, 192, 117));
     }// </editor-fold>//GEN-END:initComponents
 
     private void neutralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_neutralActionPerformed
@@ -321,7 +285,6 @@ public class MiniPanel extends javax.swing.JPanel {
     private javax.swing.JLabel cardName;
     private javax.swing.JTextField green;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel namePanel;
     private javax.swing.JTextField neutral;
     private javax.swing.JTextField red;

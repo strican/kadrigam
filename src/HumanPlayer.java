@@ -32,7 +32,7 @@ public class HumanPlayer implements Player
       drawCard();
 
     turn_damage = 0;
-    //phase = Type.WAIT;
+    phase = Type.WAIT;
     
   }
 
