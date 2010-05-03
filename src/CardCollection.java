@@ -58,8 +58,8 @@ public class CardCollection implements CardList, Serializable {
 
         while (hasCard(c)) {
             for (int i = 0; i < size(); i++) {
-                if (c.compareTo(cards.get(i).getName()) == 0) {
-                    takeCard(cards.get(i));
+                if (c.compareTo(getCard(i).getName()) == 0) {
+                    takeCard(getCard(i));
                 }
             }
         }
@@ -71,8 +71,8 @@ public class CardCollection implements CardList, Serializable {
             return false;
         } else {
             for (int i = 0; i < size(); i++) {
-                if (c.compareTo(cards.get(i).getName()) == 0) {
-                    takeCard(cards.get(i));
+                if (c.compareTo(getCard(i).getName()) == 0) {
+                    takeCard(getCard(i));
                 }
             }
             return true;

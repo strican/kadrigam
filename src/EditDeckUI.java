@@ -16,6 +16,7 @@ public class EditDeckUI extends javax.swing.JFrame {
 
         populateLibrary();
         populateCards();
+        deckNameLabel.setText("Deck: " + deckName);
 
         //deleteFromLibraryButton.setEnabled(false);
     }
@@ -38,13 +39,21 @@ public class EditDeckUI extends javax.swing.JFrame {
         deleteFromDeckButton = new javax.swing.JButton();
         addToDeck = new javax.swing.JButton();
         deleteFromLibraryButton = new javax.swing.JButton();
+        currentCard = new CardPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel1.setText("Card Library");
 
+        deckNameLabel.setFont(new java.awt.Font("Tahoma", 0, 18));
         deckNameLabel.setText("Deck Name");
 
+        libraryList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                libraryListMouseClicked(evt);
+            }
+        });
         libraryList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 libraryListValueChanged(evt);
@@ -52,6 +61,16 @@ public class EditDeckUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(libraryList);
 
+        deckCardList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deckCardListMouseClicked(evt);
+            }
+        });
+        deckCardList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                deckCardListValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(deckCardList);
 
         deleteFromDeckButton.setText("<");
@@ -80,12 +99,11 @@ public class EditDeckUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(deleteFromLibraryButton)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                                 .addGap(2, 2, 2)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -95,31 +113,37 @@ public class EditDeckUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(deckNameLabel)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(39, 39, 39))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(deleteFromLibraryButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(currentCard, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(deckNameLabel))
-                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(currentCard, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(deleteFromDeckButton)
-                        .addGap(54, 54, 54)
-                        .addComponent(addToDeck))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(deckNameLabel))
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(80, 80, 80)
+                                .addComponent(deleteFromDeckButton)
+                                .addGap(54, 54, 54)
+                                .addComponent(addToDeck))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(deleteFromLibraryButton)))
-                .addGap(138, 138, 138))
+                .addGap(38, 38, 38))
         );
 
         pack();
@@ -130,8 +154,8 @@ public class EditDeckUI extends javax.swing.JFrame {
         Card card = user.getLibrary().getCard(cardName);
         CardCollection selectedDeck = user.getDeck(deckName);
 
-        if (card.getCV() + selectedDeck.getCV() < MAXCV &&
-                selectedDeck.getCardCount(cardName) < MAXCARD) {
+        if (card.getCV() + selectedDeck.getCV() < MAXCV
+                && selectedDeck.getCardCount(cardName) < MAXCARD) {
             selectedDeck.addCard(card);
 
             populateCards();
@@ -142,7 +166,7 @@ public class EditDeckUI extends javax.swing.JFrame {
     private void deleteFromDeckButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteFromDeckButtonActionPerformed
         String cardName = (String) deckCardList.getSelectedValue();
 
-        if (cardName != null){
+        if (cardName != null) {
             user.getDeck(deckName).removeOne(cardName);
             populateCards();
             Login.serialize(user, user.getAccountName());
@@ -157,11 +181,24 @@ public class EditDeckUI extends javax.swing.JFrame {
             populateLibrary();
             populateCards();
             Login.serialize(user, user.getAccountName());
-        }        
+        }
     }//GEN-LAST:event_deleteFromLibraryButtonActionPerformed
 
     private void libraryListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_libraryListValueChanged
     }//GEN-LAST:event_libraryListValueChanged
+
+    private void libraryListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_libraryListMouseClicked
+        currentCard.changeCard(user.getLibrary().getCard((String) libraryList.getSelectedValue()));
+
+    }//GEN-LAST:event_libraryListMouseClicked
+
+    private void deckCardListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_deckCardListValueChanged
+        
+    }//GEN-LAST:event_deckCardListValueChanged
+
+    private void deckCardListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deckCardListMouseClicked
+        currentCard.changeCard(user.getLibrary().getCard((String)deckCardList.getSelectedValue()));
+    }//GEN-LAST:event_deckCardListMouseClicked
 
     /**
      * @param args the command line arguments
@@ -198,6 +235,7 @@ public class EditDeckUI extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addToDeck;
+    private CardPanel currentCard;
     private javax.swing.JList deckCardList;
     private javax.swing.JLabel deckNameLabel;
     private javax.swing.JButton deleteFromDeckButton;

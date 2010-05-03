@@ -18,6 +18,18 @@ import javax.swing.JFrame;
 public class CardPanel extends javax.swing.JPanel {
 
     /** Creates new form CardPanel */
+
+    public CardPanel(){
+        initComponents();
+        cardName.setText("");
+        neutral.setText("");
+        red.setText("");
+        blue.setText("");
+        green.setText("");
+        white.setText("");
+        black.setText("");
+    }
+
     public CardPanel(Card c) {
         initComponents();
         this.c = c;
@@ -125,7 +137,7 @@ public class CardPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 209, Short.MAX_VALUE)
+            .add(0, 241, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -135,7 +147,7 @@ public class CardPanel extends javax.swing.JPanel {
         cardInfo.setBackground(new java.awt.Color(241, 192, 117));
         cardInfo.setColumns(20);
         cardInfo.setEditable(false);
-        cardInfo.setFont(new java.awt.Font("Charlemagne Std", 0, 18)); // NOI18N
+        cardInfo.setFont(new java.awt.Font("Charlemagne Std", 0, 18));
         cardInfo.setRows(5);
         cardInfo.setWrapStyleWord(true);
         cardInfo.setAutoscrolls(false);
@@ -143,7 +155,7 @@ public class CardPanel extends javax.swing.JPanel {
 
         namePanel.setBackground(cardInfo.getBackground());
 
-        cardName.setFont(new java.awt.Font("Charlemagne Std", 0, 18)); // NOI18N
+        cardName.setFont(new java.awt.Font("Charlemagne Std", 0, 18));
         cardName.setText("jLabel1");
 
         org.jdesktop.layout.GroupLayout namePanelLayout = new org.jdesktop.layout.GroupLayout(namePanel);
@@ -152,7 +164,7 @@ public class CardPanel extends javax.swing.JPanel {
             namePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(namePanelLayout.createSequentialGroup()
                 .add(cardName)
-                .addContainerGap(257, Short.MAX_VALUE))
+                .addContainerGap(331, Short.MAX_VALUE))
         );
         namePanelLayout.setVerticalGroup(
             namePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -164,37 +176,42 @@ public class CardPanel extends javax.swing.JPanel {
         neutral.setBackground(new java.awt.Color(204, 204, 204));
         neutral.setColumns(6);
         neutral.setEditable(false);
-        neutral.setFont(new java.awt.Font("Charlemagne Std", 0, 14)); // NOI18N
+        neutral.setFont(new java.awt.Font("Charlemagne Std", 0, 14));
         neutral.setText("jTextField1");
+        neutral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                neutralActionPerformed(evt);
+            }
+        });
 
         red.setBackground(new java.awt.Color(204, 0, 0));
         red.setColumns(6);
         red.setEditable(false);
-        red.setFont(new java.awt.Font("Charlemagne Std", 0, 14)); // NOI18N
+        red.setFont(new java.awt.Font("Charlemagne Std", 0, 14));
         red.setText("jTextField2");
 
         green.setBackground(new java.awt.Color(102, 153, 0));
         green.setColumns(6);
         green.setEditable(false);
-        green.setFont(new java.awt.Font("Charlemagne Std", 0, 14)); // NOI18N
+        green.setFont(new java.awt.Font("Charlemagne Std", 0, 14));
         green.setText("jTextField3");
 
         blue.setBackground(new java.awt.Color(0, 0, 153));
         blue.setColumns(6);
         blue.setEditable(false);
-        blue.setFont(new java.awt.Font("Charlemagne Std", 0, 14)); // NOI18N
+        blue.setFont(new java.awt.Font("Charlemagne Std", 0, 14));
         blue.setForeground(new java.awt.Color(255, 255, 255));
         blue.setText("jTextField4");
 
         white.setColumns(6);
         white.setEditable(false);
-        white.setFont(new java.awt.Font("Charlemagne Std", 0, 14)); // NOI18N
+        white.setFont(new java.awt.Font("Charlemagne Std", 0, 14));
         white.setText("jTextField5");
 
         black.setBackground(new java.awt.Color(0, 0, 0));
         black.setColumns(6);
         black.setEditable(false);
-        black.setFont(new java.awt.Font("Charlemagne Std", 0, 14)); // NOI18N
+        black.setFont(new java.awt.Font("Charlemagne Std", 0, 14));
         black.setForeground(new java.awt.Color(255, 255, 255));
         black.setText("jTextField6");
 
@@ -242,10 +259,14 @@ public class CardPanel extends javax.swing.JPanel {
                         .add(black, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void neutralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_neutralActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_neutralActionPerformed
 
     private Card c;
 

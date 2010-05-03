@@ -25,7 +25,7 @@ public class EditorUI extends javax.swing.JFrame {
         initComponents();
         createDeckButton.setEnabled(false);
         user = u;
-        username.setText(user.getAccountName());
+        username.setText("Player: " + user.getAccountName());
     }
 
     /** This method is called from within the constructor to
@@ -47,6 +47,9 @@ public class EditorUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -82,8 +85,11 @@ public class EditorUI extends javax.swing.JFrame {
         });
 
         successfulDeckLabel.setBackground(new java.awt.Color(204, 204, 204));
+        successfulDeckLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        successfulDeckLabel.setForeground(new java.awt.Color(0, 0, 153));
         successfulDeckLabel.setText("Not Created");
 
+        username.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         username.setText("Player");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -110,27 +116,24 @@ public class EditorUI extends javax.swing.JFrame {
                                 .addComponent(createDeckButton)))))
                 .addContainerGap(79, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addComponent(username)
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addGap(114, 114, 114)
+                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(144, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addComponent(username)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(createDeckText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(createDeckText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(createDeckButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(successfulDeckLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(41, 41, 41)
+                    .addComponent(successfulDeckLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(createDeckButton))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createCardButton)
                     .addComponent(eidtDeckButton))
@@ -172,6 +175,11 @@ public class EditorUI extends javax.swing.JFrame {
         }
         else successfulDeckLabel.setText(newDeckName + " Not Created");
     }//GEN-LAST:event_createDeckButtonActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // serialize when closing frame to save any cards created
+        Login.serialize(user, user.getAccountName());
+    }//GEN-LAST:event_formWindowClosing
     /**
      * @param args the command line arguments
      */

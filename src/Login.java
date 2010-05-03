@@ -59,6 +59,7 @@ public class Login implements Loginable {
             writeEx.printStackTrace();
             return false;
         }
+        System.out.println("just serialized " + filename);
         return true;
     }
 }
