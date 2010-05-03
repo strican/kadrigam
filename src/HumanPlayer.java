@@ -58,9 +58,9 @@ public class HumanPlayer implements Player
 
   public PointList getLife() {return life;}
   public CardCollection getHand() {return hand;}
-  public CardList getGraveyard() {return graveyard;}
+  public CardPile getGraveyard() {return graveyard;}
   public CardCollection getAllies() {return allies;}
-  public CardList getSpellStack() {return spellStack;}
+  public CardPile getSpellStack() {return spellStack;}
   public CardList getDeck() {return deck;}
   public String getName() {return name;};
   public Type getPhase() {return phase;};

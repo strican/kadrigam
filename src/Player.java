@@ -44,9 +44,9 @@ public interface Player
   public PointList getLife();
   public CardCollection getHand();
   public CardList getDeck();
-  public CardList getGraveyard();
+  public CardPile getGraveyard();
   public CardCollection getAllies();
-  public CardList getSpellStack();
+  public CardPile getSpellStack();
   public String getName();
 
   public Type getPhase();

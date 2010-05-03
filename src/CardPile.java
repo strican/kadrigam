@@ -49,6 +49,14 @@ public class CardPile implements CardList
       s += "TOP: " + top.toString() + "\n";
     return s;
   }
+
+  public Card getCard()
+  {
+      if (s.isEmpty())
+          return null;
+
+      return s.peek();
+  }
   
   /* TODO: ADD A SHUFFLE METHOD */
 }
