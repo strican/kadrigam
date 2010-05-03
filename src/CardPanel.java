@@ -13,11 +13,88 @@
  *
  * @author aidandaly
  */
+import javax.swing.JFrame;
+
 public class CardPanel extends javax.swing.JPanel {
 
     /** Creates new form CardPanel */
-    public CardPanel() {
+    public CardPanel(Card c) {
         initComponents();
+        this.c = c;
+        updateDisplay();
+    }
+
+    public void updateDisplay() {
+        displayName();
+        displayCost();
+        displayInfo();
+    }
+
+    public void changeCard(Card c) {
+        this.c = c;
+        updateDisplay();
+    }
+
+    private void displayName()
+    {
+        if (c!=null)
+        {
+            cardName.setText(c.getName());
+        }
+    }
+
+    private void displayCost()
+    {
+        PointList cost = c.getCost();
+        neutral.setText(""+cost.get(Color.NEUTRAL));
+        red.setText(""+cost.get(Color.RED));
+        green.setText(""+cost.get(Color.GREEN));
+        blue.setText(""+cost.get(Color.BLUE));
+        white.setText(""+cost.get(Color.WHITE));
+        black.setText(""+cost.get(Color.BLACK));
+        if (c instanceof Creature)
+        {
+            PointList po = ((Creature)c).getPayoff();
+            neutral.setText(neutral.getText()+"/"+po.get(Color.NEUTRAL));
+            red.setText(red.getText()+"/"+po.get(Color.RED));
+            green.setText(green.getText()+"/"+po.get(Color.GREEN));
+            blue.setText(blue.getText()+"/"+po.get(Color.BLUE));
+            white.setText(white.getText()+"/"+po.get(Color.WHITE));
+            black.setText(black.getText()+"/"+po.get(Color.BLACK));
+        }
+    }
+
+    private void displayInfo()
+    {
+        if (c instanceof Creature)
+        {
+            Ability a = ((Creature)c).getAbility();
+            if (a != null)
+            {
+                Trigger t = a.getTrigger();
+                cardInfo.setText("  "+t.toString()+":\n");
+                cardInfo.setText(cardInfo.getText()+"  "+
+                        a.getEffect().toString());
+            }
+            cardInfo.setText(cardInfo.getText()+
+                    "  POW: "+((Creature)c).getPow()+"\n");
+            cardInfo.setText(cardInfo.getText()+
+                    "  HP: "+((Creature)c).getHP()+"\n");
+        }
+        else
+        {
+            if (((Spell)c).getEffect()!=null)
+                cardInfo.setText(((Spell)c).getEffect().toString());
+        }
+    }
+
+    public static void main(String args[]) {
+        JFrame j = new JFrame();
+        CardPanel p = new CardPanel(Test.randomCard());
+        j.add(p);
+        j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        j.setBounds(0, 0, 400, 520);
+        j.setVisible(true);
     }
 
     /** This method is called from within the constructor to
@@ -29,180 +106,161 @@ public class CardPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        cardInfo = new javax.swing.JTextArea();
+        namePanel = new javax.swing.JPanel();
+        cardName = new javax.swing.JLabel();
+        neutral = new javax.swing.JTextField();
+        red = new javax.swing.JTextField();
+        green = new javax.swing.JTextField();
+        blue = new javax.swing.JTextField();
+        white = new javax.swing.JTextField();
+        black = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(153, 51, 0));
-
-        jLabel1.setText("Name");
+        setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new javax.swing.ImageIcon(getClass().getResource("/swirl.preview.jpg")))); // NOI18N
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 170, Short.MAX_VALUE)
+            .add(0, 209, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 140, Short.MAX_VALUE)
+            .add(0, 206, Short.MAX_VALUE)
         );
 
-        jTextField2.setText("1000");
+        cardInfo.setBackground(new java.awt.Color(241, 192, 117));
+        cardInfo.setColumns(20);
+        cardInfo.setEditable(false);
+        cardInfo.setFont(new java.awt.Font("Charlemagne Std", 0, 18)); // NOI18N
+        cardInfo.setRows(5);
+        cardInfo.setWrapStyleWord(true);
+        cardInfo.setAutoscrolls(false);
+        jScrollPane1.setViewportView(cardInfo);
 
-        jTextField3.setText("1000");
+        namePanel.setBackground(cardInfo.getBackground());
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setEditable(false);
-        jTextArea1.setRows(5);
-        jTextArea1.setWrapStyleWord(true);
-        jTextArea1.setAutoscrolls(false);
-        jScrollPane1.setViewportView(jTextArea1);
+        cardName.setFont(new java.awt.Font("Charlemagne Std", 0, 18)); // NOI18N
+        cardName.setText("jLabel1");
 
-        jLabel2.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel2.setText("0");
+        org.jdesktop.layout.GroupLayout namePanelLayout = new org.jdesktop.layout.GroupLayout(namePanel);
+        namePanel.setLayout(namePanelLayout);
+        namePanelLayout.setHorizontalGroup(
+            namePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(namePanelLayout.createSequentialGroup()
+                .add(cardName)
+                .addContainerGap(257, Short.MAX_VALUE))
+        );
+        namePanelLayout.setVerticalGroup(
+            namePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, namePanelLayout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .add(cardName))
+        );
 
-        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel3.setText("0");
+        neutral.setBackground(new java.awt.Color(204, 204, 204));
+        neutral.setColumns(6);
+        neutral.setEditable(false);
+        neutral.setFont(new java.awt.Font("Charlemagne Std", 0, 14)); // NOI18N
+        neutral.setText("jTextField1");
 
-        jLabel4.setForeground(new java.awt.Color(0, 204, 0));
-        jLabel4.setText("0");
+        red.setBackground(new java.awt.Color(204, 0, 0));
+        red.setColumns(6);
+        red.setEditable(false);
+        red.setFont(new java.awt.Font("Charlemagne Std", 0, 14)); // NOI18N
+        red.setText("jTextField2");
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel5.setText("0");
+        green.setBackground(new java.awt.Color(102, 153, 0));
+        green.setColumns(6);
+        green.setEditable(false);
+        green.setFont(new java.awt.Font("Charlemagne Std", 0, 14)); // NOI18N
+        green.setText("jTextField3");
 
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("0");
+        blue.setBackground(new java.awt.Color(0, 0, 153));
+        blue.setColumns(6);
+        blue.setEditable(false);
+        blue.setFont(new java.awt.Font("Charlemagne Std", 0, 14)); // NOI18N
+        blue.setForeground(new java.awt.Color(255, 255, 255));
+        blue.setText("jTextField4");
 
-        jLabel7.setText("0");
+        white.setColumns(6);
+        white.setEditable(false);
+        white.setFont(new java.awt.Font("Charlemagne Std", 0, 14)); // NOI18N
+        white.setText("jTextField5");
 
-        jLabel8.setForeground(new java.awt.Color(0, 204, 0));
-        jLabel8.setText("0");
-
-        jLabel9.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel9.setText("0");
-
-        jLabel10.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel10.setText("0");
-
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("0");
-
-        jLabel12.setText("0");
+        black.setBackground(new java.awt.Color(0, 0, 0));
+        black.setColumns(6);
+        black.setEditable(false);
+        black.setFont(new java.awt.Font("Charlemagne Std", 0, 14)); // NOI18N
+        black.setForeground(new java.awt.Color(255, 255, 255));
+        black.setText("jTextField6");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(33, 33, 33)
-                .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 138, Short.MAX_VALUE)
-                .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(37, 37, 37))
-            .add(layout.createSequentialGroup()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, namePanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                .add(white, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(neutral, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(red, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(green, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(blue, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                            .add(black, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(18, 18, 18)
+                        .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel2)
-                    .add(jLabel3)
-                    .add(jLabel4)
-                    .add(jLabel5)
-                    .add(jLabel6)
-                    .add(jLabel7))
-                .add(35, 35, 35)
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel9)
-                    .add(jLabel8)
-                    .add(jLabel10)
-                    .add(jLabel11)
-                    .add(jLabel12))
-                .addContainerGap(41, Short.MAX_VALUE))
-            .add(layout.createSequentialGroup()
-                .add(128, 128, 128)
-                .add(jLabel1)
-                .addContainerGap(136, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(20, 20, 20)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                .addContainerGap()
+                .add(namePanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(jLabel1)
-                        .add(20, 20, 20)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(layout.createSequentialGroup()
-                                .add(jLabel2)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jLabel3)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jLabel4)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jLabel5)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jLabel6)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jLabel7))
-                            .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(layout.createSequentialGroup()
-                        .add(jLabel9)
+                        .add(neutral, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(5, 5, 5)
+                        .add(red, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(6, 6, 6)
+                        .add(green, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(5, 5, 5)
+                        .add(blue, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jLabel8)
+                        .add(white, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jLabel10)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jLabel11)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jLabel12)))
-                .add(22, 22, 22)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 84, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(black, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private Card c;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField black;
+    private javax.swing.JTextField blue;
+    private javax.swing.JTextArea cardInfo;
+    private javax.swing.JLabel cardName;
+    private javax.swing.JTextField green;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JPanel namePanel;
+    private javax.swing.JTextField neutral;
+    private javax.swing.JTextField red;
+    private javax.swing.JTextField white;
     // End of variables declaration//GEN-END:variables
 
 }
