@@ -432,13 +432,6 @@ public class GameBoard extends javax.swing.JFrame {
         jTree1 = new javax.swing.JTree();
         jScrollPane2 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
-        spellStack = new javax.swing.JTextArea();
-        jPanel3 = new javax.swing.JPanel();
-        ally1 = new javax.swing.JTextArea();
-        ally2 = new javax.swing.JTextArea();
-        ally5 = new javax.swing.JTextArea();
-        ally3 = new javax.swing.JTextArea();
-        ally4 = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         handPanel = new javax.swing.JPanel();
         card1 = new MiniPanel();
@@ -512,7 +505,6 @@ public class GameBoard extends javax.swing.JFrame {
             }
         });
 
-
         handPanel.setMaximumSize(new java.awt.Dimension(1022, 207));
 
         card1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -578,9 +570,9 @@ public class GameBoard extends javax.swing.JFrame {
                 .addComponent(card7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        handPanelLayout.setVerticalGroup(
+            handPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(handPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(handPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -642,7 +634,7 @@ public class GameBoard extends javax.swing.JFrame {
                 .addComponent(whiteLife, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
                 .addComponent(blackLife, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addContainerGap())
         );
         pHealthLayout.setVerticalGroup(
             pHealthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -678,10 +670,11 @@ public class GameBoard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pDetailsLayout.createSequentialGroup()
-                        .addComponent(pNameLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 454, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pHealth, javax.swing.GroupLayout.PREFERRED_SIZE, 520, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addComponent(pHealth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(pDetailsLayout.createSequentialGroup()
+                        .addComponent(pNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(434, 434, 434))))
         );
         pDetailsLayout.setVerticalGroup(
             pDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -825,7 +818,7 @@ public class GameBoard extends javax.swing.JFrame {
                 .addComponent(whiteLife1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
                 .addComponent(blackLife1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addContainerGap())
         );
         oppHealthLayout.setVerticalGroup(
             oppHealthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -859,12 +852,10 @@ public class GameBoard extends javax.swing.JFrame {
             oppDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(oppDetailsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(oppDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(oppDetailsLayout.createSequentialGroup()
-                        .addComponent(oppNameLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 454, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(oppHealth, javax.swing.GroupLayout.PREFERRED_SIZE, 520, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(oppDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(oppNameLabel)
+                    .addComponent(oppHealth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         oppDetailsLayout.setVerticalGroup(
             oppDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1080,7 +1071,6 @@ public class GameBoard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(69, Short.MAX_VALUE))
         );
@@ -1280,7 +1270,6 @@ public class GameBoard extends javax.swing.JFrame {
     }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-
     private javax.swing.JPanel allAllyPanel;
     private MiniPanel ally1;
     private MiniPanel ally2;
@@ -1301,16 +1290,14 @@ public class GameBoard extends javax.swing.JFrame {
     private MiniPanel card7;
     private javax.swing.JButton damageButton;
     private javax.swing.JLabel damageLabel;
+    private javax.swing.JPanel damagePanel;
     private javax.swing.JSlider damageSlider;
     private javax.swing.JLabel greenLife;
     private javax.swing.JLabel greenLife1;
+    private javax.swing.JPanel handPanel;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTree jTree1;
@@ -1332,6 +1319,7 @@ public class GameBoard extends javax.swing.JFrame {
     private javax.swing.JLabel pNameLabel;
     private javax.swing.JButton phaseButton;
     private javax.swing.JLabel phaseLabel;
+    private javax.swing.JPanel phasePanel;
     private javax.swing.JLabel redLife;
     private javax.swing.JLabel redLife1;
     private javax.swing.JTextArea spellStack;
