@@ -54,7 +54,7 @@ public class Test
   p.add(new PointVal(Color.RED, 100));
   
   //Card c = new Creature("Chuck Norris", 1000, 1000, null, p, p);
-  Card c = randomCard();
+  Card c = randomCard2();
   System.out.println(c);
   
  }
@@ -113,8 +113,8 @@ public class Test
    
    for (int i=0; i<60; i++)
    {
-     deck1.addCard(randomCard());
-     deck2.addCard(randomCard());
+     deck1.addCard(randomCard2());
+     deck2.addCard(randomCard2());
    }
    
    Player p1 = new HumanPlayer(deck1, "Player 1");
@@ -247,6 +247,41 @@ public class Test
    }
   }
   return n;
+ }
+
+
+ public static Card randomCard2()
+ {
+   Card c;
+   ColorPoints cost = new ColorPoints();
+   ColorPoints payoff = new ColorPoints();
+
+   Random r = new Random();
+
+   PointVal costs [] = new PointVal[6];
+   costs[0] = new PointVal(Color.NEUTRAL, r.nextInt(1000));
+   costs[1] = new PointVal(Color.RED, r.nextInt(1000));
+   costs[2] = new PointVal(Color.BLUE, r.nextInt(1000));
+   costs[3] = new PointVal(Color.WHITE, r.nextInt(1000));
+   costs[4] = new PointVal(Color.BLACK, r.nextInt(1000));
+   costs[5] = new PointVal(Color.GREEN, r.nextInt(1000));
+
+   String s1 [] = {"Deathly","Brave","Feral","Enraged","Enlightened","Chained"};
+   String s2 [] = {"Warrior","Knight","Shaman","Sorceror",
+     "Rogue","Druid","Beast","Elf","Ogre","Apprentice"};
+   String s3 [] = {"Shattering","Corroding","Refreshing","Lifegiving",
+     "Forbidden","Revealing"};
+   String s4 [] = {"Pulse","Blast","Wave","Stream","Fetters","Thought","Tome"};
+
+   cost.add(costs[0]);
+   payoff.add(costs[r.nextInt(6)]);
+
+
+     c = new Creature(s1[r.nextInt(6)]+" "+s2[r.nextInt(10)],
+                      r.nextInt(15)*100,r.nextInt(25)*100,
+                      null,cost,payoff);
+
+   return c;
  }
 
 
