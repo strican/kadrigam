@@ -170,11 +170,11 @@ public class LoginUI extends javax.swing.JFrame {
             user1 = (User) in.readObject();
             in.close();
         } catch (IOException readEx) {
-            //user1 = new User(player1);
-            //Login.serialize(user1, player1);
+            user1 = new User(player1);
+            Login.serialize(user1, player1);
 
             // testing print
-            readEx.printStackTrace();
+            //readEx.printStackTrace();
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }
