@@ -40,6 +40,7 @@ public class CreatorUI extends javax.swing.JFrame {
         cardError = new javax.swing.JDialog();
         jLabel17 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        targetLibrary = new CardCollection();
         confirm = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
         cardValField = new javax.swing.JTextField();
@@ -220,7 +221,7 @@ public class CreatorUI extends javax.swing.JFrame {
                 .add(creatureStatsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, currPow)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, currHP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 66, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
         creatureStatsLayout.setVerticalGroup(
             creatureStatsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -287,7 +288,7 @@ public class CreatorUI extends javax.swing.JFrame {
                 .add(basicInfoLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
                     .add(cardType, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel5))
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
         basicInfoLayout.setVerticalGroup(
             basicInfoLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -588,7 +589,7 @@ public class CreatorUI extends javax.swing.JFrame {
                 .add(chooseFile)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(imagePathField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 134, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -686,6 +687,7 @@ public class CreatorUI extends javax.swing.JFrame {
         if (targetLibrary.hasCard(c.getName()))
         {
             nameField.setText("");
+            cardError.setBounds(0, 0, 300, 300);
             cardError.setVisible(true);
         }
         else
@@ -1139,6 +1141,7 @@ public class CreatorUI extends javax.swing.JFrame {
     private javax.swing.JSlider powerSlide;
     private javax.swing.JSpinner redCost;
     private javax.swing.JSpinner redPO;
+    private CardCollection targetLibrary;
     private javax.swing.JComboBox triggerSelection;
     private javax.swing.JSpinner whiteCost;
     private javax.swing.JSpinner whitePO;
