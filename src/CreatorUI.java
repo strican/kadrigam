@@ -21,6 +21,11 @@ public class CreatorUI extends javax.swing.JFrame {
         initComponents();
     }
 
+    public CreatorUI(CardCollection lib) {
+        initComponents();
+        targetLibrary = lib;
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -122,7 +127,7 @@ public class CreatorUI extends javax.swing.JFrame {
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Card Creation Portal");
         setBackground(new java.awt.Color(153, 51, 0));
 
@@ -675,12 +680,22 @@ public class CreatorUI extends javax.swing.JFrame {
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
         // TODO add your handling code here:
+        inputCardInfo();
         Card c = creator.makeCard();
-        //if (targetLibrary.hasCard(c.getName()))
-        //{
+        if (targetLibrary == null)
+            targetLibrary = new CardCollection();
+        if (targetLibrary.hasCard(c.getName()))
+        {
             nameField.setText("");
             cardError.setVisible(true);
-        //}
+        }
+        else
+        {
+            targetLibrary.addCard(c);
+            dispose();
+        }
+        System.out.print(targetLibrary);
+
     }//GEN-LAST:event_confirmActionPerformed
 
     private void cardValFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardValFieldActionPerformed
@@ -877,14 +892,9 @@ public class CreatorUI extends javax.swing.JFrame {
         });
     }
 
-    public void run(CardCollection c)
+    public void run()
     {
-        targetLibrary = c;
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CreatorUI().setVisible(true);
-            }
-        });
+        setVisible(true);
     }
 
     private int convertedCost() {
@@ -940,14 +950,14 @@ public class CreatorUI extends javax.swing.JFrame {
 
     private void updatePower() {
         int n = Math.min((convertedCost()*numCostColors()/
-                hpSlide.getValue())*500,convertedCost()+numCostColors()*100);
+                (hpSlide.getValue()+100))*500,convertedCost()+numCostColors()*100);
         powerSlide.setMaximum(n);
         powerSlide.setMinimum(100);
     }
 
     private void updateHP() {
         int n = Math.min(convertedCost()*(numCostColors()+1)/
-                powerSlide.getValue()*500, convertedCost()+numCostColors()*100);
+                (powerSlide.getValue()+100)*500, convertedCost()+numCostColors()*100);
         hpSlide.setMaximum(n);
         hpSlide.setMinimum(100);
     }

@@ -17,7 +17,8 @@ public class CardCollection implements CardList,Serializable
   // Searches based on name
   public boolean hasCard(String c) {
     for (int i = 0; i < size(); i++) {
-        if (c.compareTo(cards.get(i).getName()) == 0) {
+        if (c != null &&
+                c.compareTo((cards.get(i)).getName()) == 0) {
             return true;
         }
     }
