@@ -26,7 +26,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="145" max="-2" attributes="0"/>
               <Component id="LoginLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="179" max="32767" attributes="0"/>
+              <EmptySpace pref="182" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
@@ -36,8 +36,8 @@
               </Group>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="playerTwoText" pref="140" max="32767" attributes="1"/>
-                  <Component id="playerOneText" alignment="0" pref="140" max="32767" attributes="1"/>
+                  <Component id="playerTwoText" pref="145" max="32767" attributes="1"/>
+                  <Component id="playerOneText" alignment="0" pref="145" max="32767" attributes="1"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">

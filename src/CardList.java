@@ -2,7 +2,7 @@
 
 public interface CardList
 {
- public Card next();
+
  public int size();
  //Adds indicated card to the list and returns it
  public boolean addCard(Card c);

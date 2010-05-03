@@ -9,6 +9,10 @@ public abstract class Card extends SuperCard implements Comparable, Playable
       this.cardvalue = cv;
   }
 
+  public int getCV(){
+      return cardvalue;
+  }
+
   public Card(String name, PointList cost)
   {
     this.name = name;
