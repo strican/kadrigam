@@ -19,11 +19,17 @@ public class GameBoard extends javax.swing.JFrame {
     private Rules r;
     private Card selected;
 
+    private int offset;
+    private int max_offset;
+    private final int NUM_VISIBLE = 7;
+
     /** Creates new form GameBoard */
     public GameBoard(Player p, Player opp, Rules r) {
         this.p = p;
         this.opp = opp;
         this.r = r;
+        offset = 0;
+
         initComponents();
         update();
     }
@@ -120,13 +126,13 @@ public class GameBoard extends javax.swing.JFrame {
 
     public void updateHand()
     {
-        card1.changeCard(p.getHand().getCard(0));
-        card2.changeCard(p.getHand().getCard(1));
-        card3.changeCard(p.getHand().getCard(2));
-        card4.changeCard(p.getHand().getCard(3));
-        card5.changeCard(p.getHand().getCard(4));
-        card6.changeCard(p.getHand().getCard(5));
-        card7.changeCard(p.getHand().getCard(6));
+        card1.changeCard(p.getHand().getCard(0 + NUM_VISIBLE * offset));
+        card2.changeCard(p.getHand().getCard(1 + NUM_VISIBLE * offset));
+        card3.changeCard(p.getHand().getCard(2 + NUM_VISIBLE * offset));
+        card4.changeCard(p.getHand().getCard(3 + NUM_VISIBLE * offset));
+        card5.changeCard(p.getHand().getCard(4 + NUM_VISIBLE * offset));
+        card6.changeCard(p.getHand().getCard(5 + NUM_VISIBLE * offset));
+        card7.changeCard(p.getHand().getCard(6 + NUM_VISIBLE * offset));
 
         if (card1.getCard() == null)
             card1.setVisible(false);
@@ -273,7 +279,8 @@ public class GameBoard extends javax.swing.JFrame {
             damagePanel.setVisible(false);
         
 
-        
+        moreHand.setVisible(p.getHand().size() > NUM_VISIBLE);
+        max_offset = (int) Math.ceil(p.getHand().size() / (double) NUM_VISIBLE);
 
 
         updateButton();
@@ -535,6 +542,7 @@ public class GameBoard extends javax.swing.JFrame {
         spellPanel = new javax.swing.JPanel();
         oppSpellStack = new MiniPanel();
         spellStack = new MiniPanel();
+        moreHand = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -1220,6 +1228,13 @@ public class GameBoard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        moreHand.setText("More");
+        moreHand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moreHandActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -1233,7 +1248,10 @@ public class GameBoard extends javax.swing.JFrame {
                             .addComponent(oppPilePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(handPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(handPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(moreHand))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                     .addComponent(oppHandPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1280,8 +1298,14 @@ public class GameBoard extends javax.swing.JFrame {
                                 .addGap(46, 46, 46)
                                 .addComponent(spellPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(handPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(handPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(moreHand)
+                                .addGap(24, 24, 24))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(oppPilePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1444,27 +1468,27 @@ public class GameBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_card1MouseClicked
 
     private void card2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card2MouseClicked
-        handleHand(1);
+        handleHand(1 + NUM_VISIBLE * offset);
     }//GEN-LAST:event_card2MouseClicked
 
     private void card3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card3MouseClicked
-        handleHand(2);
+        handleHand(2 + NUM_VISIBLE * offset);
     }//GEN-LAST:event_card3MouseClicked
 
     private void card4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card4MouseClicked
-        handleHand(3);
+        handleHand(3 + NUM_VISIBLE * offset);
     }//GEN-LAST:event_card4MouseClicked
 
     private void card5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card5MouseClicked
-        handleHand(4);
+        handleHand(4 + NUM_VISIBLE * offset);
     }//GEN-LAST:event_card5MouseClicked
 
     private void card6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card6MouseClicked
-        handleHand(5);
+        handleHand(5 + NUM_VISIBLE * offset);
     }//GEN-LAST:event_card6MouseClicked
 
     private void card7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card7MouseClicked
-        handleHand(6);
+        handleHand(6 + NUM_VISIBLE * offset);
     }//GEN-LAST:event_card7MouseClicked
 
     private void oppAlly1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oppAlly1MouseClicked
@@ -1490,6 +1514,11 @@ public class GameBoard extends javax.swing.JFrame {
     private void jPanel2MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseMoved
         update();
     }//GEN-LAST:event_jPanel2MouseMoved
+
+    private void moreHandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreHandActionPerformed
+        offset = (offset + 1) % max_offset;
+        update();
+    }//GEN-LAST:event_moreHandActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -1538,6 +1567,7 @@ public class GameBoard extends javax.swing.JFrame {
     private javax.swing.JTree jTree1;
     private javax.swing.JLabel life;
     private javax.swing.JLabel life1;
+    private javax.swing.JButton moreHand;
     private javax.swing.JLabel neutLife;
     private javax.swing.JLabel neutLife1;
     private MiniPanel oppAlly1;
