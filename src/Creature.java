@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.io.File;
 
 public class Creature extends Card implements Serializable
 {
@@ -19,7 +20,18 @@ public class Creature extends Card implements Serializable
     payoff = p;
     active = false;
   }
-  
+
+  public Creature(String name, int pow, int hp, Ability abil,
+          PointList c, PointList p, File f)
+  {
+    super(name,c,f);
+    attackPow = pow;
+    hitPoints = hp;
+    this.abil = abil;
+    payoff = p;
+    active = false;
+  }
+
   public int getHP() { return hitPoints; }
   public int getPow() { return attackPow; }
   public Ability getAbility() { return abil; }

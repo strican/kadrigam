@@ -1,9 +1,11 @@
+import java.io.File;
 
 public abstract class Card extends SuperCard implements Comparable, Playable
 {
   private String name;
   private PointList cost;
   private int cardvalue;
+  private File img;
 
   public void setCV(int cv){
       this.cardvalue = cv;
@@ -18,9 +20,17 @@ public abstract class Card extends SuperCard implements Comparable, Playable
     this.name = name;
     this.cost = cost;
   }
+
+  public Card(String name, PointList cost, File img)
+  {
+    this.name = name;
+    this.cost = cost;
+    this.img = img;
+  }
   
   public String getName() {return name;}
   public PointList getCost() {return cost;}
+  public File getImage() {return img;}
   
   public int compareTo(Object o)
   {
