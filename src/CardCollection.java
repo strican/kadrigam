@@ -35,6 +35,9 @@ public class CardCollection implements CardList, Serializable {
     }
 
     public Card getCard(int index) {
+        if (index >= cards.size())
+            return null;
+        
         return cards.get(index);
     }
 

@@ -4,7 +4,7 @@
  */
 
 /*
- * CardPanel.java
+ * MiniPanel.java
  *
  * Created on May 2, 2010, 2:24:27 PM
  */
@@ -18,11 +18,11 @@ import java.awt.image.*;
 import javax.swing.*;
 import java.io.File;
 
-public class CardPanel extends javax.swing.JPanel {
+public class MiniPanel extends javax.swing.JPanel {
 
-    /** Creates new form CardPanel */
+    /** Creates new form MiniPanel */
 
-    public CardPanel(){
+    public MiniPanel(){
         initComponents();
         cardName.setText("");
         neutral.setText("");
@@ -33,7 +33,7 @@ public class CardPanel extends javax.swing.JPanel {
         black.setText("");
     }
 
-    public CardPanel(Card c) {
+    public MiniPanel(Card c) {
         initComponents();
         this.c = c;
         updateDisplay();
@@ -46,7 +46,6 @@ public class CardPanel extends javax.swing.JPanel {
         displayName();
         displayCost();
         displayInfo();
-        this.repaint();
     }
 
     public void changeCard(Card c) {
@@ -56,10 +55,7 @@ public class CardPanel extends javax.swing.JPanel {
 
     private void displayName()
     {
-        if (c!=null)
-        {
             cardName.setText(c.getName());
-        }
     }
 
     private void displayCost()
@@ -125,7 +121,7 @@ public class CardPanel extends javax.swing.JPanel {
         Graphics2D g2d = (Graphics2D)g;
         //String dir = System.getProperty("user.dir");
         String imagePath = getImagePath();
-        img = CardPanel.getBufferedImage(imagePath, this);
+        img = MiniPanel.getBufferedImage(imagePath, this);
         Rectangle imageRect = new Rectangle(135, 80, 225, 200);
         TexturePaint imagePaint1 = new TexturePaint(img, imageRect);
         g2d.setPaint(imagePaint1);
@@ -142,7 +138,6 @@ public class CardPanel extends javax.swing.JPanel {
         BufferedImage bufferedImage = new BufferedImage(100,
                 100, BufferedImage.TYPE_INT_RGB);
         Graphics2D g2d = bufferedImage.createGraphics();
-        g2d.drawImage(image, 0, 0, 225,220,c);
         return(bufferedImage);
     }
 /** Take an Image associated with a file, and wait until it is * done loading (just a simple application of MediaTracker). * If you are loading multiple images, don't use this * consecutive times; instead, use the version that takes
@@ -159,7 +154,7 @@ public class CardPanel extends javax.swing.JPanel {
 
     public static void main(String args[]) {
         JFrame j = new JFrame();
-        CardPanel p = new CardPanel(Test.randomCard());
+        MiniPanel p = new MiniPanel(Test.randomCard());
         j.add(p);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setBounds(0, 0, 400, 520);
@@ -175,53 +170,36 @@ public class CardPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        cardInfo = new javax.swing.JTextArea();
-        namePanel = new javax.swing.JPanel();
-        cardName = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         neutral = new javax.swing.JTextField();
         red = new javax.swing.JTextField();
         green = new javax.swing.JTextField();
         blue = new javax.swing.JTextField();
         white = new javax.swing.JTextField();
         black = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        cardInfo = new javax.swing.JTextPane();
+        namePanel = new javax.swing.JPanel();
+        cardName = new javax.swing.JLabel();
+
+        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 100, Short.MAX_VALUE)
+        );
 
         setBackground(new java.awt.Color(153, 51, 0));
         setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new javax.swing.ImageIcon(getClass().getResource("/swirl.jpg")))); // NOI18N
 
-        cardInfo.setBackground(new java.awt.Color(241, 192, 117));
-        cardInfo.setColumns(20);
-        cardInfo.setEditable(false);
-        cardInfo.setFont(new java.awt.Font("Charlemagne Std", 0, 18));
-        cardInfo.setRows(5);
-        cardInfo.setWrapStyleWord(true);
-        cardInfo.setAutoscrolls(false);
-        jScrollPane1.setViewportView(cardInfo);
-
-        namePanel.setBackground(cardInfo.getBackground());
-
-        cardName.setFont(new java.awt.Font("Charlemagne Std", 0, 18));
-        cardName.setText("jLabel1");
-
-        org.jdesktop.layout.GroupLayout namePanelLayout = new org.jdesktop.layout.GroupLayout(namePanel);
-        namePanel.setLayout(namePanelLayout);
-        namePanelLayout.setHorizontalGroup(
-            namePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(namePanelLayout.createSequentialGroup()
-                .add(cardName)
-                .addContainerGap(331, Short.MAX_VALUE))
-        );
-        namePanelLayout.setVerticalGroup(
-            namePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, namePanelLayout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .add(cardName))
-        );
-
         neutral.setBackground(new java.awt.Color(204, 204, 204));
-        neutral.setColumns(6);
+        neutral.setColumns(5);
         neutral.setEditable(false);
-        neutral.setFont(new java.awt.Font("Charlemagne Std", 0, 14));
+        neutral.setFont(new java.awt.Font("Charlemagne Std", 0, 10));
         neutral.setText("jTextField1");
         neutral.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,74 +208,100 @@ public class CardPanel extends javax.swing.JPanel {
         });
 
         red.setBackground(new java.awt.Color(204, 0, 0));
-        red.setColumns(6);
+        red.setColumns(5);
         red.setEditable(false);
-        red.setFont(new java.awt.Font("Charlemagne Std", 0, 14));
+        red.setFont(new java.awt.Font("Charlemagne Std", 0, 10));
         red.setText("jTextField2");
 
         green.setBackground(new java.awt.Color(102, 153, 0));
-        green.setColumns(6);
+        green.setColumns(5);
         green.setEditable(false);
-        green.setFont(new java.awt.Font("Charlemagne Std", 0, 14));
+        green.setFont(new java.awt.Font("Charlemagne Std", 0, 10));
         green.setText("jTextField3");
 
         blue.setBackground(new java.awt.Color(0, 0, 153));
-        blue.setColumns(6);
+        blue.setColumns(5);
         blue.setEditable(false);
-        blue.setFont(new java.awt.Font("Charlemagne Std", 0, 14));
+        blue.setFont(new java.awt.Font("Charlemagne Std", 0, 10));
         blue.setForeground(new java.awt.Color(255, 255, 255));
         blue.setText("jTextField4");
 
-        white.setColumns(6);
+        white.setColumns(5);
         white.setEditable(false);
-        white.setFont(new java.awt.Font("Charlemagne Std", 0, 14));
+        white.setFont(new java.awt.Font("Charlemagne Std", 0, 10));
         white.setText("jTextField5");
 
         black.setBackground(new java.awt.Color(0, 0, 0));
-        black.setColumns(6);
+        black.setColumns(5);
         black.setEditable(false);
-        black.setFont(new java.awt.Font("Charlemagne Std", 0, 14));
+        black.setFont(new java.awt.Font("Charlemagne Std", 0, 10));
         black.setForeground(new java.awt.Color(255, 255, 255));
         black.setText("jTextField6");
+
+        cardInfo.setBackground(namePanel.getBackground());
+        jScrollPane2.setViewportView(cardInfo);
+        cardInfo.setBackground(new java.awt.Color(241, 192, 117));
+
+        namePanel.setBackground(new java.awt.Color(255, 226, 139));
+
+        cardName.setText("jLabel1");
+
+        org.jdesktop.layout.GroupLayout namePanelLayout = new org.jdesktop.layout.GroupLayout(namePanel);
+        namePanel.setLayout(namePanelLayout);
+        namePanelLayout.setHorizontalGroup(
+            namePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(namePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(cardName, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        namePanelLayout.setVerticalGroup(
+            namePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, cardName, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+        );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+            .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, namePanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                        .add(white, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(neutral, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(red, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(namePanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                        .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                .add(neutral, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(red, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                .add(white, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(blue, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane2)
+                        .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                             .add(green, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(blue, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, black, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                            .add(black, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .add(namePanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(neutral, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(neutral, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(blue, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(5, 5, 5)
-                .add(red, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(6, 6, 6)
-                .add(green, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(5, 5, 5)
-                .add(blue, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(red, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(white, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(white, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(green, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(black, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(black, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 47, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -313,10 +317,11 @@ public class CardPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField black;
     private javax.swing.JTextField blue;
-    private javax.swing.JTextArea cardInfo;
+    private javax.swing.JTextPane cardInfo;
     private javax.swing.JLabel cardName;
     private javax.swing.JTextField green;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel namePanel;
     private javax.swing.JTextField neutral;
     private javax.swing.JTextField red;
