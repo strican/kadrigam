@@ -170,14 +170,14 @@ public class LoginUI extends javax.swing.JFrame {
             user1 = (User) in.readObject();
             in.close();
         } catch (IOException readEx) {
-            user1 = new User(player1);
-            Login.serialize(user1, player1);
+            //user1 = new User(player1);
+            //Login.serialize(user1, player1);
 
-            //readEx.printStackTrace();
+            // testing print
+            readEx.printStackTrace();
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }
-        System.out.println(user1.getAccountName());
 
 
         EditorUI e = new EditorUI(user1);
@@ -207,8 +207,6 @@ public class LoginUI extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }
-        System.out.println(user2.getAccountName());
-
         EditorUI e = new EditorUI(user2);
         e.run(user2);
     }//GEN-LAST:event_playerTwoEditButtonActionPerformed
@@ -243,7 +241,6 @@ public class LoginUI extends javax.swing.JFrame {
             startButton.setEnabled(false);
         }
     }//GEN-LAST:event_playerTwoTextKeyTyped
-
 
     /**
      * @param args the command line arguments

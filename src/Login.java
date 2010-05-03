@@ -46,13 +46,14 @@ public class Login implements Loginable {
 
         String filename = s + ".ser";
 
+        User user = u;
         FileOutputStream fos = null;
         ObjectOutputStream out = null;
 
         try {
             fos = new FileOutputStream(filename);
             out = new ObjectOutputStream(fos);
-            out.writeObject(u);
+            out.writeObject(user);
             out.close();
         } catch (IOException writeEx) {
             writeEx.printStackTrace();

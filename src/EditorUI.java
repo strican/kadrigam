@@ -25,7 +25,7 @@ public class EditorUI extends javax.swing.JFrame {
         initComponents();
         createDeckButton.setEnabled(false);
         user = u;
-        System.out.println("EOFIH"+user.getAccountName());
+        username.setText(user.getAccountName());
     }
 
     /** This method is called from within the constructor to
@@ -82,7 +82,7 @@ public class EditorUI extends javax.swing.JFrame {
         });
 
         successfulDeckLabel.setBackground(new java.awt.Color(204, 204, 204));
-        successfulDeckLabel.setText("checks if deck is created");
+        successfulDeckLabel.setText("Not Created");
 
         username.setText("Player");
 
@@ -91,44 +91,50 @@ public class EditorUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(createDeckText, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addComponent(jLabel1)
-                                .addGap(30, 30, 30)
-                                .addComponent(createDeckText, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(successfulDeckLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(createCardButton)
-                            .addComponent(eidtDeckButton)
-                            .addComponent(createDeckButton)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(171, 171, 171)
-                        .addComponent(username)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(eidtDeckButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(createCardButton))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(successfulDeckLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(createDeckButton)))))
+                .addContainerGap(79, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(162, 162, 162)
+                .addComponent(username)
+                .addContainerGap(169, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(username)
-                .addGap(26, 26, 26)
-                .addComponent(createCardButton)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(createDeckText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(createDeckButton))
-                .addGap(26, 26, 26)
+                    .addComponent(createDeckText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(eidtDeckButton)
-                    .addComponent(successfulDeckLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(createDeckButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(successfulDeckLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(createCardButton)
+                    .addComponent(eidtDeckButton))
+                .addGap(91, 91, 91))
         );
 
         pack();
@@ -139,7 +145,8 @@ public class EditorUI extends javax.swing.JFrame {
     }//GEN-LAST:event_createCardButtonActionPerformed
 
     private void eidtDeckButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eidtDeckButtonActionPerformed
-        // TODO add your handling code here:
+        DeckListUI dl = new DeckListUI(user);
+        dl.run();
     }//GEN-LAST:event_eidtDeckButtonActionPerformed
 
     private void createDeckTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_createDeckTextKeyTyped
@@ -157,10 +164,11 @@ public class EditorUI extends javax.swing.JFrame {
 
     private void createDeckButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createDeckButtonActionPerformed
         String newDeckName = createDeckText.getText();
-        System.out.println(newDeckName);
-        System.out.println("test" + user.getAccountName());
-            //Login.serialize(user, user.getAccountName());
-        
+        if(user.createDeck(newDeckName)){
+            Login.serialize(user, user.getAccountName());
+            successfulDeckLabel.setText(newDeckName + " Created!");
+        }
+        else successfulDeckLabel.setText(newDeckName + " Not Created");
     }//GEN-LAST:event_createDeckButtonActionPerformed
     /**
      * @param args the command line arguments

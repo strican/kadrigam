@@ -254,6 +254,7 @@ public class User implements Userable, Serializable {
         effect = new Effect(4500, EffectType.DEALDAMAGE);
 
         libSpell = new Spell("Epic", effect, cost);
+        libSpell.setCV(20);
         collection.addCard(libSpell);
 
         // Create Spell 2
@@ -261,6 +262,7 @@ public class User implements Userable, Serializable {
         effect = new Effect(1, EffectType.DESTROY);
 
         libSpell = new Spell("Death Rain", effect, cost);
+        libSpell.setCV(20);
         collection.addCard(libSpell);
 
         // Create Spell 3
@@ -268,6 +270,7 @@ public class User implements Userable, Serializable {
         effect = new Effect(2750, EffectType.HEAL);
 
         libSpell = new Spell("Life Rain", effect, cost);
+        libSpell.setCV(20);
         collection.addCard(libSpell);
 
         // Create Spell 4
@@ -275,6 +278,7 @@ public class User implements Userable, Serializable {
         effect = new Effect(2, EffectType.DEACTIVATE);
 
         libSpell = new Spell("Paralysis Rain", effect, cost);
+        libSpell.setCV(20);
         collection.addCard(libSpell);
 
         // Create Spell 5
@@ -282,6 +286,7 @@ public class User implements Userable, Serializable {
         effect = new Effect(3, EffectType.DRAW);
 
         libSpell = new Spell("Card Rain", effect, cost);
+        libSpell.setCV(20);
         collection.addCard(libSpell);
 
         // Create Spell 6
@@ -289,6 +294,7 @@ public class User implements Userable, Serializable {
         effect = new Effect(3, EffectType.DISCARD);
 
         libSpell = new Spell("Forest", effect, cost);
+        libSpell.setCV(20);
         collection.addCard(libSpell);
 
         // Create Spell 7
@@ -296,6 +302,7 @@ public class User implements Userable, Serializable {
         effect = new Effect(3, EffectType.DRAW);
 
         libSpell = new Spell("Blue Sky", effect, cost);
+        libSpell.setCV(20);
         collection.addCard(libSpell);
 
         // Create Spell 8
@@ -303,6 +310,7 @@ public class User implements Userable, Serializable {
         effect = new Effect(1, EffectType.DEACTIVATE);
 
         libSpell = new Spell("Blackness", effect, cost);
+        libSpell.setCV(20);
         collection.addCard(libSpell);
 
         // Create Spell 9
@@ -310,6 +318,7 @@ public class User implements Userable, Serializable {
         effect = new Effect(3, EffectType.DRAW);
 
         libSpell = new Spell("Brightness", effect, cost);
+        libSpell.setCV(20);
         collection.addCard(libSpell);
 
         // Create Spell 10
@@ -317,6 +326,7 @@ public class User implements Userable, Serializable {
         effect = new Effect(400, EffectType.DEALDAMAGE);
 
         libSpell = new Spell("Italian", effect, cost);
+        libSpell.setCV(20);
         collection.addCard(libSpell);
 
     }
