@@ -28,6 +28,7 @@ public class CardCollection implements CardList, Serializable {
             if (c.compareTo(cards.get(i).getName()) == 0) {
                 return true;
             }
+
         }
 
         return false;
@@ -65,12 +66,10 @@ public class CardCollection implements CardList, Serializable {
         return true;
     }
 
-    public boolean removeOne(String c){
+    public boolean removeOne(String c) {
         if (!hasCard(c)) {
             return false;
-        }
-
-        else{
+        } else {
             for (int i = 0; i < size(); i++) {
                 if (c.compareTo(cards.get(i).getName()) == 0) {
                     takeCard(cards.get(i));
@@ -107,7 +106,7 @@ public class CardCollection implements CardList, Serializable {
         return s;
     }
 
-    public int getCV(){
+    public int getCV() {
         int cv = 0;
         for (int i = 0; i < size(); i++) {
             cv += cards.get(i).getCV();
@@ -119,7 +118,7 @@ public class CardCollection implements CardList, Serializable {
         int counter = 0;
 
         for (int i = 0; i < size(); i++) {
-            if (c.compareTo(cards.get(i).getName()) == 0){
+            if (c.compareTo(cards.get(i).getName()) == 0) {
                 counter++;
             }
         }

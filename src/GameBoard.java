@@ -8,7 +8,6 @@
  *
  * Created on Apr 30, 2010, 12:43:21 PM
  */
-
 /**
  *
  * @author Steve
@@ -18,87 +17,74 @@ public class GameBoard extends javax.swing.JFrame {
     private Player p;
     private Player opp;
     private Rules r;
+    private Card selected;
 
     /** Creates new form GameBoard */
-    public GameBoard(Player p, Player opp, Rules r)
-    {
+    public GameBoard(Player p, Player opp, Rules r) {
         this.p = p;
         this.opp = opp;
         this.r = r;
         initComponents();
     }
 
-      public boolean isOver()
-      {
+    public boolean isOver() {
         boolean p1lost = true;
         boolean p2lost = true;
 
-        for (Color c : Color.values())
-        {
-          p1lost = p1lost && (p.getLife().get(c) <= 0);
-          p2lost = p2lost && (opp.getLife().get(c) <= 0);
+        for (Color c : Color.values()) {
+            p1lost = p1lost && (p.getLife().get(c) <= 0);
+            p2lost = p2lost && (opp.getLife().get(c) <= 0);
         }
         p1lost = (p1lost || p.getDeck().isEmpty());
         p2lost = (p2lost || opp.getDeck().isEmpty());
 
         return (p1lost || p2lost);
-      }
+    }
 
-      // Ends game
-      public Player winner()
-      {
-          //TODO: Make game end
+    // Ends game
+    public Player winner() {
+        //TODO: Make game end
         boolean p1lost = true;
         boolean p2lost = true;
 
 
-          for (Color c : Color.values())
-          {
+        for (Color c : Color.values()) {
             p1lost = p1lost && (p.getLife().get(c) == 0);
             p2lost = p2lost && (opp.getLife().get(c) == 0);
-          }
-          p1lost = (p1lost || p.getDeck().isEmpty());
-          p2lost = (p2lost || opp.getDeck().isEmpty());
-
-          if (p1lost && !p2lost)
-            return opp;
-          else if (p2lost && !p1lost)
-            return p;
-          else
-            //Throw a tie game exception?
-            return null;
-
-      }
-
-    public void getDamageInput(Card c)
-    {
-        damageSlider.setVisible(true);
-        damageButton.setVisible(true);
-
-
-
-        int dmg = damageSlider.getValue();
-        Move m = new DamageMove(p, c, dmg);
-
-        if (m.isLegal(r))
-        {
-            m.execute();
-            opp.subDamage(dmg);
         }
+        p1lost = (p1lost || p.getDeck().isEmpty());
+        p2lost = (p2lost || opp.getDeck().isEmpty());
+
+        if (p1lost && !p2lost) {
+            return opp;
+        } else if (p2lost && !p1lost) {
+            return p;
+        } else //Throw a tie game exception?
+        {
+            return null;
+        }
+
     }
 
+    public void getDamageInput(Card c) {
+        damageSlider.setVisible(true);
+        damageButton.setVisible(true);
+        damageLabel.setVisible(true);
 
+        System.out.println(opp.getDamage());
+        System.out.println(((Creature) c).getHP());
+        damageSlider.setMaximum(Math.min(opp.getDamage(), ((Creature) c).getHP()));
+        selected = c;
+    }
 
-    public void dealDirect()
-    {
-        PointVal splash = new PointVal(Color.NEUTRAL,opp.getDamage());
+    public void dealDirect() {
+        PointVal splash = new PointVal(Color.NEUTRAL, opp.getDamage());
         ColorPoints dmg = new ColorPoints();
         dmg.add(splash);
         p.takeDamage(dmg);
     }
 
-    public void update()
-    {
+    public void update() {
         PointList health = p.getLife();
         neutLife.setText("" + health.get(Color.NEUTRAL));
         redLife.setText("" + health.get(Color.RED));
@@ -114,14 +100,14 @@ public class GameBoard extends javax.swing.JFrame {
         whiteLife.setForeground(java.awt.Color.WHITE);
         blackLife.setForeground(java.awt.Color.BLACK);
 
-        card1.setText(""+ p.getHand().display(0));
-        card2.setText(""+ p.getHand().display(1));
-        card3.setText(""+ p.getHand().display(2));
-        card4.setText(""+ p.getHand().display(3));
-        card5.setText(""+ p.getHand().display(4));
-        card6.setText(""+ p.getHand().display(5));
-        card7.setText(""+ p.getHand().display(6));
-        card8.setText(""+ p.getHand().display(7));
+        card1.setText("" + p.getHand().display(0));
+        card2.setText("" + p.getHand().display(1));
+        card3.setText("" + p.getHand().display(2));
+        card4.setText("" + p.getHand().display(3));
+        card5.setText("" + p.getHand().display(4));
+        card6.setText("" + p.getHand().display(5));
+        card7.setText("" + p.getHand().display(6));
+        card8.setText("" + p.getHand().display(7));
 
         spellStack.setText(p.getSpellStack().toString());
 
@@ -133,14 +119,14 @@ public class GameBoard extends javax.swing.JFrame {
 
         updateButton();
         updatePhase();
+
+        damageLabel.setText("" + damageSlider.getValue());
     }
 
-    private void updatePhase()
-    {
+    private void updatePhase() {
         Type t = p.getPhase();
         System.out.println(t);
-        switch(t)
-        {
+        switch (t) {
             case DRAW:
                 phaseLabel.setText("Upkeep");
                 break;
@@ -170,12 +156,10 @@ public class GameBoard extends javax.swing.JFrame {
                 break;
         }
     }
-    
-    public void updateButton()
-    {
+
+    public void updateButton() {
         Type t = p.getPhase();
-        switch(t)
-        {
+        switch (t) {
             case DRAW:
                 phaseButton.setText("Draw a Card");
                 break;
@@ -205,109 +189,105 @@ public class GameBoard extends javax.swing.JFrame {
         }
     }
 
-    private int promptInt()
-    {
+    private int promptInt() {
         return 0;
     }
 
-    private void handleAlly(int i)
-    {
+    private void handleAlly(int i) {
         Card c = p.getAllies().getCard(i);
 
         // Do nothing if there is no card there
-        if (c == null)
-        {
+        if (c == null) {
             return;
         }
 
         // Else do something based on the phase
         Type phase = p.getPhase();
         Move m;
-        switch(phase)
-        {
-              case PLAY1:
-                  break;
+        switch (phase) {
+            case PLAY1:
+                break;
 
-              case PLAY2:
-                  break;
+            case PLAY2:
+                break;
 
-              case DISCARD:
-                  break;
+            case DISCARD:
+                break;
 
-              case ATTACK:
-                  m = new AttackMove(p, c);
-                  if (m.isLegal(r))
-                  {
-                      m.execute();
-                  }
-                  System.out.println(p.getDamage());
-                  break;
+            case ATTACK:
+                m = new AttackMove(p, c);
+                if (m.isLegal(r)) {
+                    m.execute();
+                }
+                System.out.println(p.getDamage());
+                break;
 
-              case DAMAGE:
-                  getDamageInput(c);
-                  break;
+            case DAMAGE:
+                getDamageInput(c);
+                break;
 
-              case SACRIFICE:
-                  m = new SacrificeMove(p, c);
-                  if (m.isLegal(r))
-                      m.execute();
-                  break;
+            case SACRIFICE:
+                m = new SacrificeMove(p, c);
+                if (m.isLegal(r)) {
+                    m.execute();
+                }
+                break;
 
-              default:
-                  break;
+            default:
+                break;
         }
-        
+
         update();
     }
 
-    private void handleHand(int i)
-    {
-        
+    private void handleHand(int i) {
+
         //spellStack.setText(p.getHand().toString());
         Card c = p.getHand().getCard(i);
         spellStack.setText(c.toString());
 
 
         // Do nothing if there is no card there
-        if (c == null)
-        {
+        if (c == null) {
             return;
         }
 
         // Else do something based on the phase
         Type phase = p.getPhase();
         Move m;
-        switch(phase)
-        {
-              case PLAY1:
-                  m = new Play1Move(p, c);
-                  if (m.isLegal(r))
-                      m.execute();
-                  break;
+        switch (phase) {
+            case PLAY1:
+                m = new Play1Move(p, c);
+                if (m.isLegal(r)) {
+                    m.execute();
+                }
+                break;
 
-              case PLAY2:
+            case PLAY2:
                 m = new Play2Move(p, c);
-                  if (m.isLegal(r))
-                      m.execute();
-                  break;
+                if (m.isLegal(r)) {
+                    m.execute();
+                }
+                break;
 
-              case DISCARD:
-                  m = new DiscardMove(p, c);
-                  if (m.isLegal(r))
-                      m.execute();
-                  break;
+            case DISCARD:
+                m = new DiscardMove(p, c);
+                if (m.isLegal(r)) {
+                    m.execute();
+                }
+                break;
 
-              case ATTACK:
-                  break;
+            case ATTACK:
+                break;
 
-              case DAMAGE:
-                  break;
+            case DAMAGE:
+                break;
 
-              case SACRIFICE:
-                  break;
+            case SACRIFICE:
+                break;
 
-              default:
-                  break;
+            default:
+                break;
         }
 
         update();
@@ -329,12 +309,6 @@ public class GameBoard extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
         life = new javax.swing.JLabel();
-        neutLabel = new javax.swing.JLabel();
-        redLabel = new javax.swing.JLabel();
-        greenLabel = new javax.swing.JLabel();
-        blueLabel = new javax.swing.JLabel();
-        whiteLabel = new javax.swing.JLabel();
-        blackLabel = new javax.swing.JLabel();
         blackLife = new javax.swing.JLabel();
         whiteLife = new javax.swing.JLabel();
         neutLife = new javax.swing.JLabel();
@@ -359,6 +333,7 @@ public class GameBoard extends javax.swing.JFrame {
         ally5 = new javax.swing.JTextArea();
         damageSlider = new javax.swing.JSlider();
         damageButton = new javax.swing.JButton();
+        damageLabel = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -394,21 +369,9 @@ public class GameBoard extends javax.swing.JFrame {
             }
         });
 
-        neutLabel.setText("Neutral:");
-
-        redLabel.setText("Red:");
-
-        greenLabel.setText("Green:");
-
-        blueLabel.setText("Blue:");
-
-        whiteLabel.setText("White:");
-
-        blackLabel.setText("Black:");
-
         blackLife.setText("jLabel2");
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, blackLabel, org.jdesktop.beansbinding.ELProperty.create("${horizontalAlignment}"), blackLife, org.jdesktop.beansbinding.BeanProperty.create("horizontalAlignment"));
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, new javax.swing.JLabel(), org.jdesktop.beansbinding.ELProperty.create("${horizontalAlignment}"), blackLife, org.jdesktop.beansbinding.BeanProperty.create("horizontalAlignment"));
         bindingGroup.addBinding(binding);
 
         whiteLife.setText("jLabel1");
@@ -537,165 +500,153 @@ public class GameBoard extends javax.swing.JFrame {
             }
         });
 
-        damageButton.setText("jButton1");
+        damageSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                damageSliderStateChanged(evt);
+            }
+        });
+        damageSlider.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                damageSliderPropertyChange(evt);
+            }
+        });
+
+        damageButton.setText("Deal Damage");
         damageButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 damageButtonActionPerformed(evt);
             }
         });
 
+        damageLabel.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(290, 290, 290)
-                .addComponent(life, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(neutLife)
-                    .addComponent(neutLabel))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(redLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(redLife)))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addComponent(greenLife)
-                        .addGap(18, 18, 18)
-                        .addComponent(blueLife)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(whiteLife)
-                        .addGap(18, 18, 18)
-                        .addComponent(blackLife))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(409, 409, 409)
-                        .addComponent(greenLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(blueLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(whiteLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(blackLabel)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 430, Short.MAX_VALUE)
-                .addComponent(spellStack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(card8, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(card7, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(card6, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(card2, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(card5, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(card4, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(card3, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 514, Short.MAX_VALUE)
-                .addComponent(phaseLabel)
-                .addGap(217, 217, 217)
-                .addComponent(phaseButton)
-                .addGap(256, 256, 256))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ally1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ally2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ally3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ally4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ally5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(damageSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(damageButton))
-                .addContainerGap(499, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(ally1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(ally2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(ally3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(ally4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(ally5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(56, 56, 56)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(damageSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(damageButton)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                                            .addComponent(damageLabel))))
+                                .addComponent(card8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(card7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(card6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(card2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(card5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(card4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(card1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(card3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(508, 508, 508))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(life, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(neutLife)
+                            .addGap(23, 23, 23)
+                            .addComponent(redLife)
+                            .addGap(138, 138, 138)
+                            .addComponent(greenLife)
+                            .addGap(18, 18, 18)
+                            .addComponent(blueLife)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(whiteLife)
+                            .addGap(18, 18, 18)
+                            .addComponent(blackLife)
+                            .addGap(18, 18, 18)
+                            .addComponent(spellStack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(969, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(phaseLabel)
+                        .addGap(217, 217, 217)
+                        .addComponent(phaseButton)
+                        .addGap(656, 656, 656))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(114, 114, 114)
+                .addGap(103, 103, 103)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(life, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(blackLife)
+                                .addComponent(redLife)
+                                .addComponent(greenLife)
+                                .addComponent(blueLife)
+                                .addComponent(whiteLife))
+                            .addComponent(neutLife)))
+                    .addComponent(spellStack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(150, 150, 150)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(ally1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(71, 71, 71)
+                            .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(11, 11, 11)
+                            .addComponent(card2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(card3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(card4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(11, 11, 11)
+                            .addComponent(card5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(card6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(11, 11, 11)
+                            .addComponent(card7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(card8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(90, 90, 90)
+                            .addComponent(ally2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(364, 364, 364))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(90, 90, 90)
+                            .addComponent(ally3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(364, 364, 364))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(90, 90, 90)
+                            .addComponent(ally4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(364, 364, 364))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(90, 90, 90)
+                            .addComponent(ally5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(364, 364, 364)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addComponent(damageSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(damageButton)
+                            .addComponent(damageLabel))))
+                .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(phaseButton)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(life, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(neutLabel)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(redLabel)
-                                                .addComponent(greenLabel)
-                                                .addComponent(blueLabel)
-                                                .addComponent(blackLabel)
-                                                .addComponent(whiteLabel)))
-                                        .addGap(12, 12, 12)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(blackLife)
-                                            .addComponent(redLife)
-                                            .addComponent(greenLife)
-                                            .addComponent(blueLife)
-                                            .addComponent(whiteLife)))
-                                    .addComponent(neutLife))
-                                .addGap(90, 90, 90))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(spellStack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(ally1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(71, 71, 71)
-                                    .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(11, 11, 11)
-                                    .addComponent(card2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(card3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(card4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(11, 11, 11)
-                                    .addComponent(card5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(card6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(11, 11, 11)
-                                    .addComponent(card7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(card8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(90, 90, 90)
-                                    .addComponent(ally2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(364, 364, 364))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(90, 90, 90)
-                                    .addComponent(ally3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(364, 364, 364))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(90, 90, 90)
-                                    .addComponent(ally4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(364, 364, 364))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(90, 90, 90)
-                                    .addComponent(ally5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(364, 364, 364)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(127, 127, 127)
-                                .addComponent(damageSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(damageButton)
-                                .addGap(350, 350, 350)
-                                .addComponent(phaseLabel)))))
-                .addGap(51, 51, 51))
+                        .addGap(9, 9, 9)
+                        .addComponent(phaseLabel)))
+                .addGap(26, 26, 26))
         );
 
         bindingGroup.bind();
@@ -722,14 +673,14 @@ public class GameBoard extends javax.swing.JFrame {
 
     private void phaseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phaseButtonActionPerformed
         Type t = p.getPhase();
-        switch(t)
-        {
+        switch (t) {
             case DRAW:
                 Move draw = new DrawMove(p);
-                if (draw.isLegal(r))
+                if (draw.isLegal(r)) {
                     draw.execute();
-                else if (isOver())
+                } else if (isOver()) {
                     winner();
+                }
 
                 p.setPhase(Type.SACRIFICE);
                 break;
@@ -752,8 +703,9 @@ public class GameBoard extends javax.swing.JFrame {
                 p.setPhase(Type.DISCARD);
                 break;
             case DISCARD:
-                if (p.getHand().size() >= 8)
+                if (p.getHand().size() >= 8) {
                     break;
+                }
 
                 p.setPhase(Type.WAIT);
                 opp.setPhase(Type.DRAW);
@@ -821,14 +773,39 @@ public class GameBoard extends javax.swing.JFrame {
     private void damageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_damageButtonActionPerformed
         damageButton.setVisible(false);
         damageSlider.setVisible(false);
+        damageLabel.setVisible(false);
+        
+
+        if (selected == null)
+        {
+            damageSlider.setValue(0);
+            return;
+        }
+
+        int dmg = damageSlider.getValue();
+        Move m = new DamageMove(p, selected, dmg);
+
+        if (m.isLegal(r)) {
+            System.out.println("FUCKED UP!!! " + dmg);
+            m.execute();
+            opp.subDamage(dmg);
+        }
+
         damageSlider.setValue(0);
 
     }//GEN-LAST:event_damageButtonActionPerformed
 
+    private void damageSliderPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_damageSliderPropertyChange
+        
+    }//GEN-LAST:event_damageSliderPropertyChange
+
+    private void damageSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_damageSliderStateChanged
+        damageLabel.setText("" + damageSlider.getValue());
+    }//GEN-LAST:event_damageSliderStateChanged
     /**
-    * @param args the command line arguments
-    */
-    /*public static void main(String args[]) {
+     * @param args the command line arguments
+     */
+/*public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GameBoard().setVisible(true);
@@ -842,9 +819,7 @@ public class GameBoard extends javax.swing.JFrame {
     private javax.swing.JTextArea ally3;
     private javax.swing.JTextArea ally4;
     private javax.swing.JTextArea ally5;
-    private javax.swing.JLabel blackLabel;
     private javax.swing.JLabel blackLife;
-    private javax.swing.JLabel blueLabel;
     private javax.swing.JLabel blueLife;
     private javax.swing.JTextArea card1;
     private javax.swing.JTextArea card2;
@@ -855,8 +830,8 @@ public class GameBoard extends javax.swing.JFrame {
     private javax.swing.JTextArea card7;
     private javax.swing.JTextArea card8;
     private javax.swing.JButton damageButton;
+    private javax.swing.JLabel damageLabel;
     private javax.swing.JSlider damageSlider;
-    private javax.swing.JLabel greenLabel;
     private javax.swing.JLabel greenLife;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JPanel jPanel1;
@@ -864,16 +839,14 @@ public class GameBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTree jTree1;
     private javax.swing.JLabel life;
-    private javax.swing.JLabel neutLabel;
     private javax.swing.JLabel neutLife;
     private javax.swing.JButton phaseButton;
     private javax.swing.JLabel phaseLabel;
-    private javax.swing.JLabel redLabel;
     private javax.swing.JLabel redLife;
     private javax.swing.JTextArea spellStack;
-    private javax.swing.JLabel whiteLabel;
     private javax.swing.JLabel whiteLife;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
-}
+    }
+

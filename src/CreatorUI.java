@@ -21,6 +21,11 @@ public class CreatorUI extends javax.swing.JFrame {
         initComponents();
     }
 
+    public CreatorUI(CardCollection lib) {
+        initComponents();
+        targetLibrary = lib;
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -32,7 +37,6 @@ public class CreatorUI extends javax.swing.JFrame {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         creator = new CardCreator();
-        targetLibrary = new CardCollection();
         cardError = new javax.swing.JDialog();
         jLabel17 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -87,10 +91,10 @@ public class CreatorUI extends javax.swing.JFrame {
 
         cardError.setTitle("Card Already Exists");
 
-        jLabel17.setFont(new java.awt.Font("Charlemagne Std", 0, 13)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Charlemagne Std", 0, 13));
         jLabel17.setText("A card of that name already exists!");
 
-        jButton1.setFont(new java.awt.Font("Charlemagne Std", 0, 13)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Charlemagne Std", 0, 13));
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +126,7 @@ public class CreatorUI extends javax.swing.JFrame {
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Card Creation Portal");
         setBackground(new java.awt.Color(153, 51, 0));
 
@@ -283,7 +287,7 @@ public class CreatorUI extends javax.swing.JFrame {
                 .add(basicInfoLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
                     .add(cardType, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel5))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
         basicInfoLayout.setVerticalGroup(
             basicInfoLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -360,7 +364,7 @@ public class CreatorUI extends javax.swing.JFrame {
                             .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(triggerSelection, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel6))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         abilityCraftLayout.setVerticalGroup(
             abilityCraftLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -517,7 +521,7 @@ public class CreatorUI extends javax.swing.JFrame {
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jLabel10)
                             .add(redPO, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(new java.awt.Component[] {blueCost, bluePO, greenCost, greenPO, neutralCost, redCost, redPO, whiteCost, whitePO}, org.jdesktop.layout.GroupLayout.HORIZONTAL);
@@ -675,12 +679,22 @@ public class CreatorUI extends javax.swing.JFrame {
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
         // TODO add your handling code here:
+        inputCardInfo();
         Card c = creator.makeCard();
-        //if (targetLibrary.hasCard(c.getName()))
-        //{
+        if (targetLibrary == null)
+            targetLibrary = new CardCollection();
+        if (targetLibrary.hasCard(c.getName()))
+        {
             nameField.setText("");
             cardError.setVisible(true);
-        //}
+        }
+        else
+        {
+            targetLibrary.addCard(c);
+            dispose();
+        }
+        System.out.print(targetLibrary);
+
     }//GEN-LAST:event_confirmActionPerformed
 
     private void cardValFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardValFieldActionPerformed
@@ -877,14 +891,9 @@ public class CreatorUI extends javax.swing.JFrame {
         });
     }
 
-    public void run(CardCollection c)
+    public void run()
     {
-        targetLibrary = c;
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CreatorUI().setVisible(true);
-            }
-        });
+        setVisible(true);
     }
 
     private int convertedCost() {
@@ -940,14 +949,14 @@ public class CreatorUI extends javax.swing.JFrame {
 
     private void updatePower() {
         int n = Math.min((convertedCost()*numCostColors()/
-                hpSlide.getValue())*500,convertedCost()+numCostColors()*100);
+                (hpSlide.getValue()+100))*500,convertedCost()+numCostColors()*100);
         powerSlide.setMaximum(n);
         powerSlide.setMinimum(100);
     }
 
     private void updateHP() {
         int n = Math.min(convertedCost()*(numCostColors()+1)/
-                powerSlide.getValue()*500, convertedCost()+numCostColors()*100);
+                (powerSlide.getValue()+100)*500, convertedCost()+numCostColors()*100);
         hpSlide.setMaximum(n);
         hpSlide.setMinimum(100);
     }
@@ -1130,7 +1139,6 @@ public class CreatorUI extends javax.swing.JFrame {
     private javax.swing.JSlider powerSlide;
     private javax.swing.JSpinner redCost;
     private javax.swing.JSpinner redPO;
-    private CardCollection targetLibrary;
     private javax.swing.JComboBox triggerSelection;
     private javax.swing.JSpinner whiteCost;
     private javax.swing.JSpinner whitePO;

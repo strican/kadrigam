@@ -142,6 +142,8 @@ public class EditorUI extends javax.swing.JFrame {
 
     private void createCardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCardButtonActionPerformed
         // TODO add your handling code here:
+        CreatorUI creator = new CreatorUI(user.getLibrary());
+        creator.run();
     }//GEN-LAST:event_createCardButtonActionPerformed
 
     private void eidtDeckButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eidtDeckButtonActionPerformed
