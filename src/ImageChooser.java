@@ -64,19 +64,21 @@ public class ImageChooser extends javax.swing.JFrame {
 
     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
         // TODO add your handling code here:
-        c.setImage(jFileChooser1.getSelectedFile());
-        this.dispose();
+        if (jFileChooser1.getSelectedFile() != null) {
+            c.setImage(jFileChooser1.getSelectedFile());
+            ui.showFileName(jFileChooser1.getSelectedFile().getName());
+            this.dispose();
+        }
     }//GEN-LAST:event_jFileChooser1ActionPerformed
 
 
-    public void run(CardCreator c) {
+    public void run(CardCreator c, CreatorUI ui) {
         this.c = c;
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ImageChooser().setVisible(true);
-            }
-        });
+        this.ui = ui;
+        setVisible(true);
     }
+
+    private CreatorUI ui;
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -854,7 +854,7 @@ public class CreatorUI extends javax.swing.JFrame {
     private void chooseFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseFileActionPerformed
         // TODO add your handling code here:
         ImageChooser img = new ImageChooser();
-        img.run(creator);
+        img.run(creator,this);
     }//GEN-LAST:event_chooseFileActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -896,6 +896,11 @@ public class CreatorUI extends javax.swing.JFrame {
     public void run()
     {
         setVisible(true);
+    }
+
+    public void showFileName(String s)
+    {
+        imagePathField.setText(s);
     }
 
     private int convertedCost() {

@@ -235,7 +235,7 @@
                       <Component id="currPow" alignment="0" max="32767" attributes="1"/>
                       <Component id="currHP" alignment="0" min="-2" pref="66" max="-2" attributes="1"/>
                   </Group>
-                  <EmptySpace pref="197" max="32767" attributes="0"/>
+                  <EmptySpace pref="278" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -364,7 +364,7 @@
                       <Component id="cardType" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="2" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="246" max="32767" attributes="0"/>
+                  <EmptySpace pref="259" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -873,7 +873,7 @@
                   <Component id="chooseFile" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="imagePathField" min="-2" pref="134" max="-2" attributes="0"/>
-                  <EmptySpace pref="71" max="32767" attributes="0"/>
+                  <EmptySpace pref="73" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

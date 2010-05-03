@@ -107,10 +107,13 @@ public class CardPanel extends javax.swing.JPanel {
     private String getImagePath()
     {
         String dir = System.getProperty("user.dir");
-        if (c.getImage() != null)
-            return c.getImage().getPath();
-        else
-            return dir+"/src/swirl.jpg";
+        if (c != null) {
+            //System.out.println("Card is not null");
+            if (c.getImage() != null)
+                return c.getImage().getPath();
+        }
+        return dir+"/src/swirl.jpg";
+
     }
 
     @Override
@@ -136,7 +139,7 @@ public class CardPanel extends javax.swing.JPanel {
         BufferedImage bufferedImage = new BufferedImage(100,
                 100, BufferedImage.TYPE_INT_RGB);
         Graphics2D g2d = bufferedImage.createGraphics();
-        g2d.drawImage(image, 0, 0, c);
+        g2d.drawImage(image, 0, 0, 225,220,c);
         return(bufferedImage);
     }
 /** Take an Image associated with a file, and wait until it is * done loading (just a simple application of MediaTracker). * If you are loading multiple images, don't use this * consecutive times; instead, use the version that takes

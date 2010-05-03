@@ -121,11 +121,11 @@ public class CardCreator {
             Ability a = null;
             if (trig != null)
                 a = new Ability(trig,e);
-            c = new Creature(cardName,power,hp,a,cost,po);
+            c = new Creature(cardName,power,hp,a,cost,po,image);
         }
         else
         {
-            c = new Spell(cardName,e,cost);
+            c = new Spell(cardName,e,cost,image);
         }
         c.setCV(cardValue());
         return c;
@@ -145,13 +145,13 @@ public class CardCreator {
                 //System.out.println("Has a trigger");
                 ei = effectIndex();
                 if (trig == Trigger.PAY)
-                    cardVal += (convertedCost/500) / ei;
+                    cardVal += (convertedCost/500) / (ei+1);
                 if (trig == Trigger.DISCARD)
-                    cardVal += 4 /ei;
+                    cardVal += 4 /(ei+1);
                 if (trig == Trigger.NOATTACK)
-                    cardVal += 6 /ei;
+                    cardVal += 6 /(ei+1);
                 if (trig == Trigger.SACRIFICE)
-                    cardVal += 2/ei;
+                    cardVal += 2/(ei+1);
                 cardVal += ei;
             }
             cardVal += (convertedPO/((numPOColors+1)*200));
@@ -187,6 +187,11 @@ public class CardCreator {
                 ei += DESTROYBASE;
                 ei += mag * 8;
             }
+      if (eff == EffectType.DEALDAMAGE)
+      {
+          ei += DAMAGEBASE;
+          ei += mag/50;
+      }
       if (eff == EffectType.HEAL)
             {
                 ei += HEALBASE;
