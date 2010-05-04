@@ -102,6 +102,18 @@ public class ColorPoints implements PointList, Serializable
    System.out.println("Not enough points");
   }
  }
+
+ public void payAsLife(PointVal p)
+ {
+    p.neg();
+    add(p);
+ }
+
+ public void payAsLife(PointList p)
+ {
+   for (Color c : Color.values())
+    payAsLife(new PointVal(c, p.get(c)));
+ }
   
  // Subtracts a legal cost from the player's point totals for all colors
  public void pay(PointList p)

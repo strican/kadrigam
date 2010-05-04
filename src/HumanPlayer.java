@@ -103,7 +103,8 @@ public class HumanPlayer implements Player
   
   public void takeDamage(PointList dmg)
   {
-    life.pay(dmg);
+    //life.pay(dmg);
+      ((ColorPoints)life).payAsLife(dmg);
   }
   
   public void destroyCreature(Creature c)
