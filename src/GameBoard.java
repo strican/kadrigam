@@ -560,33 +560,7 @@ public class GameBoard extends javax.swing.JFrame {
         card5 = new MiniPanel();
         card6 = new MiniPanel();
         card7 = new MiniPanel();
-        pDetails = new javax.swing.JPanel();
-        pHealth = new javax.swing.JPanel();
-        neutLife = new javax.swing.JLabel();
-        life = new javax.swing.JLabel();
-        redLife = new javax.swing.JLabel();
-        blueLife = new javax.swing.JLabel();
-        greenLife = new javax.swing.JLabel();
-        blackLife = new javax.swing.JLabel();
-        whiteLife = new javax.swing.JLabel();
-        pNameLabel = new javax.swing.JLabel();
-        phasePanel = new javax.swing.JPanel();
-        phaseLabel = new javax.swing.JLabel();
-        phaseButton = new javax.swing.JButton();
-        damagePanel = new javax.swing.JPanel();
-        damageLabel = new javax.swing.JLabel();
-        damageButton = new javax.swing.JButton();
-        damageSlider = new javax.swing.JSlider();
-        oppDetails = new javax.swing.JPanel();
-        oppHealth = new javax.swing.JPanel();
-        neutLife1 = new javax.swing.JLabel();
-        life1 = new javax.swing.JLabel();
-        redLife1 = new javax.swing.JLabel();
-        blueLife1 = new javax.swing.JLabel();
-        greenLife1 = new javax.swing.JLabel();
-        blackLife1 = new javax.swing.JLabel();
-        whiteLife1 = new javax.swing.JLabel();
-        oppNameLabel = new javax.swing.JLabel();
+        moreHand = new javax.swing.JButton();
         allAllyPanel = new javax.swing.JPanel();
         oppAllyPanel = new javax.swing.JPanel();
         oppAlly1 = new MiniPanel();
@@ -598,26 +572,50 @@ public class GameBoard extends javax.swing.JFrame {
         ally1 = new MiniPanel();
         ally2 = new MiniPanel();
         ally3 = new MiniPanel();
-        ally4 = new MiniPanel();
         ally5 = new MiniPanel();
+        ally4 = new MiniPanel();
         pilePanel = new javax.swing.JPanel();
         gravePanel = new javax.swing.JPanel();
         grave = new MiniPanel();
         deck = new CardBack();
         oppPilePanel = new javax.swing.JPanel();
-        oppDeck = new CardBack();
         oppGravePanel = new javax.swing.JPanel();
         oppGrave = new MiniPanel();
+        oppDeck = new CardBack();
         oppHandPanel = new javax.swing.JPanel();
         oppHandLabel = new javax.swing.JLabel();
         oppHand = new CardBack();
         spellPanel = new javax.swing.JPanel();
         oppSpellStack = new MiniPanel();
         spellStack = new MiniPanel();
-        moreHand = new javax.swing.JButton();
+        phasePanel = new javax.swing.JPanel();
+        phaseLabel = new javax.swing.JLabel();
+        phaseButton = new javax.swing.JButton();
+        damagePanel = new javax.swing.JPanel();
+        damageLabel = new javax.swing.JLabel();
+        damageButton = new javax.swing.JButton();
+        damageSlider = new javax.swing.JSlider();
         damageLeftPanel = new javax.swing.JPanel();
         damageLeftLabel = new javax.swing.JLabel();
         leftLabel = new javax.swing.JLabel();
+        pHealth = new javax.swing.JPanel();
+        neutLife = new javax.swing.JLabel();
+        life = new javax.swing.JLabel();
+        redLife = new javax.swing.JLabel();
+        blueLife = new javax.swing.JLabel();
+        greenLife = new javax.swing.JLabel();
+        blackLife = new javax.swing.JLabel();
+        whiteLife = new javax.swing.JLabel();
+        pNameLabel = new javax.swing.JLabel();
+        oppHealth = new javax.swing.JPanel();
+        neutLife1 = new javax.swing.JLabel();
+        life1 = new javax.swing.JLabel();
+        redLife1 = new javax.swing.JLabel();
+        blueLife1 = new javax.swing.JLabel();
+        greenLife1 = new javax.swing.JLabel();
+        blackLife1 = new javax.swing.JLabel();
+        whiteLife1 = new javax.swing.JLabel();
+        oppNameLabel = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -635,6 +633,7 @@ public class GameBoard extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jEditorPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -647,6 +646,8 @@ public class GameBoard extends javax.swing.JFrame {
             }
         });
 
+        handPanel.setBackground(new java.awt.Color(204, 204, 204));
+        handPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hand", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Charlemagne Std", 0, 14))); // NOI18N
         handPanel.setMaximumSize(new java.awt.Dimension(1022, 207));
 
         card1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -691,317 +692,56 @@ public class GameBoard extends javax.swing.JFrame {
             }
         });
 
+        moreHand.setText(">>More>>");
+        moreHand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moreHandActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout handPanelLayout = new javax.swing.GroupLayout(handPanel);
         handPanel.setLayout(handPanelLayout);
         handPanelLayout.setHorizontalGroup(
             handPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(handPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(card2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(card2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(card3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(card3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(card4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(card4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(card5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(card5, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(card6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(card6, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(card7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(card7, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, handPanelLayout.createSequentialGroup()
+                .addContainerGap(1107, Short.MAX_VALUE)
+                .addComponent(moreHand, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         handPanelLayout.setVerticalGroup(
             handPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(handPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, handPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(handPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(card2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(card3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(card4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(card5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(card6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(card7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-
-        neutLife.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        neutLife.setText("" + p.getLife().get(Color.NEUTRAL));
-
-        life.setText("Health");
-        life.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lifeMouseClicked(evt);
-            }
-        });
-        life.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                lifePropertyChange(evt);
-            }
-        });
-
-        redLife.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        redLife.setText("" + p.getLife().get(Color.RED));
-
-        blueLife.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        blueLife.setText("" + p.getLife().get(Color.BLUE));
-
-        greenLife.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        greenLife.setText("" + p.getLife().get(Color.GREEN));
-
-        blackLife.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        blackLife.setText("" + p.getLife().get(Color.BLACK));
-
-        whiteLife.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        whiteLife.setText("" + p.getLife().get(Color.WHITE));
-
-        javax.swing.GroupLayout pHealthLayout = new javax.swing.GroupLayout(pHealth);
-        pHealth.setLayout(pHealthLayout);
-        pHealthLayout.setHorizontalGroup(
-            pHealthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pHealthLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(life, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(handPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(card6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                    .addComponent(card5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                    .addComponent(card4, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                    .addComponent(card3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                    .addComponent(card2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                    .addComponent(card1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                    .addComponent(card7, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(neutLife)
-                .addGap(6, 6, 6)
-                .addComponent(redLife, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(greenLife, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(blueLife, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(whiteLife, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(blackLife, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        pHealthLayout.setVerticalGroup(
-            pHealthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pHealthLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pHealthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(life, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(neutLife, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(redLife, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(greenLife, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(blueLife, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(whiteLife, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(blackLife, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addComponent(moreHand))
         );
 
-        pHealthLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {blackLife, blueLife, greenLife, life, neutLife, redLife, whiteLife});
-
-        neutLife.setForeground(java.awt.Color.GRAY);
-        redLife.setForeground(java.awt.Color.RED);
-        blueLife.setForeground(java.awt.Color.BLUE);
-        greenLife.setForeground(java.awt.Color.GREEN);
-        blackLife.setForeground(java.awt.Color.BLACK);
-        whiteLife.setForeground(java.awt.Color.WHITE);
-
-        pNameLabel.setText(p.getName());
-
-        javax.swing.GroupLayout pDetailsLayout = new javax.swing.GroupLayout(pDetails);
-        pDetails.setLayout(pDetailsLayout);
-        pDetailsLayout.setHorizontalGroup(
-            pDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pDetailsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pDetailsLayout.createSequentialGroup()
-                        .addComponent(pHealth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(pDetailsLayout.createSequentialGroup()
-                        .addComponent(pNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(434, 434, 434))))
-        );
-        pDetailsLayout.setVerticalGroup(
-            pDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pDetailsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pNameLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pHealth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        phaseLabel.setText("Phase");
-
-        phaseButton.setText("Play 1");
-        phaseButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phaseButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout phasePanelLayout = new javax.swing.GroupLayout(phasePanel);
-        phasePanel.setLayout(phasePanelLayout);
-        phasePanelLayout.setHorizontalGroup(
-            phasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(phasePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(phaseLabel)
-                .addGap(27, 27, 27)
-                .addComponent(phaseButton)
-                .addContainerGap())
-        );
-        phasePanelLayout.setVerticalGroup(
-            phasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(phasePanelLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(phasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(phaseLabel)
-                    .addComponent(phaseButton))
-                .addContainerGap())
-        );
-
-        damageLabel.setText("" + damageSlider.getValue());
-
-        damageButton.setText("Deal Damage");
-        damageButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                damageButtonActionPerformed(evt);
-            }
-        });
-
-        damageSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                damageSliderStateChanged(evt);
-            }
-        });
-        damageSlider.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                damageSliderPropertyChange(evt);
-            }
-        });
-
-        javax.swing.GroupLayout damagePanelLayout = new javax.swing.GroupLayout(damagePanel);
-        damagePanel.setLayout(damagePanelLayout);
-        damagePanelLayout.setHorizontalGroup(
-            damagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(damagePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(damagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(damageSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(damagePanelLayout.createSequentialGroup()
-                        .addComponent(damageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(damageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-        damagePanelLayout.setVerticalGroup(
-            damagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(damagePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(damageSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(damagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(damageButton)
-                    .addComponent(damageLabel))
-                .addContainerGap())
-        );
-
-        neutLife1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        neutLife1.setText("" + opp.getLife().get(Color.NEUTRAL));
-
-        life1.setText("Health");
-        life1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                life1MouseClicked(evt);
-            }
-        });
-        life1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                life1PropertyChange(evt);
-            }
-        });
-
-        redLife1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        redLife1.setText("" + opp.getLife().get(Color.RED));
-
-        blueLife1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        blueLife1.setText("" + opp.getLife().get(Color.BLUE));
-
-        greenLife1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        greenLife1.setText("" + opp.getLife().get(Color.GREEN));
-
-        blackLife1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        blackLife1.setText("" + opp.getLife().get(Color.BLACK));
-
-        whiteLife1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        whiteLife1.setText("" + opp.getLife().get(Color.WHITE));
-
-        javax.swing.GroupLayout oppHealthLayout = new javax.swing.GroupLayout(oppHealth);
-        oppHealth.setLayout(oppHealthLayout);
-        oppHealthLayout.setHorizontalGroup(
-            oppHealthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(oppHealthLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(life1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(neutLife1)
-                .addGap(6, 6, 6)
-                .addComponent(redLife1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(greenLife1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(blueLife1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(whiteLife1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(blackLife1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        oppHealthLayout.setVerticalGroup(
-            oppHealthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(oppHealthLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(oppHealthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(life1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(neutLife1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(redLife1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(greenLife1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(blueLife1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(whiteLife1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(blackLife1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        oppHealthLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {blackLife1, blueLife1, greenLife1, life1, neutLife1, redLife1, whiteLife1});
-
-        neutLife1.setForeground(java.awt.Color.GRAY);
-        redLife1.setForeground(java.awt.Color.RED);
-        blueLife1.setForeground(java.awt.Color.BLUE);
-        greenLife1.setForeground(java.awt.Color.GREEN);
-        blackLife1.setForeground(java.awt.Color.BLACK);
-        whiteLife1.setForeground(java.awt.Color.WHITE);
-
-        oppNameLabel.setText(opp.getName());
-
-        javax.swing.GroupLayout oppDetailsLayout = new javax.swing.GroupLayout(oppDetails);
-        oppDetails.setLayout(oppDetailsLayout);
-        oppDetailsLayout.setHorizontalGroup(
-            oppDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(oppDetailsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(oppDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(oppNameLabel)
-                    .addComponent(oppHealth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-        oppDetailsLayout.setVerticalGroup(
-            oppDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(oppDetailsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(oppNameLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(oppHealth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
+        allAllyPanel.setBackground(new java.awt.Color(241, 223, 167));
+        allAllyPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Creatures", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Charlemagne Std", 0, 14))); // NOI18N
         allAllyPanel.setMaximumSize(new java.awt.Dimension(860, 403));
 
         oppAllyPanel.setMaximumSize(new java.awt.Dimension(840, 187));
@@ -1042,17 +782,15 @@ public class GameBoard extends javax.swing.JFrame {
         oppAllyPanelLayout.setHorizontalGroup(
             oppAllyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(oppAllyPanelLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(oppAlly1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(oppAlly2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(oppAlly3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(oppAlly4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(oppAlly5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(oppAlly1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(oppAlly2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(oppAlly3, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(oppAlly4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(oppAlly5, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         oppAllyPanelLayout.setVerticalGroup(
             oppAllyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1087,15 +825,15 @@ public class GameBoard extends javax.swing.JFrame {
             }
         });
 
-        ally4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ally4MouseClicked(evt);
-            }
-        });
-
         ally5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ally5MouseClicked(evt);
+            }
+        });
+
+        ally4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ally4MouseClicked(evt);
             }
         });
 
@@ -1104,17 +842,15 @@ public class GameBoard extends javax.swing.JFrame {
         allyPanelLayout.setHorizontalGroup(
             allyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(allyPanelLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(ally1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(ally2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(ally3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(ally4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(ally5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(ally1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ally2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ally3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ally4, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ally5, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         allyPanelLayout.setVerticalGroup(
             allyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1132,21 +868,30 @@ public class GameBoard extends javax.swing.JFrame {
         allAllyPanel.setLayout(allAllyPanelLayout);
         allAllyPanelLayout.setHorizontalGroup(
             allAllyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, allAllyPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(allyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 905, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
             .addGroup(allAllyPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(allAllyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(allyPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(oppAllyPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(oppAllyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 902, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         allAllyPanelLayout.setVerticalGroup(
             allAllyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(allAllyPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(oppAllyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(allyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addComponent(oppAllyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(allyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        pilePanel.setBackground(new java.awt.Color(204, 204, 204));
+        pilePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Graveyard", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Charlemagne Std", 0, 12))); // NOI18N
+
+        gravePanel.setBackground(new java.awt.Color(204, 204, 204));
+        gravePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Deck", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Charlemagne Std", 0, 12))); // NOI18N
 
         javax.swing.GroupLayout gravePanelLayout = new javax.swing.GroupLayout(gravePanel);
         gravePanel.setLayout(gravePanelLayout);
@@ -1154,15 +899,14 @@ public class GameBoard extends javax.swing.JFrame {
             gravePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gravePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(grave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(grave, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         gravePanelLayout.setVerticalGroup(
             gravePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gravePanelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(grave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout deckLayout = new javax.swing.GroupLayout(deck);
@@ -1182,21 +926,25 @@ public class GameBoard extends javax.swing.JFrame {
             pilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pilePanelLayout.createSequentialGroup()
                 .addGroup(pilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(gravePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pilePanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(deck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addComponent(deck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(gravePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
+                .addContainerGap())
         );
         pilePanelLayout.setVerticalGroup(
             pilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pilePanelLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addContainerGap()
                 .addComponent(deck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(gravePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(35, Short.MAX_VALUE))
         );
+
+        oppPilePanel.setBackground(new java.awt.Color(51, 51, 51));
+
+        oppGravePanel.setBackground(new java.awt.Color(51, 51, 51));
 
         javax.swing.GroupLayout oppDeckLayout = new javax.swing.GroupLayout(oppDeck);
         oppDeck.setLayout(oppDeckLayout);
@@ -1215,15 +963,18 @@ public class GameBoard extends javax.swing.JFrame {
             oppGravePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(oppGravePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(oppGrave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(oppGravePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(oppGrave, javax.swing.GroupLayout.PREFERRED_SIZE, 176, Short.MAX_VALUE)
+                    .addComponent(oppDeck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         oppGravePanelLayout.setVerticalGroup(
             oppGravePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(oppGravePanelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(oppGrave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(oppDeck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout oppPilePanelLayout = new javax.swing.GroupLayout(oppPilePanel);
@@ -1231,22 +982,17 @@ public class GameBoard extends javax.swing.JFrame {
         oppPilePanelLayout.setHorizontalGroup(
             oppPilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(oppPilePanelLayout.createSequentialGroup()
-                .addGroup(oppPilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(oppPilePanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(oppDeck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(oppGravePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(oppGravePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         oppPilePanelLayout.setVerticalGroup(
             oppPilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(oppPilePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(oppGravePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(oppDeck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(oppGravePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        oppHandPanel.setBackground(new java.awt.Color(51, 51, 51));
 
         oppHandLabel.setText("x");
 
@@ -1270,7 +1016,7 @@ public class GameBoard extends javax.swing.JFrame {
                 .addComponent(oppHand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(oppHandLabel)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap())
         );
         oppHandPanelLayout.setVerticalGroup(
             oppHandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1279,8 +1025,11 @@ public class GameBoard extends javax.swing.JFrame {
                 .addGroup(oppHandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(oppHandLabel)
                     .addComponent(oppHand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(20, Short.MAX_VALUE))
         );
+
+        spellPanel.setBackground(new java.awt.Color(204, 204, 204));
+        spellPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Spell Stacks", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Charlemagne Std", 0, 12))); // NOI18N
 
         javax.swing.GroupLayout spellPanelLayout = new javax.swing.GroupLayout(spellPanel);
         spellPanel.setLayout(spellPanelLayout);
@@ -1300,15 +1049,64 @@ public class GameBoard extends javax.swing.JFrame {
                 .addComponent(oppSpellStack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(spellStack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        phasePanel.setBackground(allAllyPanel.getBackground());
+        phasePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Phase Controller", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Charlemagne Std", 0, 12))); // NOI18N
+
+        phaseLabel.setText("jLabel1");
+
+        phaseButton.setText("jButton1");
+
+        javax.swing.GroupLayout phasePanelLayout = new javax.swing.GroupLayout(phasePanel);
+        phasePanel.setLayout(phasePanelLayout);
+        phasePanelLayout.setHorizontalGroup(
+            phasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(phasePanelLayout.createSequentialGroup()
+                .addGroup(phasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(phasePanelLayout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(phaseLabel))
+                    .addGroup(phasePanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(phaseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+        phasePanelLayout.setVerticalGroup(
+            phasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(phasePanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(phaseLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(phaseButton)
                 .addContainerGap())
         );
 
-        moreHand.setText("More");
-        moreHand.addActionListener(new java.awt.event.ActionListener() {
+        damagePanel.setBackground(new java.awt.Color(204, 204, 204));
+        damagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Damage Deal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Charlemagne Std", 0, 12))); // NOI18N
+
+        damageLabel.setText("" + damageSlider.getValue());
+
+        damageButton.setText("Deal Damage");
+        damageButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                moreHandActionPerformed(evt);
+                damageButtonActionPerformed(evt);
             }
         });
+
+        damageSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                damageSliderStateChanged(evt);
+            }
+        });
+        damageSlider.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                damageSliderPropertyChange(evt);
+            }
+        });
+
+        damageLeftPanel.setBackground(new java.awt.Color(255, 255, 153));
 
         damageLeftLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         damageLeftLabel.setText("Damage to be Dealt");
@@ -1321,108 +1119,310 @@ public class GameBoard extends javax.swing.JFrame {
         damageLeftPanelLayout.setHorizontalGroup(
             damageLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(damageLeftPanelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(damageLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(leftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(damageLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(damageLeftPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(leftLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))
+                    .addGroup(damageLeftPanelLayout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(damageLeftLabel)))
                 .addContainerGap())
         );
         damageLeftPanelLayout.setVerticalGroup(
             damageLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(damageLeftPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(leftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(damageLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
+        javax.swing.GroupLayout damagePanelLayout = new javax.swing.GroupLayout(damagePanel);
+        damagePanel.setLayout(damagePanelLayout);
+        damagePanelLayout.setHorizontalGroup(
+            damagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(damagePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(damagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(damagePanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(damageSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(damagePanelLayout.createSequentialGroup()
+                        .addGroup(damagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(damagePanelLayout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(damageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(damageLabel))
+                            .addComponent(damageLeftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(31, Short.MAX_VALUE))))
+        );
+        damagePanelLayout.setVerticalGroup(
+            damagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(damagePanelLayout.createSequentialGroup()
+                .addComponent(damageLeftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(damageSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(damagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(damageButton)
+                    .addComponent(damageLabel))
+                .addGap(34, 34, 34))
+        );
+
+        pHealth.setBackground(allAllyPanel.getBackground());
+        pHealth.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Player Life", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Charlemagne Std", 0, 12))); // NOI18N
+
+        neutLife.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        neutLife.setText("" + p.getLife().get(Color.NEUTRAL));
+
+        life.setText("Health");
+        life.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lifeMouseClicked(evt);
+            }
+        });
+        life.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                lifePropertyChange(evt);
+            }
+        });
+
+        redLife.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        redLife.setText("" + p.getLife().get(Color.RED));
+
+        blueLife.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        blueLife.setText("" + p.getLife().get(Color.BLUE));
+
+        greenLife.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        greenLife.setText("" + p.getLife().get(Color.GREEN));
+
+        blackLife.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        blackLife.setText("" + p.getLife().get(Color.BLACK));
+
+        whiteLife.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        whiteLife.setText("" + p.getLife().get(Color.WHITE));
+
+        pNameLabel.setText(p.getName());
+
+        javax.swing.GroupLayout pHealthLayout = new javax.swing.GroupLayout(pHealth);
+        pHealth.setLayout(pHealthLayout);
+        pHealthLayout.setHorizontalGroup(
+            pHealthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pHealthLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(life, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(neutLife)
+                .addGap(6, 6, 6)
+                .addComponent(redLife, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(greenLife, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(blueLife, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(whiteLife, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(blackLife, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(pHealthLayout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(pNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                .addGap(406, 406, 406))
+        );
+        pHealthLayout.setVerticalGroup(
+            pHealthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pHealthLayout.createSequentialGroup()
+                .addComponent(pNameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pHealthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pHealthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(neutLife)
+                        .addComponent(life, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(redLife, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(greenLife, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(blueLife, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(whiteLife, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(blackLife, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        pHealthLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {blackLife, blueLife, greenLife, life, neutLife, redLife, whiteLife});
+
+        neutLife.setForeground(java.awt.Color.GRAY);
+        redLife.setForeground(java.awt.Color.RED);
+        blueLife.setForeground(java.awt.Color.BLUE);
+        greenLife.setForeground(java.awt.Color.GREEN);
+        blackLife.setForeground(java.awt.Color.BLACK);
+        whiteLife.setForeground(java.awt.Color.WHITE);
+
+        oppHealth.setBackground(new java.awt.Color(51, 51, 51));
+        oppHealth.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Opponent Life", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Charlemagne Std", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+
+        neutLife1.setForeground(new java.awt.Color(255, 255, 255));
+        neutLife1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        neutLife1.setText("" + opp.getLife().get(Color.NEUTRAL));
+
+        life1.setForeground(new java.awt.Color(255, 255, 255));
+        life1.setText("Health");
+        life1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                life1MouseClicked(evt);
+            }
+        });
+        life1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                life1PropertyChange(evt);
+            }
+        });
+
+        redLife1.setForeground(new java.awt.Color(255, 255, 255));
+        redLife1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        redLife1.setText("" + opp.getLife().get(Color.RED));
+
+        blueLife1.setForeground(new java.awt.Color(255, 255, 255));
+        blueLife1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        blueLife1.setText("" + opp.getLife().get(Color.BLUE));
+
+        greenLife1.setForeground(new java.awt.Color(255, 255, 255));
+        greenLife1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        greenLife1.setText("" + opp.getLife().get(Color.GREEN));
+
+        blackLife1.setForeground(new java.awt.Color(255, 255, 255));
+        blackLife1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        blackLife1.setText("" + opp.getLife().get(Color.BLACK));
+
+        whiteLife1.setForeground(new java.awt.Color(255, 255, 255));
+        whiteLife1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        whiteLife1.setText("" + opp.getLife().get(Color.WHITE));
+
+        oppNameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        oppNameLabel.setText(opp.getName());
+
+        javax.swing.GroupLayout oppHealthLayout = new javax.swing.GroupLayout(oppHealth);
+        oppHealth.setLayout(oppHealthLayout);
+        oppHealthLayout.setHorizontalGroup(
+            oppHealthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(oppHealthLayout.createSequentialGroup()
+                .addGroup(oppHealthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(oppHealthLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(life1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(neutLife1)
+                        .addGap(6, 6, 6)
+                        .addComponent(redLife1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(greenLife1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(blueLife1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(whiteLife1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(blackLife1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(oppHealthLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(oppNameLabel)))
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+        oppHealthLayout.setVerticalGroup(
+            oppHealthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(oppHealthLayout.createSequentialGroup()
+                .addComponent(oppNameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(oppHealthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, oppHealthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(neutLife1)
+                        .addComponent(life1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(redLife1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(greenLife1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(blueLife1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(whiteLife1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(blackLife1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        oppHealthLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {blackLife1, blueLife1, greenLife1, life1, neutLife1, redLife1, whiteLife1});
+
+        neutLife1.setForeground(java.awt.Color.GRAY);
+        redLife1.setForeground(java.awt.Color.RED);
+        blueLife1.setForeground(java.awt.Color.BLUE);
+        greenLife1.setForeground(java.awt.Color.GREEN);
+        blackLife1.setForeground(java.awt.Color.BLACK);
+        whiteLife1.setForeground(java.awt.Color.WHITE);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(pilePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(oppPilePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(oppPilePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pilePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(oppHandPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pHealth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(oppHealth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(damagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(phasePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(allAllyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(handPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(moreHand))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(oppHandPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(oppDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(allAllyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addGap(6, 6, 6)
-                                            .addComponent(damagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addGap(57, 57, 57)
-                                            .addComponent(damageLeftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(spellPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap())
+                        .addComponent(spellPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(pDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(phasePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(290, 290, 290))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(handPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(oppHandPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 233, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(63, 63, 63)
-                                .addComponent(oppDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(248, 248, 248)
-                                        .addComponent(damagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(damageLeftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(allAllyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addComponent(spellPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(handPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(moreHand)
-                                .addGap(24, 24, 24))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(oppPilePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pilePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(pDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(oppPilePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                        .addComponent(pilePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(phasePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(oppHealth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(pHealth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(oppHandPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(62, 62, 62)
+                                .addComponent(phasePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(allAllyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(spellPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(handPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(damagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(767, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1431,11 +1431,13 @@ public class GameBoard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -1453,75 +1455,6 @@ public class GameBoard extends javax.swing.JFrame {
         update();
 
     }//GEN-LAST:event_formMouseClicked
-
-    private void phaseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phaseButtonActionPerformed
-        Type t = p.getPhase();
-
-        if (t == null)
-            t = Type.WAIT;
-
-        switch (t) {
-            case DRAW:
-                Move draw = new DrawMove(p);
-                if (draw.isLegal(r)) {
-                    draw.execute();
-                } else if (isOver()) {
-                    winner();
-                }
-
-                if (p.getAllies().size() > 0)
-                    p.setPhase(Type.SACRIFICE);
-                else
-                    p.setPhase(Type.PLAY1);
-                break;
-            case SACRIFICE:
-                p.setPhase(Type.PLAY1);
-                break;
-            case PLAY1:
-                p.setPhase(Type.ATTACK);
-                break;
-            case ATTACK:
-                if (p.getDamage() > 0)
-                {
-                    p.setPhase(Type.WAIT);
-                    opp.setPhase(Type.DAMAGE);
-                }
-                else
-                    p.setPhase(Type.PLAY2);
-                break;
-            case DAMAGE:
-                dealDirect();
-                p.setPhase(Type.WAIT);
-                opp.setPhase(Type.PLAY2);
-                break;
-            case PLAY2:
-                if (p.getHand().size() >= LEGAL_HAND)
-                    p.setPhase(Type.DISCARD);
-                else
-                {
-                    p.setPhase(Type.WAIT);
-                    opp.setPhase(Type.DRAW);
-                }
-                break;
-            case DISCARD:
-                if (p.getHand().size() >= LEGAL_HAND) {
-                    break;
-                }
-
-                p.setPhase(Type.WAIT);
-                opp.setPhase(Type.DRAW);
-                break;
-            case WAIT:
-                break;
-            default:
-                p.setPhase(Type.SACRIFICE);
-                break;
-        }
-
-        updateButton();
-
-        update();
-    }//GEN-LAST:event_phaseButtonActionPerformed
 
     private void damageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_damageButtonActionPerformed
         damagePanel.setVisible(false);
@@ -1699,7 +1632,6 @@ public class GameBoard extends javax.swing.JFrame {
     private MiniPanel oppAlly5;
     private javax.swing.JPanel oppAllyPanel;
     private CardBack oppDeck;
-    private javax.swing.JPanel oppDetails;
     private MiniPanel oppGrave;
     private javax.swing.JPanel oppGravePanel;
     private CardBack oppHand;
@@ -1709,7 +1641,6 @@ public class GameBoard extends javax.swing.JFrame {
     private javax.swing.JLabel oppNameLabel;
     private javax.swing.JPanel oppPilePanel;
     private MiniPanel oppSpellStack;
-    private javax.swing.JPanel pDetails;
     private javax.swing.JPanel pHealth;
     private javax.swing.JLabel pNameLabel;
     private javax.swing.JButton phaseButton;

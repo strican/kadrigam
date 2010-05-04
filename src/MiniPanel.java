@@ -161,9 +161,9 @@ public class MiniPanel extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(138, 176));
 
         neutral.setBackground(new java.awt.Color(204, 204, 204));
-        neutral.setColumns(5);
+        neutral.setColumns(4);
         neutral.setEditable(false);
-        neutral.setFont(new java.awt.Font("Charlemagne Std", 0, 10));
+        neutral.setFont(new java.awt.Font("Charlemagne Std", 0, 8)); // NOI18N
         neutral.setText("jTextField1");
         neutral.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,33 +172,33 @@ public class MiniPanel extends javax.swing.JPanel {
         });
 
         red.setBackground(new java.awt.Color(204, 0, 0));
-        red.setColumns(5);
+        red.setColumns(4);
         red.setEditable(false);
-        red.setFont(new java.awt.Font("Charlemagne Std", 0, 10));
+        red.setFont(new java.awt.Font("Charlemagne Std", 0, 8)); // NOI18N
         red.setText("jTextField2");
 
         green.setBackground(new java.awt.Color(102, 153, 0));
-        green.setColumns(5);
+        green.setColumns(4);
         green.setEditable(false);
-        green.setFont(new java.awt.Font("Charlemagne Std", 0, 10));
+        green.setFont(new java.awt.Font("Charlemagne Std", 0, 8)); // NOI18N
         green.setText("jTextField3");
 
         blue.setBackground(new java.awt.Color(0, 0, 153));
-        blue.setColumns(5);
+        blue.setColumns(4);
         blue.setEditable(false);
-        blue.setFont(new java.awt.Font("Charlemagne Std", 0, 10));
+        blue.setFont(new java.awt.Font("Charlemagne Std", 0, 8)); // NOI18N
         blue.setForeground(new java.awt.Color(255, 255, 255));
         blue.setText("jTextField4");
 
-        white.setColumns(5);
+        white.setColumns(4);
         white.setEditable(false);
-        white.setFont(new java.awt.Font("Charlemagne Std", 0, 10));
+        white.setFont(new java.awt.Font("Charlemagne Std", 0, 8)); // NOI18N
         white.setText("jTextField5");
 
         black.setBackground(new java.awt.Color(0, 0, 0));
-        black.setColumns(5);
+        black.setColumns(4);
         black.setEditable(false);
-        black.setFont(new java.awt.Font("Charlemagne Std", 0, 10));
+        black.setFont(new java.awt.Font("Charlemagne Std", 0, 8)); // NOI18N
         black.setForeground(new java.awt.Color(255, 255, 255));
         black.setText("jTextField6");
 
@@ -207,6 +207,7 @@ public class MiniPanel extends javax.swing.JPanel {
 
         namePanel.setBackground(new java.awt.Color(255, 226, 139));
 
+        cardName.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
         cardName.setText("jLabel1");
 
         org.jdesktop.layout.GroupLayout namePanelLayout = new org.jdesktop.layout.GroupLayout(namePanel);
@@ -215,7 +216,7 @@ public class MiniPanel extends javax.swing.JPanel {
             namePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(namePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(cardName, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                .add(cardName, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
                 .addContainerGap())
         );
         namePanelLayout.setVerticalGroup(
@@ -230,7 +231,8 @@ public class MiniPanel extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(namePanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(cardInfo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 106, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(namePanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(neutral, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -242,15 +244,14 @@ public class MiniPanel extends javax.swing.JPanel {
                     .add(layout.createSequentialGroup()
                         .add(green, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(black, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(cardInfo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 106, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                        .add(black, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .add(namePanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(neutral, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(blue, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -262,7 +263,7 @@ public class MiniPanel extends javax.swing.JPanel {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(green, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(black, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 12, Short.MAX_VALUE)
                 .add(cardInfo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 45, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(13, 13, 13))
         );

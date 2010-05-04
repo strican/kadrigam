@@ -49,7 +49,8 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="namePanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="cardInfo" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
+                  <Component id="namePanel" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="neutral" min="-2" max="-2" attributes="0"/>
@@ -66,9 +67,8 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="black" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="cardInfo" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -76,7 +76,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <Component id="namePanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="neutral" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="blue" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -91,7 +91,7 @@
                   <Component id="green" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="black" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="12" max="32767" attributes="0"/>
               <Component id="cardInfo" min="-2" pref="45" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
           </Group>
@@ -104,10 +104,10 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="cc" red="cc" type="rgb"/>
         </Property>
-        <Property name="columns" type="int" value="5"/>
+        <Property name="columns" type="int" value="4"/>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Charlemagne Std" size="10" style="0"/>
+          <Font name="Charlemagne Std" size="8" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
@@ -120,10 +120,10 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="cc" type="rgb"/>
         </Property>
-        <Property name="columns" type="int" value="5"/>
+        <Property name="columns" type="int" value="4"/>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Charlemagne Std" size="10" style="0"/>
+          <Font name="Charlemagne Std" size="8" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jTextField2"/>
       </Properties>
@@ -133,10 +133,10 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="99" red="66" type="rgb"/>
         </Property>
-        <Property name="columns" type="int" value="5"/>
+        <Property name="columns" type="int" value="4"/>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Charlemagne Std" size="10" style="0"/>
+          <Font name="Charlemagne Std" size="8" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jTextField3"/>
       </Properties>
@@ -146,10 +146,10 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="0" red="0" type="rgb"/>
         </Property>
-        <Property name="columns" type="int" value="5"/>
+        <Property name="columns" type="int" value="4"/>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Charlemagne Std" size="10" style="0"/>
+          <Font name="Charlemagne Std" size="8" style="0"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -159,10 +159,10 @@
     </Component>
     <Component class="javax.swing.JTextField" name="white">
       <Properties>
-        <Property name="columns" type="int" value="5"/>
+        <Property name="columns" type="int" value="4"/>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Charlemagne Std" size="10" style="0"/>
+          <Font name="Charlemagne Std" size="8" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jTextField5"/>
       </Properties>
@@ -172,10 +172,10 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
-        <Property name="columns" type="int" value="5"/>
+        <Property name="columns" type="int" value="4"/>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Charlemagne Std" size="10" style="0"/>
+          <Font name="Charlemagne Std" size="8" style="0"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -206,7 +206,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="cardName" pref="88" max="32767" attributes="0"/>
+                  <Component id="cardName" pref="92" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -220,6 +220,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="cardName">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Lucida Grande" size="10" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="jLabel1"/>
           </Properties>
         </Component>
