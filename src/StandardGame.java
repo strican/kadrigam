@@ -26,6 +26,8 @@ public class StandardGame implements Game
                 g2.setVisible(true);
             }
         });
+
+        p1.setPhase(Type.DRAW);
         
         //g1.setVisible(true);
         //g2.setVisible(true);

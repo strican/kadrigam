@@ -42,10 +42,8 @@ public class GameBoard extends javax.swing.JFrame {
         boolean p1lost = true;
         boolean p2lost = true;
 
-        for (Color c : Color.values()) {
-            p1lost = p1lost && (p.getLife().get(c) <= 0);
-            p2lost = p2lost && (opp.getLife().get(c) <= 0);
-        }
+        p1lost = p1lost && (p.getLife().get(Color.NEUTRAL) <= 0);
+        p2lost = p2lost && (opp.getLife().get(Color.NEUTRAL) <= 0);
         p1lost = (p1lost || p.getDeck().isEmpty());
         p2lost = (p2lost || opp.getDeck().isEmpty());
 
@@ -59,10 +57,8 @@ public class GameBoard extends javax.swing.JFrame {
         boolean p2lost = true;
 
 
-        for (Color c : Color.values()) {
-            p1lost = p1lost && (p.getLife().get(c) == 0);
-            p2lost = p2lost && (opp.getLife().get(c) == 0);
-        }
+        p1lost = p1lost && (p.getLife().get(Color.NEUTRAL) == 0);
+        p2lost = p2lost && (opp.getLife().get(Color.NEUTRAL) == 0);
         p1lost = (p1lost || p.getDeck().isEmpty());
         p2lost = (p2lost || opp.getDeck().isEmpty());
 
@@ -328,6 +324,16 @@ public class GameBoard extends javax.swing.JFrame {
 
     public void update() {
 
+        if (isOver())
+        {
+            dialog.setVisible(true);
+            winnerName.setText(winner().getName());
+            dialog.setBounds(200, 100, 200, 100);
+            dispose();
+        }
+        else
+        {
+
         updateHealth();
         updateAllies();
         updateHand();
@@ -354,6 +360,7 @@ public class GameBoard extends javax.swing.JFrame {
 
         updateButton();
         updatePhase();
+        }
 
         
     }
@@ -551,6 +558,10 @@ public class GameBoard extends javax.swing.JFrame {
         jTree1 = new javax.swing.JTree();
         jScrollPane2 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
+        dialog = new javax.swing.JDialog();
+        winnerName = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        exit = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         handPanel = new javax.swing.JPanel();
         card1 = new MiniPanel();
@@ -631,6 +642,36 @@ public class GameBoard extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTree1);
 
         jScrollPane2.setViewportView(jEditorPane1);
+
+        winnerName.setText("PLAYER");
+
+        jLabel2.setText("WINS!");
+
+        exit.setText("Exit");
+
+        javax.swing.GroupLayout dialogLayout = new javax.swing.GroupLayout(dialog.getContentPane());
+        dialog.getContentPane().setLayout(dialogLayout);
+        dialogLayout.setHorizontalGroup(
+            dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogLayout.createSequentialGroup()
+                .addGap(169, 169, 169)
+                .addGroup(dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel2)
+                    .addComponent(winnerName)
+                    .addComponent(exit))
+                .addContainerGap(156, Short.MAX_VALUE))
+        );
+        dialogLayout.setVerticalGroup(
+            dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogLayout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addComponent(winnerName)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(29, 29, 29)
+                .addComponent(exit)
+                .addContainerGap(94, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -1669,12 +1710,15 @@ public class GameBoard extends javax.swing.JFrame {
     private javax.swing.JPanel damagePanel;
     private javax.swing.JSlider damageSlider;
     private CardBack deck;
+    private javax.swing.JDialog dialog;
+    private javax.swing.JButton exit;
     private MiniPanel grave;
     private javax.swing.JPanel gravePanel;
     private javax.swing.JLabel greenLife;
     private javax.swing.JLabel greenLife1;
     private javax.swing.JPanel handPanel;
     private javax.swing.JEditorPane jEditorPane1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1714,6 +1758,7 @@ public class GameBoard extends javax.swing.JFrame {
     private MiniPanel spellStack;
     private javax.swing.JLabel whiteLife;
     private javax.swing.JLabel whiteLife1;
+    private javax.swing.JLabel winnerName;
     // End of variables declaration//GEN-END:variables
 
     }

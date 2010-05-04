@@ -166,7 +166,7 @@ public class MiniPanel extends javax.swing.JPanel {
         neutral.setBackground(new java.awt.Color(204, 204, 204));
         neutral.setColumns(4);
         neutral.setEditable(false);
-        neutral.setFont(new java.awt.Font("Charlemagne Std", 0, 8)); // NOI18N
+        neutral.setFont(new java.awt.Font("Charlemagne Std", 0, 8));
         neutral.setText("jTextField1");
         neutral.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,40 +177,41 @@ public class MiniPanel extends javax.swing.JPanel {
         red.setBackground(new java.awt.Color(204, 0, 0));
         red.setColumns(4);
         red.setEditable(false);
-        red.setFont(new java.awt.Font("Charlemagne Std", 0, 8)); // NOI18N
+        red.setFont(new java.awt.Font("Charlemagne Std", 0, 8));
         red.setText("jTextField2");
 
         green.setBackground(new java.awt.Color(102, 153, 0));
         green.setColumns(4);
         green.setEditable(false);
-        green.setFont(new java.awt.Font("Charlemagne Std", 0, 8)); // NOI18N
+        green.setFont(new java.awt.Font("Charlemagne Std", 0, 8));
         green.setText("jTextField3");
 
         blue.setBackground(new java.awt.Color(0, 0, 153));
         blue.setColumns(4);
         blue.setEditable(false);
-        blue.setFont(new java.awt.Font("Charlemagne Std", 0, 8)); // NOI18N
+        blue.setFont(new java.awt.Font("Charlemagne Std", 0, 8));
         blue.setForeground(new java.awt.Color(255, 255, 255));
         blue.setText("jTextField4");
 
         white.setColumns(4);
         white.setEditable(false);
-        white.setFont(new java.awt.Font("Charlemagne Std", 0, 8)); // NOI18N
+        white.setFont(new java.awt.Font("Charlemagne Std", 0, 8));
         white.setText("jTextField5");
 
         black.setBackground(new java.awt.Color(0, 0, 0));
         black.setColumns(4);
         black.setEditable(false);
-        black.setFont(new java.awt.Font("Charlemagne Std", 0, 8)); // NOI18N
+        black.setFont(new java.awt.Font("Charlemagne Std", 0, 8));
         black.setForeground(new java.awt.Color(255, 255, 255));
         black.setText("jTextField6");
 
         cardInfo.setBackground(namePanel.getBackground());
         cardInfo.setEditable(false);
+        cardInfo.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
 
         namePanel.setBackground(new java.awt.Color(255, 226, 139));
 
-        cardName.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
+        cardName.setFont(new java.awt.Font("Lucida Grande", 0, 10));
         cardName.setText("jLabel1");
 
         org.jdesktop.layout.GroupLayout namePanelLayout = new org.jdesktop.layout.GroupLayout(namePanel);

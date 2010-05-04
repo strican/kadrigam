@@ -189,6 +189,9 @@
           <Connection component="namePanel" name="background" type="property"/>
         </Property>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="8" style="0"/>
+        </Property>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="cardInfo.setBackground(new java.awt.Color(241, 192, 117));"/>
