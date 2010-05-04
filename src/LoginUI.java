@@ -213,6 +213,49 @@ public class LoginUI extends javax.swing.JFrame {
     }//GEN-LAST:event_playerTwoEditButtonActionPerformed
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
+        String player1 = playerOneText.getText();
+        String player2 = playerTwoText.getText();
+
+        String filename1 = player1 + ".ser";
+        String filename2 = player2 + ".ser";
+
+        // unserialize user1
+        User user1 = null;
+        FileInputStream fis = null;
+        ObjectInputStream in = null;
+
+        try {
+            fis = new FileInputStream(filename1);
+            in = new ObjectInputStream(fis);
+            user1 = (User) in.readObject();
+            in.close();
+        } catch (IOException readEx) {
+            user1 = new User(player1);
+            Login.serialize(user1, player1);
+
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+
+        // unserialize user2
+        User user2 = null;
+        FileInputStream fis2 = null;
+        ObjectInputStream in2 = null;
+
+        try {
+            fis2 = new FileInputStream(filename2);
+            in2 = new ObjectInputStream(fis2);
+            user2 = (User) in2.readObject();
+            in2.close();
+        } catch (IOException readEx2) {
+            user2 = new User(player2);
+            Login.serialize(user2, player2);
+
+        } catch (ClassNotFoundException ex2) {
+            ex2.printStackTrace();
+        }
+        GameStartUI g = new GameStartUI(user1,user2);
+        g.run();
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void playerOneTextPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_playerOneTextPropertyChange

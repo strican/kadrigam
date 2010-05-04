@@ -88,9 +88,12 @@ public class MiniPanel extends javax.swing.JPanel {
             if (a != null)
             {
                 Trigger t = a.getTrigger();
-                cardInfo.setText("  "+t.toString()+":\n");
-                cardInfo.setText(cardInfo.getText()+"  "+
-                        a.getEffect().toString());
+                if (t != null)
+                {
+                    cardInfo.setText("  "+t.toString()+":\n");
+                    cardInfo.setText(cardInfo.getText()+"  "+
+                           a.getEffect().toString());
+                }
             }
             cardInfo.setText(cardInfo.getText()+
                     "  POW: "+((Creature)c).getPow()+"\n");

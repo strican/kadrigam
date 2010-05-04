@@ -1,6 +1,7 @@
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class CardCollection implements CardList, Serializable {
 
@@ -127,5 +128,24 @@ public class CardCollection implements CardList, Serializable {
         }
 
         return counter;
+    }
+
+    public CardPile shuffleToPile()
+    {
+        CardPile c = new CardPile();
+        Random r = new Random();
+        ArrayList<Integer> visited = new ArrayList<Integer>();
+
+        while (visited.size() < cards.size())
+        {
+            int i = r.nextInt(cards.size());
+            if (!visited.contains((Integer)i))
+            {
+                c.addCard(cards.get(i));
+                visited.add((Integer)i);
+            }
+
+        }
+        return c;
     }
 }

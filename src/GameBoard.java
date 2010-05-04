@@ -888,10 +888,10 @@ public class GameBoard extends javax.swing.JFrame {
         );
 
         pilePanel.setBackground(new java.awt.Color(204, 204, 204));
-        pilePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Graveyard", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Charlemagne Std", 0, 12))); // NOI18N
+        pilePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Your Deck", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Charlemagne Std", 0, 12))); // NOI18N
 
         gravePanel.setBackground(new java.awt.Color(204, 204, 204));
-        gravePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Deck", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Charlemagne Std", 0, 12))); // NOI18N
+        gravePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Your Graveyard", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Charlemagne Std", 0, 12))); // NOI18N
 
         javax.swing.GroupLayout gravePanelLayout = new javax.swing.GroupLayout(gravePanel);
         gravePanel.setLayout(gravePanelLayout);
@@ -1040,7 +1040,7 @@ public class GameBoard extends javax.swing.JFrame {
                 .addGroup(spellPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(oppSpellStack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(spellStack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         spellPanelLayout.setVerticalGroup(
             spellPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1058,6 +1058,11 @@ public class GameBoard extends javax.swing.JFrame {
         phaseLabel.setText("jLabel1");
 
         phaseButton.setText("jButton1");
+        phaseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phaseButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout phasePanelLayout = new javax.swing.GroupLayout(phasePanel);
         phasePanel.setLayout(phasePanelLayout);
@@ -1066,7 +1071,7 @@ public class GameBoard extends javax.swing.JFrame {
             .addGroup(phasePanelLayout.createSequentialGroup()
                 .addGroup(phasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(phasePanelLayout.createSequentialGroup()
-                        .addGap(76, 76, 76)
+                        .addGap(73, 73, 73)
                         .addComponent(phaseLabel))
                     .addGroup(phasePanelLayout.createSequentialGroup()
                         .addContainerGap()
@@ -1076,10 +1081,10 @@ public class GameBoard extends javax.swing.JFrame {
         phasePanelLayout.setVerticalGroup(
             phasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(phasePanelLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addComponent(phaseLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(phaseButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(phaseButton, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1205,6 +1210,7 @@ public class GameBoard extends javax.swing.JFrame {
         whiteLife.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         whiteLife.setText("" + p.getLife().get(Color.WHITE));
 
+        pNameLabel.setFont(new java.awt.Font("Charlemagne Std", 1, 14)); // NOI18N
         pNameLabel.setText(p.getName());
 
         javax.swing.GroupLayout pHealthLayout = new javax.swing.GroupLayout(pHealth);
@@ -1298,6 +1304,7 @@ public class GameBoard extends javax.swing.JFrame {
         whiteLife1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         whiteLife1.setText("" + opp.getLife().get(Color.WHITE));
 
+        oppNameLabel.setFont(new java.awt.Font("Charlemagne Std", 1, 14)); // NOI18N
         oppNameLabel.setForeground(new java.awt.Color(255, 255, 255));
         oppNameLabel.setText(opp.getName());
 
@@ -1360,12 +1367,12 @@ public class GameBoard extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(43, Short.MAX_VALUE)
                         .addComponent(oppPilePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(pilePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pilePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -1395,7 +1402,7 @@ public class GameBoard extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(oppPilePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                         .addComponent(pilePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1407,7 +1414,8 @@ public class GameBoard extends javax.swing.JFrame {
                                 .addComponent(oppHandPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(62, 62, 62)
-                                .addComponent(phasePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(phasePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -1417,12 +1425,12 @@ public class GameBoard extends javax.swing.JFrame {
                                 .addComponent(spellPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(handPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(damagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(767, Short.MAX_VALUE))
+                .addContainerGap(769, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1431,7 +1439,7 @@ public class GameBoard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1571,6 +1579,59 @@ public class GameBoard extends javax.swing.JFrame {
         offset = (offset + 1) % max_offset;
         update();
     }//GEN-LAST:event_moreHandActionPerformed
+
+    private void phaseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phaseButtonActionPerformed
+        // TODO add your handling code here:
+        Type t = p.getPhase();
+        switch (t) {
+            case DRAW:
+                Move draw = new DrawMove(p);
+                if (draw.isLegal(r)) {
+                    draw.execute();
+                } else if (isOver()) {
+                    winner();
+                }
+
+                p.setPhase(Type.SACRIFICE);
+                break;
+            case SACRIFICE:
+                p.setPhase(Type.PLAY1);
+                break;
+            case PLAY1:
+                p.setPhase(Type.ATTACK);
+                break;
+            case ATTACK:
+                p.setPhase(Type.WAIT);
+                opp.setPhase(Type.DAMAGE);
+                break;
+            case DAMAGE:
+                dealDirect();
+                p.setPhase(Type.WAIT);
+                opp.setPhase(Type.PLAY2);
+                break;
+            case PLAY2:
+                p.setPhase(Type.DISCARD);
+                break;
+            case DISCARD:
+                if (p.getHand().size() >= 8) {
+                    break;
+                }
+
+                p.setPhase(Type.WAIT);
+                opp.setPhase(Type.DRAW);
+                break;
+            case WAIT:
+                break;
+            default:
+                p.setPhase(Type.SACRIFICE);
+                break;
+        }
+
+        updateButton();
+
+        update();
+
+    }//GEN-LAST:event_phaseButtonActionPerformed
     /**
      * @param args the command line arguments
      */

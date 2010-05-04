@@ -19,13 +19,16 @@ public class StandardGame implements Game
             public void run() {
                 g1.setVisible(true);
             }
-        });
+        }); 
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 g2.setVisible(true);
             }
         });
+        
+        //g1.setVisible(true);
+        //g2.setVisible(true);
 
     this.p1 = p1;
     this.p2 = p2;

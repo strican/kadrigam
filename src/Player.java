@@ -4,7 +4,7 @@ public interface Player
  
    public static final int MAXHANDSIZE = 7;
    public static final int MAXALLIES = 5;
-   public static final int INITIAL_POINTS = 100000;
+   public static final int INITIAL_POINTS = 10000;
    
   /* Player assigns attackers and returns the total damage to be dealt */
   public int assignAttack();
