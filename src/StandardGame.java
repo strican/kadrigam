@@ -84,14 +84,14 @@ public class StandardGame implements Game
   
   public void init_phase(Player p)
   {
-    p.drawCard();
-    for (int i=0; i<p.getAllies().size(); i++)
-      ((Creature)((CardCollection)(p.getAllies())).getCard(i)).setActive(true);
+    //p.drawCard();
+    //for (int i=0; i<p.getAllies().size(); i++)
+    //  ((Creature)((CardCollection)(p.getAllies())).getCard(i)).setActive(true);
 
     //g1.update();
     //g2.update();
 
-    p.setPhase(Type.SACRIFICE);
+    p.setPhase(Type.DRAW);
 
     //Remove when moved to gui
     Test.printPlayerInfo(p);

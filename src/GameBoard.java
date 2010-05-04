@@ -12,6 +12,9 @@
  *
  * @author Steve
  */
+
+import javax.swing.*;
+
 public class GameBoard extends javax.swing.JFrame {
 
     private Player p;
@@ -22,6 +25,7 @@ public class GameBoard extends javax.swing.JFrame {
     private int offset;
     private int max_offset;
     private final int NUM_VISIBLE = 7;
+    private final int LEGAL_HAND = 8;
 
     /** Creates new form GameBoard */
     public GameBoard(Player p, Player opp, Rules r) {
@@ -97,31 +101,60 @@ public class GameBoard extends javax.swing.JFrame {
         ally4.changeCard(p.getAllies().getCard(3));
         ally5.changeCard(p.getAllies().getCard(4));
 
-
         if (ally1.getCard() == null)
             ally1.setVisible(false);
         else
+        {
             ally1.setVisible(true);
+            if (((Creature)ally1.getCard()).isActive())
+                ally1.setBorder(BorderFactory.createLineBorder(java.awt.Color.GREEN, 3));
+            else
+                ally1.setBorder(BorderFactory.createLineBorder(java.awt.Color.RED, 3));
+        }
 
         if (ally2.getCard() == null)
             ally2.setVisible(false);
         else
+        {
             ally2.setVisible(true);
+            if (((Creature)ally2.getCard()).isActive())
+                ally2.setBorder(BorderFactory.createLineBorder(java.awt.Color.GREEN, 3));
+            else
+                ally2.setBorder(BorderFactory.createLineBorder(java.awt.Color.RED, 3));
+        }
 
         if (ally3.getCard() == null)
             ally3.setVisible(false);
         else
+        {
             ally3.setVisible(true);
+            if (((Creature)ally3.getCard()).isActive())
+                ally3.setBorder(BorderFactory.createLineBorder(java.awt.Color.GREEN, 3));
+            else
+                ally3.setBorder(BorderFactory.createLineBorder(java.awt.Color.RED, 3));
+        }
 
         if (ally4.getCard() == null)
             ally4.setVisible(false);
         else
+        {
             ally4.setVisible(true);
+            if (((Creature)ally4.getCard()).isActive())
+                ally4.setBorder(BorderFactory.createLineBorder(java.awt.Color.GREEN, 3));
+            else
+                ally4.setBorder(BorderFactory.createLineBorder(java.awt.Color.RED, 3));
+        }
 
         if (ally5.getCard() == null)
             ally5.setVisible(false);
         else
+        {
             ally5.setVisible(true);
+            if (((Creature)ally5.getCard()).isActive())
+                ally5.setBorder(BorderFactory.createLineBorder(java.awt.Color.GREEN, 3));
+            else
+                ally5.setBorder(BorderFactory.createLineBorder(java.awt.Color.RED, 3));
+        }
     }
 
     public void updateHand()
@@ -182,28 +215,57 @@ public class GameBoard extends javax.swing.JFrame {
         if (oppAlly1.getCard() == null)
             oppAlly1.setVisible(false);
         else
+        {
             oppAlly1.setVisible(true);
+            if (((Creature)oppAlly1.getCard()).isActive())
+                oppAlly1.setBorder(BorderFactory.createLineBorder(java.awt.Color.GREEN, 3));
+            else
+                oppAlly1.setBorder(BorderFactory.createLineBorder(java.awt.Color.RED, 3));
+        }
 
         if (oppAlly2.getCard() == null)
             oppAlly2.setVisible(false);
         else
+        {
             oppAlly2.setVisible(true);
+            if (((Creature)oppAlly2.getCard()).isActive())
+                oppAlly2.setBorder(BorderFactory.createLineBorder(java.awt.Color.GREEN, 3));
+            else
+                oppAlly2.setBorder(BorderFactory.createLineBorder(java.awt.Color.RED, 3));
+        }
 
         if (oppAlly3.getCard() == null)
             oppAlly3.setVisible(false);
         else
+        {
             oppAlly3.setVisible(true);
+            if (((Creature)oppAlly3.getCard()).isActive())
+                oppAlly3.setBorder(BorderFactory.createLineBorder(java.awt.Color.GREEN, 3));
+            else
+                oppAlly3.setBorder(BorderFactory.createLineBorder(java.awt.Color.RED, 3));
+        }
 
         if (oppAlly4.getCard() == null)
             oppAlly4.setVisible(false);
         else
+        {
             oppAlly4.setVisible(true);
+            if (((Creature)oppAlly4.getCard()).isActive())
+                oppAlly4.setBorder(BorderFactory.createLineBorder(java.awt.Color.GREEN, 3));
+            else
+                oppAlly4.setBorder(BorderFactory.createLineBorder(java.awt.Color.RED, 3));
+        }
 
         if (oppAlly5.getCard() == null)
             oppAlly5.setVisible(false);
         else
+        {
             oppAlly5.setVisible(true);
-
+            if (((Creature)oppAlly5.getCard()).isActive())
+                oppAlly5.setBorder(BorderFactory.createLineBorder(java.awt.Color.GREEN, 3));
+            else
+                oppAlly5.setBorder(BorderFactory.createLineBorder(java.awt.Color.RED, 3));
+        }
     }
 
     public void updateHealth()
@@ -276,7 +338,14 @@ public class GameBoard extends javax.swing.JFrame {
         updateSpells();
         
         if (p.getPhase() != Type.DAMAGE)
+        {
             damagePanel.setVisible(false);
+            damageLeftPanel.setVisible(false);
+        }
+        else
+            damageLeftPanel.setVisible(true);
+
+        damageLeftLabel.setText("" + opp.getDamage());
         
 
         moreHand.setVisible(p.getHand().size() > NUM_VISIBLE);
@@ -349,7 +418,10 @@ public class GameBoard extends javax.swing.JFrame {
                 phaseButton.setText("End Damage Phase");
                 break;
             case PLAY2:
-                phaseButton.setText("Move to Discard Phase");
+                if (p.getHand().size() >= LEGAL_HAND)
+                    phaseButton.setText("Move to Discard Phase");
+                else
+                    phaseButton.setText("End Turn");
                 break;
             case DISCARD:
                 phaseButton.setText("End Turn");
@@ -543,6 +615,9 @@ public class GameBoard extends javax.swing.JFrame {
         oppSpellStack = new MiniPanel();
         spellStack = new MiniPanel();
         moreHand = new javax.swing.JButton();
+        damageLeftPanel = new javax.swing.JPanel();
+        damageLeftLabel = new javax.swing.JLabel();
+        leftLabel = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -1235,6 +1310,33 @@ public class GameBoard extends javax.swing.JFrame {
             }
         });
 
+        damageLeftLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        damageLeftLabel.setText("Damage to be Dealt");
+
+        leftLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        leftLabel.setText("Damage to be Dealt:");
+
+        javax.swing.GroupLayout damageLeftPanelLayout = new javax.swing.GroupLayout(damageLeftPanel);
+        damageLeftPanel.setLayout(damageLeftPanelLayout);
+        damageLeftPanelLayout.setHorizontalGroup(
+            damageLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(damageLeftPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(damageLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(leftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(damageLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        damageLeftPanelLayout.setVerticalGroup(
+            damageLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(damageLeftPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(leftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(damageLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -1259,9 +1361,14 @@ public class GameBoard extends javax.swing.JFrame {
                                     .addComponent(oppDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                     .addComponent(allAllyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(6, 6, 6)
-                                    .addComponent(damagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addGap(6, 6, 6)
+                                            .addComponent(damagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addGap(57, 57, 57)
+                                            .addComponent(damageLeftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(spellPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -1277,9 +1384,7 @@ public class GameBoard extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(oppHandPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 233, Short.MAX_VALUE))
+                            .addComponent(oppHandPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 233, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(63, 63, 63)
                                 .addComponent(oppDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1290,10 +1395,10 @@ public class GameBoard extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(248, 248, 248)
-                                        .addComponent(damagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(damagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(allAllyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(damageLeftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(allAllyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(46, 46, 46)
                                 .addComponent(spellPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1326,7 +1431,7 @@ public class GameBoard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1364,7 +1469,10 @@ public class GameBoard extends javax.swing.JFrame {
                     winner();
                 }
 
-                p.setPhase(Type.SACRIFICE);
+                if (p.getAllies().size() > 0)
+                    p.setPhase(Type.SACRIFICE);
+                else
+                    p.setPhase(Type.PLAY1);
                 break;
             case SACRIFICE:
                 p.setPhase(Type.PLAY1);
@@ -1373,8 +1481,13 @@ public class GameBoard extends javax.swing.JFrame {
                 p.setPhase(Type.ATTACK);
                 break;
             case ATTACK:
-                p.setPhase(Type.WAIT);
-                opp.setPhase(Type.DAMAGE);
+                if (p.getDamage() > 0)
+                {
+                    p.setPhase(Type.WAIT);
+                    opp.setPhase(Type.DAMAGE);
+                }
+                else
+                    p.setPhase(Type.PLAY2);
                 break;
             case DAMAGE:
                 dealDirect();
@@ -1382,10 +1495,16 @@ public class GameBoard extends javax.swing.JFrame {
                 opp.setPhase(Type.PLAY2);
                 break;
             case PLAY2:
-                p.setPhase(Type.DISCARD);
+                if (p.getHand().size() >= LEGAL_HAND)
+                    p.setPhase(Type.DISCARD);
+                else
+                {
+                    p.setPhase(Type.WAIT);
+                    opp.setPhase(Type.DRAW);
+                }
                 break;
             case DISCARD:
-                if (p.getHand().size() >= 8) {
+                if (p.getHand().size() >= LEGAL_HAND) {
                     break;
                 }
 
@@ -1551,6 +1670,8 @@ public class GameBoard extends javax.swing.JFrame {
     private MiniPanel card7;
     private javax.swing.JButton damageButton;
     private javax.swing.JLabel damageLabel;
+    private javax.swing.JLabel damageLeftLabel;
+    private javax.swing.JPanel damageLeftPanel;
     private javax.swing.JPanel damagePanel;
     private javax.swing.JSlider damageSlider;
     private CardBack deck;
@@ -1565,6 +1686,7 @@ public class GameBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTree jTree1;
+    private javax.swing.JLabel leftLabel;
     private javax.swing.JLabel life;
     private javax.swing.JLabel life1;
     private javax.swing.JButton moreHand;
